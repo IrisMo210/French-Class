@@ -2,7 +2,7 @@
 
 **Our group French class app — objectif : DELF A2 !**
 
-👉 **Open the app:** https://irismokkkk.github.io/French-Class/
+👉 **Open the app:** https://irismo210.github.io/French-Class/
 
 A self-contained web app for our French class. It works on any phone or computer,
 needs no account and no installation — your progress is saved automatically on
