@@ -186,6 +186,43 @@
   .cls-dots{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
   .cls-dots span{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;}
   .cls-dots span.on{background:var(--gold);}
+  /* ---------- Grammaire & Conjugaison (v5) ---------- */
+  .accbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;justify-content:center;}
+  .accbar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 11px;font-size:16px;cursor:pointer;font-family:'Karla',sans-serif;color:var(--ink);}
+  .accbar button:active{background:var(--gold-bg);}
+  .stagepills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .stg{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.02em;border-radius:999px;padding:6px 11px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink-soft);}
+  .stg.on{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .stg.done{background:var(--gold-bg);border-color:var(--gold-edge);color:var(--gold);}
+  .grule{background:var(--gold-bg);border:1px solid var(--gold-edge);border-radius:12px;padding:12px 14px;font-size:.92rem;margin-bottom:14px;}
+  .grule b{color:var(--gold);}
+  .grule .gx{border-top:1px dashed var(--gold-edge);margin-top:9px;padding-top:9px;font-size:.9rem;line-height:1.7;}
+  .grule .gx .entr{color:var(--ink-soft);font-size:.78rem;font-style:italic;}
+  .grule .warn2{border-top:1px dashed var(--gold-edge);margin-top:9px;padding-top:9px;font-size:.82rem;}
+  .conjtable{width:100%;border-collapse:collapse;font-size:.95rem;}
+  .conjtable td{padding:5px 4px;border-bottom:1px dashed var(--line);}
+  .conjtable td.pn2{color:var(--ink-soft);width:78px;font-size:.85rem;}
+  .conjtable b{color:var(--gold);}
+  .conjtable .spk{float:right;}
+  .gchip{display:block;background:var(--gold-bg);border:1px solid var(--gold-edge);color:var(--gold);border-radius:12px;padding:9px 12px;font-size:.83rem;font-weight:700;margin:-6px 0 14px;cursor:pointer;line-height:1.4;}
+  .ochips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
+  .ochip{border:1px solid var(--gold-edge);background:var(--gold-bg);color:var(--gold);border-radius:10px;padding:9px 13px;font-weight:700;cursor:pointer;font-size:.95rem;font-family:'Karla',sans-serif;}
+  .ochip.used{opacity:.22;pointer-events:none;}
+  .obuild{border:1px dashed var(--line);border-radius:10px;margin-top:10px;padding:10px 12px;min-height:44px;font-size:1.02rem;background:#fff;}
+  .verbchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .vchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:.82rem;cursor:pointer;font-family:'Karla',sans-serif;color:var(--ink);}
+  .vchip.on{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .prodbox{background:#fff;border:1px dashed var(--gold-edge);border-radius:12px;padding:12px 14px;font-size:.86rem;margin-top:14px;}
+  .prodbox b{color:var(--gold);}
+  .vgrp{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:8px;overflow:hidden;}
+  .vgrp-h{display:flex;align-items:center;gap:8px;padding:11px 13px;cursor:pointer;font-weight:700;font-size:.9rem;}
+  .vgrp-h .cnt2{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink-soft);}
+  .vgrp-h .car{color:var(--gold);font-size:.8rem;}
+  .vrow{display:flex;align-items:baseline;gap:9px;border-top:1px dashed var(--line);padding:9px 13px;cursor:pointer;}
+  .vrow:hover{background:var(--gold-bg);}
+  .vrow b{font-size:.95rem;}
+  .vrow.on b{color:var(--gold);}
+  .vrow .en2{margin-left:auto;color:var(--ink-soft);font-size:.8rem;text-align:right;}
   #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:999px;padding:9px 18px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9;max-width:90%;text-align:center;}
   footer{text-align:center;color:var(--ink-soft);font-size:.72rem;margin-top:34px;padding-top:16px;border-top:1px solid var(--line);}
 </style>
@@ -209,29 +246,519 @@ const BOOKS=[
  "Livre 3 · Intermédiaire A2/B1, 3e édition (25 chapitres)"
 ];
 
-const VERBS={
-  "être":["suis","es","est","sommes","êtes","sont"],
-  "avoir":["ai","as","a","avons","avez","ont"],
-  "aller":["vais","vas","va","allons","allez","vont"],
-  "faire":["fais","fais","fait","faisons","faites","font"],
-  "parler":["parle","parles","parle","parlons","parlez","parlent"],
-  "habiter":["habite","habites","habite","habitons","habitez","habitent"],
-  "aimer":["aime","aimes","aime","aimons","aimez","aiment"],
-  "travailler":["travaille","travailles","travaille","travaillons","travaillez","travaillent"],
-  "acheter":["achète","achètes","achète","achetons","achetez","achètent"],
-  "appeler (j'appelle)":["appelle","appelles","appelle","appelons","appelez","appellent"],
-  "comprendre":["comprends","comprends","comprend","comprenons","comprenez","comprennent"],
-  "lire":["lis","lis","lit","lisons","lisez","lisent"],
-  "écrire":["écris","écris","écrit","écrivons","écrivez","écrivent"],
-  "venir":["viens","viens","vient","venons","venez","viennent"],
-  "jouer":["joue","joues","joue","jouons","jouez","jouent"],
-  "manger":["mange","manges","mange","mangeons","mangez","mangent"],
-  "boire":["bois","bois","boit","buvons","buvez","boivent"],
-  "prendre":["prends","prends","prend","prenons","prenez","prennent"]
+/* === CONJ_START ===
+   CONJ[v] = {pres:[6 formes], impf:"radical" | {s,soft}, fut:"radical",
+              pp:"participe", aux:"a"(avoir)/"e"(être), impe:[3] (si irrégulier),
+              noImpe:true (pas d'impératif usuel)}
+   Imparfait = radical (forme « nous » sans -ons) + ais/ais/ait/ions/iez/aient
+   (soft = e/ç inséré devant a : nous mangions MAIS je mangeais).
+   Futur simple = radical + ai/as/a/ons/ez/ont. */
+const CONJ={
+  "être":{pres:["suis","es","est","sommes","êtes","sont"],impf:"ét",fut:"ser",pp:"été",aux:"a",impe:["sois","soyons","soyez"]},
+  "avoir":{pres:["ai","as","a","avons","avez","ont"],impf:"av",fut:"aur",pp:"eu",aux:"a",impe:["aie","ayons","ayez"]},
+  "aller":{pres:["vais","vas","va","allons","allez","vont"],impf:"all",fut:"ir",pp:"allé",aux:"e",impe:["va","allons","allez"]},
+  "faire":{pres:["fais","fais","fait","faisons","faites","font"],impf:"fais",fut:"fer",pp:"fait",aux:"a"},
+  "parler":{pres:["parle","parles","parle","parlons","parlez","parlent"],impf:"parl",fut:"parler",pp:"parlé",aux:"a"},
+  "habiter":{pres:["habite","habites","habite","habitons","habitez","habitent"],impf:"habit",fut:"habiter",pp:"habité",aux:"a"},
+  "aimer":{pres:["aime","aimes","aime","aimons","aimez","aiment"],impf:"aim",fut:"aimer",pp:"aimé",aux:"a"},
+  "travailler":{pres:["travaille","travailles","travaille","travaillons","travaillez","travaillent"],impf:"travaill",fut:"travailler",pp:"travaillé",aux:"a"},
+  "manger":{pres:["mange","manges","mange","mangeons","mangez","mangent"],impf:{s:"mang",soft:"e"},fut:"manger",pp:"mangé",aux:"a"},
+  "acheter":{pres:["achète","achètes","achète","achetons","achetez","achètent"],impf:"achet",fut:"achèter",pp:"acheté",aux:"a"},
+  "appeler":{pres:["appelle","appelles","appelle","appelons","appelez","appellent"],impf:"appel",fut:"appeller",pp:"appelé",aux:"a"},
+  "étudier":{pres:["étudie","étudies","étudie","étudions","étudiez","étudient"],impf:"étudi",fut:"étudier",pp:"étudié",aux:"a"},
+  "écouter":{pres:["écoute","écoutes","écoute","écoutons","écoutez","écoutent"],impf:"écout",fut:"écouter",pp:"écouté",aux:"a"},
+  "regarder":{pres:["regarde","regardes","regarde","regardons","regardez","regardent"],impf:"regard",fut:"regarder",pp:"regardé",aux:"a"},
+  "jouer":{pres:["joue","joues","joue","jouons","jouez","jouent"],impf:"jou",fut:"jouer",pp:"joué",aux:"a"},
+  "donner":{pres:["donne","donnes","donne","donnons","donnez","donnent"],impf:"donn",fut:"donner",pp:"donné",aux:"a"},
+  "commencer":{pres:["commence","commences","commence","commençons","commencez","commencent"],impf:{s:"commen",soft:"ç",hard:"c"},fut:"commencer",pp:"commencé",aux:"a"},
+  "préférer":{pres:["préfère","préfères","préfère","préférons","préférez","préfèrent"],impf:"préfér",fut:"préférer",pp:"préféré",aux:"a"},
+  "finir":{pres:["finis","finis","finit","finissons","finissez","finissent"],impf:"finiss",fut:"finir",pp:"fini",aux:"a"},
+  "choisir":{pres:["choisis","choisis","choisit","choisissons","choisissez","choisissent"],impf:"choisiss",fut:"choisir",pp:"choisi",aux:"a"},
+  "dormir":{pres:["dors","dors","dort","dormons","dormez","dorment"],impf:"dorm",fut:"dormir",pp:"dormi",aux:"a"},
+  "partir":{pres:["pars","pars","part","partons","partez","partent"],impf:"part",fut:"partir",pp:"parti",aux:"e"},
+  "sortir":{pres:["sors","sors","sort","sortons","sortez","sortent"],impf:"sort",fut:"sortir",pp:"sorti",aux:"e"},
+  "venir":{pres:["viens","viens","vient","venons","venez","viennent"],impf:"ven",fut:"viendr",pp:"venu",aux:"e"},
+  "arriver":{pres:["arrive","arrives","arrive","arrivons","arrivez","arrivent"],impf:"arriv",fut:"arriver",pp:"arrivé",aux:"e"},
+  "rester":{pres:["reste","restes","reste","restons","restez","restent"],impf:"rest",fut:"rester",pp:"resté",aux:"e"},
+  "entrer":{pres:["entre","entres","entre","entrons","entrez","entrent"],impf:"entr",fut:"entrer",pp:"entré",aux:"e"},
+  "tomber":{pres:["tombe","tombes","tombe","tombons","tombez","tombent"],impf:"tomb",fut:"tomber",pp:"tombé",aux:"e"},
+  "prendre":{pres:["prends","prends","prend","prenons","prenez","prennent"],impf:"pren",fut:"prendr",pp:"pris",aux:"a"},
+  "apprendre":{pres:["apprends","apprends","apprend","apprenons","apprenez","apprennent"],impf:"appren",fut:"apprendr",pp:"appris",aux:"a"},
+  "comprendre":{pres:["comprends","comprends","comprend","comprenons","comprenez","comprennent"],impf:"compren",fut:"comprendr",pp:"compris",aux:"a"},
+  "attendre":{pres:["attends","attends","attend","attendons","attendez","attendent"],impf:"attend",fut:"attendr",pp:"attendu",aux:"a"},
+  "entendre":{pres:["entends","entends","entend","entendons","entendez","entendent"],impf:"entend",fut:"entendr",pp:"entendu",aux:"a"},
+  "répondre":{pres:["réponds","réponds","répond","répondons","répondez","répondent"],impf:"répond",fut:"répondr",pp:"répondu",aux:"a"},
+  "lire":{pres:["lis","lis","lit","lisons","lisez","lisent"],impf:"lis",fut:"lir",pp:"lu",aux:"a"},
+  "écrire":{pres:["écris","écris","écrit","écrivons","écrivez","écrivent"],impf:"écriv",fut:"écrir",pp:"écrit",aux:"a"},
+  "boire":{pres:["bois","bois","boit","buvons","buvez","boivent"],impf:"buv",fut:"boir",pp:"bu",aux:"a"},
+  "voir":{pres:["vois","vois","voit","voyons","voyez","voient"],impf:"voy",fut:"verr",pp:"vu",aux:"a"},
+  "savoir":{pres:["sais","sais","sait","savons","savez","savent"],impf:"sav",fut:"saur",pp:"su",aux:"a",impe:["sache","sachons","sachez"]},
+  "connaître":{pres:["connais","connais","connaît","connaissons","connaissez","connaissent"],impf:"connaiss",fut:"connaîtr",pp:"connu",aux:"a"},
+  "mettre":{pres:["mets","mets","met","mettons","mettez","mettent"],impf:"mett",fut:"mettr",pp:"mis",aux:"a"},
+  "dire":{pres:["dis","dis","dit","disons","dites","disent"],impf:"dis",fut:"dir",pp:"dit",aux:"a"},
+  "vouloir":{pres:["veux","veux","veut","voulons","voulez","veulent"],impf:"voul",fut:"voudr",pp:"voulu",aux:"a",noImpe:true},
+  "pouvoir":{pres:["peux","peux","peut","pouvons","pouvez","peuvent"],impf:"pouv",fut:"pourr",pp:"pu",aux:"a",noImpe:true},
+  "devoir":{pres:["dois","dois","doit","devons","devez","doivent"],impf:"dev",fut:"devr",pp:"dû",aux:"a",noImpe:true}
 };
-const CORE=["être","avoir","aller","faire"];
+/* === VERB_BANK : banque de verbes générée par modèles (+ gloses EN) ===
+   Les 45 verbes ci-dessus restent la référence vérifiée à la main ; la banque
+   ajoute ~300 verbes construits sur les modèles réguliers du français.
+   Pour un verbe manquant : « ajoute le verbe X aux tableaux ». */
+const VEN={"être":"to be","avoir":"to have","aller":"to go","faire":"to do / to make","parler":"to speak","habiter":"to live (somewhere)","aimer":"to like / to love","travailler":"to work","manger":"to eat","acheter":"to buy","appeler":"to call","étudier":"to study","écouter":"to listen","regarder":"to watch / to look at","jouer":"to play","donner":"to give","commencer":"to begin","préférer":"to prefer","finir":"to finish","choisir":"to choose","dormir":"to sleep","partir":"to leave","sortir":"to go out","venir":"to come","arriver":"to arrive","rester":"to stay","entrer":"to enter","tomber":"to fall","prendre":"to take","apprendre":"to learn","comprendre":"to understand","attendre":"to wait","entendre":"to hear","répondre":"to answer","lire":"to read","écrire":"to write","boire":"to drink","voir":"to see","savoir":"to know (facts)","connaître":"to know (people, places)","mettre":"to put (on)","dire":"to say","vouloir":"to want","pouvoir":"can / to be able to","devoir":"must / to have to"};
+const V_ER=[["accepter","to accept"],["accompagner","to accompany"],["adorer","to love / to adore"],["aider","to help"],["ajouter","to add"],["allumer","to switch on"],["apporter","to bring (a thing)"],["arrêter","to stop"],["attraper","to catch"],["augmenter","to increase"],["bavarder","to chat"],["briller","to shine"],["casser","to break"],["chanter","to sing"],["chercher","to look for"],["coller","to stick / to glue"],["communiquer","to communicate"],["comparer","to compare"],["compter","to count"],["conseiller","to advise"],["continuer","to continue"],["coûter","to cost"],["créer","to create"],["crier","to shout"],["cuisiner","to cook"],["danser","to dance"],["décider","to decide"],["décorer","to decorate"],["déjeuner","to have lunch"],["demander","to ask (for)"],["dépenser","to spend (money)"],["dessiner","to draw"],["détester","to hate"],["dîner","to have dinner"],["discuter","to discuss"],["douter","to doubt"],["durer","to last"],["embrasser","to kiss / to hug"],["emporter","to take away"],["emprunter","to borrow"],["enseigner","to teach"],["éviter","to avoid"],["expliquer","to explain"],["exprimer","to express"],["fermer","to close"],["fêter","to celebrate"],["frapper","to knock / to hit"],["fumer","to smoke"],["gagner","to win / to earn"],["garder","to keep"],["garer","to park"],["goûter","to taste"],["habiller","to dress (someone)"],["imprimer","to print"],["informer","to inform"],["insister","to insist"],["installer","to install / to settle"],["intéresser","to interest"],["inviter","to invite"],["laisser","to leave (something)"],["laver","to wash"],["livrer","to deliver"],["louer","to rent"],["marcher","to walk"],["mériter","to deserve"],["monter","to go up"],["montrer","to show"],["noter","to note / to write down"],["organiser","to organise"],["oser","to dare"],["oublier","to forget"],["participer","to take part"],["passer","to pass / to spend (time)"],["pêcher","to fish"],["penser","to think"],["photographier","to photograph"],["pleurer","to cry"],["porter","to carry / to wear"],["poser","to put down / to ask (a question)"],["pousser","to push"],["pratiquer","to practise"],["préparer","to prepare"],["présenter","to introduce / to present"],["prêter","to lend"],["profiter","to make the most of"],["proposer","to suggest"],["publier","to publish"],["quitter","to leave (a place, a person)"],["raconter","to tell (a story)"],["recommander","to recommend"],["regretter","to regret"],["remarquer","to notice"],["remercier","to thank"],["rencontrer","to meet"],["rentrer","to go home"],["réparer","to repair"],["repasser","to iron / to come back by"],["réserver","to book"],["respirer","to breathe"],["ressembler","to look like"],["retirer","to withdraw"],["retourner","to go back"],["retrouver","to find again / to meet up"],["rêver","to dream"],["réveiller","to wake (someone) up"],["rouler","to drive / to roll"],["saluer","to greet"],["sauter","to jump"],["sembler","to seem"],["séparer","to separate"],["signer","to sign"],["skier","to ski"],["soigner","to treat / to look after"],["sonner","to ring"],["souhaiter","to wish"],["souligner","to underline"],["supporter","to bear / to stand"],["supposer","to suppose"],["surfer","to surf"],["téléphoner","to phone"],["tester","to test"],["tirer","to pull"],["toucher","to touch"],["tourner","to turn"],["tousser","to cough"],["transporter","to transport"],["traverser","to cross"],["trouver","to find"],["utiliser","to use"],["vérifier","to check"],["vider","to empty"],["visiter","to visit (a place)"],["voler","to fly / to steal"],["voter","to vote"]];
+const V_GER=[["bouger","to move"],["changer","to change"],["corriger","to correct"],["déménager","to move house"],["déranger","to disturb"],["diriger","to manage / to lead"],["échanger","to exchange"],["encourager","to encourage"],["interroger","to question"],["mélanger","to mix"],["nager","to swim"],["obliger","to force / to oblige"],["partager","to share"],["plonger","to dive"],["ranger","to tidy up"],["voyager","to travel"]];
+const V_CER=[["annoncer","to announce"],["avancer","to move forward"],["divorcer","to divorce"],["effacer","to erase"],["lancer","to throw / to launch"],["placer","to place"],["prononcer","to pronounce"],["remplacer","to replace"]];
+const V_EER=[["amener","to bring (someone)"],["emmener","to take (someone)"],["enlever","to remove / to take off"],["geler","to freeze"],["lever","to raise / to lift"],["peser","to weigh"],["promener","to walk (the dog…)"]];
+const V_ACC=[["célébrer","to celebrate"],["compléter","to complete"],["considérer","to consider"],["espérer","to hope"],["exagérer","to exaggerate"],["posséder","to own"],["répéter","to repeat"],["sécher","to dry"]];
+const V_ELER=[["épeler","to spell"],["jeter","to throw (away)"],["rappeler","to call back / to remind"]];
+const V_YER=[["appuyer","to press / to lean"],["employer","to employ / to use"],["ennuyer","to bore / to bother"],["essayer","to try"],["essuyer","to wipe"],["nettoyer","to clean"],["payer","to pay"]];
+const V_IR2=[["applaudir","to applaud"],["atterrir","to land (plane)"],["grandir","to grow (up)"],["grossir","to put on weight"],["guérir","to heal / to cure"],["maigrir","to lose weight"],["obéir","to obey"],["punir","to punish"],["ralentir","to slow down"],["réfléchir","to think (about)"],["remplir","to fill (in)"],["réussir","to succeed / to pass"],["rougir","to blush"],["vieillir","to get old"]];
+const V_IR3=[["mentir","to lie"],["sentir","to feel / to smell"],["servir","to serve"]];
+const V_RE=[["défendre","to defend / to forbid"],["dépendre","to depend"],["descendre","to go down"],["perdre","to lose"],["rendre","to give back"],["vendre","to sell"]];
+const V_VRIR=[["couvrir","to cover","couvert"],["découvrir","to discover","découvert"],["offrir","to offer / to give (a gift)","offert"],["ouvrir","to open","ouvert"],["souffrir","to suffer","souffert"]];
+const V_UIRE=[["conduire","to drive","conduit"],["construire","to build","construit"],["cuire","to cook (food)","cuit"],["produire","to produce","produit"],["traduire","to translate","traduit"]];
+const V_XTRA={
+  "tenir":{en:"to hold",e:{pres:["tiens","tiens","tient","tenons","tenez","tiennent"],impf:"ten",fut:"tiendr",pp:"tenu",aux:"a"}},
+  "courir":{en:"to run",e:{pres:["cours","cours","court","courons","courez","courent"],impf:"cour",fut:"courr",pp:"couru",aux:"a"}},
+  "recevoir":{en:"to receive",e:{pres:["reçois","reçois","reçoit","recevons","recevez","reçoivent"],impf:"recev",fut:"recevr",pp:"reçu",aux:"a"}},
+  "croire":{en:"to believe",e:{pres:["crois","crois","croit","croyons","croyez","croient"],impf:"croy",fut:"croir",pp:"cru",aux:"a"}},
+  "vivre":{en:"to live",e:{pres:["vis","vis","vit","vivons","vivez","vivent"],impf:"viv",fut:"vivr",pp:"vécu",aux:"a"}},
+  "suivre":{en:"to follow",e:{pres:["suis","suis","suit","suivons","suivez","suivent"],impf:"suiv",fut:"suivr",pp:"suivi",aux:"a"}},
+  "rire":{en:"to laugh",e:{pres:["ris","ris","rit","rions","riez","rient"],impf:"ri",fut:"rir",pp:"ri",aux:"a"}},
+  "naître":{en:"to be born",e:{pres:["nais","nais","naît","naissons","naissez","naissent"],impf:"naiss",fut:"naîtr",pp:"né",aux:"e"}},
+  "mourir":{en:"to die",e:{pres:["meurs","meurs","meurt","mourons","mourez","meurent"],impf:"mour",fut:"mourr",pp:"mort",aux:"e"}},
+  "envoyer":{en:"to send",e:{pres:["envoie","envoies","envoie","envoyons","envoyez","envoient"],impf:"envoy",fut:"enverr",pp:"envoyé",aux:"a"}}
+};
+const V_DERIV=[["devenir","venir","to become"],["revenir","venir","to come back"],["obtenir","tenir","to obtain / to get"],["retenir","tenir","to remember / to book"],["permettre","mettre","to allow"],["promettre","mettre","to promise"],["reprendre","prendre","to take back / to resume"],["surprendre","prendre","to surprise"],["décrire","écrire","to describe"],["revoir","voir","to see again"],["reconnaître","connaître","to recognise"],["repartir","partir","to leave again"]];
+const V_ETRE=new Set(["monter","rentrer","retourner","descendre","naître","mourir","devenir","revenir","repartir"]);
+const VFAM={};
+const VGROUPS=[
+ ["cours","⭐ Les verbes du cours (étapes C1–C7)"],
+ ["er","Verbes en -er réguliers"],
+ ["ersp","Verbes en -er particuliers (mange, commençons, lève, espère, jette, paie…)"],
+ ["ir2","Verbes en -ir · type finir (-issons)"],
+ ["ir3","Verbes en -ir · type dormir, partir"],
+ ["re","Verbes en -re · type vendre"],
+ ["vrir","Verbes en -vrir / -frir (ouvert, offert)"],
+ ["uire","Verbes en -uire (conduit, traduit)"],
+ ["irr","Irréguliers"],
+ ["der","Composés des irréguliers (devenir, permettre…)"]
+];
+(function buildVerbBank(){
+  Object.keys(CONJ).forEach(v=>VFAM[v]="cours");
+  const ax=f=>V_ETRE.has(f)?"e":"a";
+  function put(f,e,entry,fam){if(!CONJ[f])CONJ[f]=entry;if(e&&!VEN[f])VEN[f]=e;if(!VFAM[f])VFAM[f]=fam;}
+  V_ER.forEach(([f,e])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"e",s+"es",s+"e",s+"ons",s+"ez",s+"ent"],impf:s,fut:f,pp:s+"é",aux:ax(f)},"er");});
+  V_GER.forEach(([f,e])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"e",s+"es",s+"e",s+"eons",s+"ez",s+"ent"],impf:{s:s,soft:"e"},fut:f,pp:s+"é",aux:ax(f)},"ersp");});
+  V_CER.forEach(([f,e])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"e",s+"es",s+"e",s.slice(0,-1)+"çons",s+"ez",s+"ent"],impf:{s:s.slice(0,-1),soft:"ç",hard:"c"},fut:f,pp:s+"é",aux:ax(f)},"ersp");});
+  V_EER.forEach(([f,e])=>{const s=f.slice(0,-2),g=s.replace(/e([^aeioué]+)$/,"è$1");put(f,e,{pres:[g+"e",g+"es",g+"e",s+"ons",s+"ez",g+"ent"],impf:s,fut:g+"er",pp:s+"é",aux:ax(f)},"ersp");});
+  V_ACC.forEach(([f,e])=>{const s=f.slice(0,-2),g=s.replace(/é([^aeiou]+)$/,"è$1");put(f,e,{pres:[g+"e",g+"es",g+"e",s+"ons",s+"ez",g+"ent"],impf:s,fut:f,pp:s+"é",aux:ax(f)},"ersp");});
+  V_ELER.forEach(([f,e])=>{const s=f.slice(0,-2),d=s+s.charAt(s.length-1);put(f,e,{pres:[d+"e",d+"es",d+"e",s+"ons",s+"ez",d+"ent"],impf:s,fut:d+"er",pp:s+"é",aux:ax(f)},"ersp");});
+  V_YER.forEach(([f,e])=>{const s=f.slice(0,-2),i=s.slice(0,-1)+"i";put(f,e,{pres:[i+"e",i+"es",i+"e",s+"ons",s+"ez",i+"ent"],impf:s,fut:i+"er",pp:s+"é",aux:ax(f)},"ersp");});
+  V_IR2.forEach(([f,e])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"is",s+"is",s+"it",s+"issons",s+"issez",s+"issent"],impf:s+"iss",fut:f,pp:s+"i",aux:ax(f)},"ir2");});
+  V_IR3.forEach(([f,e])=>{const s=f.slice(0,-2),sh=s.slice(0,-1);put(f,e,{pres:[sh+"s",sh+"s",sh+"t",s+"ons",s+"ez",s+"ent"],impf:s,fut:f,pp:s+"i",aux:ax(f)},"ir3");});
+  V_RE.forEach(([f,e])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"s",s+"s",s,s+"ons",s+"ez",s+"ent"],impf:s,fut:f.slice(0,-1),pp:s+"u",aux:ax(f)},"re");});
+  V_VRIR.forEach(([f,e,pp])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"e",s+"es",s+"e",s+"ons",s+"ez",s+"ent"],impf:s,fut:f,pp:pp,aux:ax(f)},"vrir");});
+  V_UIRE.forEach(([f,e,pp])=>{const s=f.slice(0,-2);put(f,e,{pres:[s+"s",s+"s",s+"t",s+"sons",s+"sez",s+"sent"],impf:s+"s",fut:f.slice(0,-1),pp:pp,aux:ax(f)},"uire");});
+  Object.keys(V_XTRA).forEach(f=>{put(f,V_XTRA[f].en,V_XTRA[f].e,"irr");});
+  V_DERIV.forEach(([f,b,e])=>{
+    const base=CONJ[b];if(!base)return;
+    const px=f.slice(0,f.length-b.length);
+    put(f,e,{pres:base.pres.map(x=>px+x),impf:(typeof base.impf==="string")?px+base.impf:{s:px+base.impf.s,soft:base.impf.soft,hard:base.impf.hard},fut:px+base.fut,pp:px+base.pp,aux:ax(f),noImpe:base.noImpe},"der");
+  });
+})();
+
+/* Étapes de conjugaison C1–C7 = la colonne Conjugaison de class-plan.md */
+const CSTAGES=[
+ {id:1,bloc:1,t:"Présent · être, avoir & -er",tense:"pres",
+  models:["être","avoir","parler"],
+  verbs:["être","avoir","parler","habiter","aimer","travailler","manger","acheter","appeler","étudier","écouter","regarder","jouer","donner","commencer","préférer"],
+  rule:"Verbes en <b>-er</b> : radical + <b>e, es, e, ons, ez, ent</b>. Attention : j'ach<b>è</b>te / nous achetons · j'appe<b>ll</b>e / nous appelons · nous man<b>ge</b>ons · nous commen<b>ç</b>ons. <b>Être</b> et <b>avoir</b> : à apprendre par cœur !"},
+ {id:2,bloc:2,t:"Présent · verbes irréguliers",tense:"pres",
+  models:["aller","faire","prendre","finir"],
+  verbs:["aller","faire","venir","prendre","apprendre","comprendre","finir","choisir","dormir","partir","sortir","attendre","entendre","répondre","lire","écrire","boire","voir","savoir","connaître","mettre","dire","vouloir","pouvoir","devoir"],
+  rule:"Familles : <b>-ir type finir</b> (nous finissons) · <b>-ir type dormir</b> (nous dormons) · <b>-dre</b> (j'attends, nous attendons · je prends, nous prenons, ils prennent) · <b>-oir</b> (je veux, nous voulons). Écoute bien les 3 formes : je / nous / ils."},
+ {id:3,bloc:3,t:"L'impératif",tense:"impe",
+  models:["parler","aller","faire","être"],
+  verbs:["parler","écouter","regarder","manger","aller","faire","venir","prendre","finir","être","avoir","écrire","lire","dire","attendre"],
+  rule:"L'impératif = le présent <b>sans le sujet</b>, à 3 personnes : (tu) <b>Parle !</b> (nous) <b>Parlons !</b> (vous) <b>Parlez !</b> Verbes en -er : pas de <b>s</b> à « tu » (Tu parles → Parle !). Irréguliers : <b>sois / soyons / soyez</b> (être), <b>aie / ayons / ayez</b> (avoir), <b>va !</b> (aller)."},
+ {id:4,bloc:4,t:"Passé composé avec avoir",tense:"pc",
+  models:["parler","faire","prendre"],
+  verbs:["parler","manger","travailler","acheter","regarder","écouter","finir","choisir","dormir","prendre","apprendre","comprendre","attendre","répondre","lire","écrire","boire","voir","faire","dire","mettre","vouloir","pouvoir","devoir","être","avoir"],
+  rule:"Passé composé = <b>avoir au présent + participe passé</b>. Participes : -er → <b>-é</b> (parlé) · -ir → <b>-i</b> (fini, dormi) · irréguliers à retenir : <b>fait, pris, lu, écrit, bu, vu, dit, mis, eu, été, voulu, pu, dû, attendu, répondu</b>."},
+ {id:5,bloc:5,t:"Passé composé avec être",tense:"pc",
+  models:["aller","venir","partir"],
+  verbs:["aller","venir","partir","sortir","arriver","rester","entrer","tomber"],
+  rule:"Les verbes de déplacement prennent <b>être</b> : aller, venir, partir, sortir, arriver, rester, entrer, tomber… Le participe <b>s'accorde</b> avec le sujet : il est all<b>é</b> · elle est all<b>ée</b> · ils sont all<b>és</b> · elles sont all<b>ées</b>."},
+ {id:6,bloc:6,t:"L'imparfait",tense:"impf",
+  models:["parler","être","faire"],
+  verbs:["être","avoir","faire","parler","habiter","travailler","manger","aller","vouloir","pouvoir","prendre","lire","boire","finir","venir","voir"],
+  rule:"Imparfait = radical de <b>« nous » au présent</b> (sans -ons) + <b>ais, ais, ait, ions, iez, aient</b>. Nous fais<s>ons</s> → je fais<b>ais</b>. Une seule exception : <b>être → j'étais</b>. Usage : description et habitude du passé (« Quand j'étais petite… »)."},
+ {id:7,bloc:7,t:"Le futur · proche & simple",tense:"fut",
+  models:["parler","être","avoir"],
+  verbs:["être","avoir","aller","faire","venir","voir","pouvoir","vouloir","devoir","savoir","parler","travailler","manger","prendre","partir","écrire"],
+  rule:"<b>Futur proche</b> = aller + infinitif : « Je <b>vais manger</b>. » (tout de suite / bientôt). <b>Futur simple</b> = infinitif + <b>ai, as, a, ons, ez, ont</b> : je parler<b>ai</b>. Radicaux irréguliers : <b>ser-</b> (être), <b>aur-</b> (avoir), <b>ir-</b> (aller), <b>fer-</b> (faire), <b>viendr-</b>, <b>verr-</b>, <b>pourr-</b>, <b>voudr-</b>, <b>devr-</b>, <b>saur-</b>."}
+];
+/* === CONJ_END === */
 const PRON=["je","tu","il / elle","nous","vous","ils / elles"];
 const GEN_DIST=["Je ne sais pas.","Merci, au revoir !","Oui, bien sûr.","Non merci."];
+
+/* === GRAMMAR_START ===
+   G-unités (piste Grammaire, cf. class-plan.md). Contenu original (dépôt
+   public) inspiré de la pédagogie des Grammaire Progressive (sources citées).
+   Exercices : ty "c"=choisir · "f"=compléter · "t"=transformer · "o"=ordonner.
+   f/t : a = réponses acceptées (comparées via norm) · show = corrigé affiché.
+   o : w = phrase dans le BON ordre (mélangée à l'écran) · show = corrigé. */
+const GUNITS=[
+{n:1,bloc:1,ready:true,t:"Je suis… — la présentation",s:"les pronoms sujets · être · s'appeler",
+ src:"Grammaire A1.1 ch. 1–3 · A1 ch. 1 · A2-B1 ch. 1",
+ rule:{f:"Les pronoms sujets : <b>je, tu, il / elle / on, nous, vous, ils / elles</b>.<br>« <b>Je suis</b> + nationalité / profession » · « <b>Je m'appelle</b> + nom ».<br><b>Tu</b> = ami, famille · <b>Vous</b> = poli, ou plusieurs personnes · <b>On</b> = nous (familier).",
+  ex:[["Bonjour ! Je m'appelle Iris.","Hello! My name is Iris."],
+      ["Je suis chinoise et j'habite au Luxembourg.","I'm Chinese and I live in Luxembourg."],
+      ["Vous êtes français ? — Non, je suis italien.","Are you French? — No, I'm Italian."],
+      ["On est dans la classe de français.","We're in French class."]],
+  warn:"⚠ « je » devient <b>j'</b> devant une voyelle : <b>j'</b>habite, <b>j'</b>aime."},
+ prod:"Écris 3 phrases pour te présenter : ton nom, ta nationalité, ta ville. Les profs corrigent en classe.",
+ exs:[
+  {ty:"c",q:"___ m'appelle Marco.",opts:["Je","Tu","Il"],a:0},
+  {ty:"c",q:"Tu ___ de Paris ?",opts:["es","est","êtes"],a:0},
+  {ty:"c",q:"Vous ___ professeur ?",opts:["êtes","es","sont"],a:0},
+  {ty:"c",q:"Elle ___ étudiante.",opts:["est","es","sont"],a:0},
+  {ty:"f",q:"Je ___ (être) chinoise.",a:["suis"],show:"Je suis chinoise."},
+  {ty:"f",q:"Nous ___ (être) dans la classe.",a:["sommes"],show:"Nous sommes dans la classe."},
+  {ty:"f",q:"Ils ___ (être) médecins.",a:["sont"],show:"Ils sont médecins."},
+  {ty:"f",q:"Comment tu t'___ ? (appeler)",a:["appelles"],show:"Comment tu t'appelles ?"},
+  {ty:"t",q:"« Tu es italien ? » → poliment, avec vous",a:["vous êtes italien ?","vous êtes italien"],show:"Vous êtes italien ?"},
+  {ty:"t",q:"« Je suis français. » → elle",a:["elle est française"],show:"Elle est française."},
+  {ty:"t",q:"« Nous sommes étudiants. » → avec on",a:["on est étudiants","on est étudiant"],show:"On est étudiants."},
+  {ty:"t",q:"« Il s'appelle Paul. » → je",a:["je m'appelle Paul"],show:"Je m'appelle Paul."},
+  {ty:"o",w:["Je","m'appelle","Iris","Mo"],show:"Je m'appelle Iris Mo."},
+  {ty:"o",w:["Vous","êtes","de","Paris","?"],show:"Vous êtes de Paris ?"},
+  {ty:"c",q:"On ___ dans la classe.",opts:["est","sont","es"],a:0},
+  {ty:"c",q:"Ils ___ professeurs.",opts:["sont","est","êtes"],a:0},
+  {ty:"f",q:"Vous ___ (être) fatigués ?",a:["êtes"],show:"Vous êtes fatigués ?"},
+  {ty:"f",q:"Tu ___ (être) prêt ?",a:["es"],show:"Tu es prêt ?"},
+  {ty:"f",q:"Elle s'___ (appeler) Marie.",a:["appelle"],show:"Elle s'appelle Marie."},
+  {ty:"f",q:"On ___ (être) contents.",a:["est"],show:"On est contents."},
+  {ty:"t",q:"« Vous êtes médecin ? » → avec tu",a:["tu es médecin ?","tu es médecin"],show:"Tu es médecin ?"},
+  {ty:"t",q:"« Elles sont chinoises. » → il",a:["il est chinois"],show:"Il est chinois."},
+  {ty:"t",q:"« Je suis à Paris. » → nous",a:["nous sommes à Paris"],show:"Nous sommes à Paris."},
+  {ty:"o",w:["Elle","s'appelle","Julie","et","elle","est","française"],show:"Elle s'appelle Julie et elle est française."}
+ ]},
+{n:2,bloc:1,ready:true,t:"Masculin, féminin, pluriel",s:"l'accord des adjectifs",
+ src:"Grammaire A1.1 ch. 4–5 · A1 ch. 2–3 · A2-B1 ch. 2",
+ rule:{f:"Féminin = adjectif + <b>e</b> : grand → grand<b>e</b> · français → français<b>e</b>.<br>Déjà un -e ? Pas de changement : suisse, jeune, sympathique.<br>Pluriel = + <b>s</b> : ils sont grand<b>s</b> · elles sont grand<b>es</b>.",
+  ex:[["Il est grand. Elle est grande.","He is tall. She is tall."],
+      ["Paul est italien. Maria est italienne.","Paul is Italian. Maria is Italian."],
+      ["Ils sont contents. Elles sont contentes.","They are happy."]],
+  warn:"⚠ -ien → <b>-ienne</b> (italienne) · -eux → <b>-euse</b> (heureuse) · -if → <b>-ive</b> (sportive) · le e final fait <b>sonner la consonne</b> : grand /grɑ̃/ → grande /grɑ̃d/."},
+ prod:"Décris deux personnes de ta famille — une femme et un homme — avec 2 adjectifs chacune.",
+ exs:[
+  {ty:"c",q:"Marie est ___.",opts:["française","français"],a:0},
+  {ty:"c",q:"Ils sont ___.",opts:["contents","contente","content"],a:0},
+  {ty:"c",q:"Elle est ___.",opts:["heureuse","heureux"],a:0},
+  {ty:"c",q:"Mes sœurs sont ___.",opts:["grandes","grands","grande"],a:0},
+  {ty:"f",q:"Il est chinois, elle est ___.",a:["chinoise"],show:"Elle est chinoise."},
+  {ty:"f",q:"Un livre intéressant, une question ___.",a:["intéressante"],show:"Une question intéressante."},
+  {ty:"f",q:"Il est italien, elle est ___.",a:["italienne"],show:"Elle est italienne."},
+  {ty:"f",q:"Ils sont fatigués, elles sont ___.",a:["fatiguées"],show:"Elles sont fatiguées."},
+  {ty:"t",q:"« Il est petit et blond. » → elle",a:["elle est petite et blonde"],show:"Elle est petite et blonde."},
+  {ty:"t",q:"« L'étudiant est sérieux. » → l'étudiante",a:["l'étudiante est sérieuse"],show:"L'étudiante est sérieuse."},
+  {ty:"t",q:"« Elle est grande. » → elles",a:["elles sont grandes"],show:"Elles sont grandes."},
+  {ty:"t",q:"« un homme élégant » → une femme…",a:["une femme élégante"],show:"une femme élégante"},
+  {ty:"o",w:["Elle","est","jeune","et","jolie"],show:"Elle est jeune et jolie."},
+  {ty:"o",w:["Ils","sont","très","gentils"],show:"Ils sont très gentils."},
+  {ty:"c",q:"C'est une ville ___.",opts:["internationale","international"],a:0},
+  {ty:"c",q:"Elles sont ___.",opts:["sérieuses","sérieux","sérieuse"],a:0},
+  {ty:"f",q:"Il est blond, elle est ___.",a:["blonde"],show:"Elle est blonde."},
+  {ty:"f",q:"Un pull vert, une robe ___.",a:["verte"],show:"Une robe verte."},
+  {ty:"f",q:"Il est sportif, elle est ___.",a:["sportive"],show:"Elle est sportive."},
+  {ty:"f",q:"Un homme poli, une femme ___.",a:["polie"],show:"Une femme polie."},
+  {ty:"t",q:"« Il est content et calme. » → elle",a:["elle est contente et calme"],show:"Elle est contente et calme."},
+  {ty:"t",q:"« Le café est chaud. » → l'eau (féminin)",a:["l'eau est chaude"],show:"L'eau est chaude."},
+  {ty:"t",q:"« Ils sont mariés. » → elles",a:["elles sont mariées"],show:"Elles sont mariées."},
+  {ty:"o",w:["Ma","sœur","est","petite","et","brune"],show:"Ma sœur est petite et brune."}
+ ]},
+{n:3,bloc:2,ready:true,t:"Un, une, des · le, la, les",s:"le nom & l'article",
+ src:"Grammaire A1.1 ch. 10–13 · A1 ch. 10–12 · A2-B1 ch. 4",
+ rule:{f:"Indéfini (on ne sait pas lequel) : <b>un</b> sac · <b>une</b> valise · <b>des</b> bagages.<br>Défini (on sait lequel / en général) : <b>le</b> sac · <b>la</b> valise · <b>les</b> bagages.<br>Devant une voyelle : <b>l'</b>école, <b>l'</b>ami.",
+  ex:[["C'est un sac. C'est le sac de Léo.","It's a bag. It's Léo's bag."],
+      ["J'aime la musique et les voyages.","I love music and travelling."],
+      ["Il y a une pharmacie dans la rue.","There's a pharmacy in the street."]],
+  warn:"⚠ Après <b>aimer, adorer, détester</b> → article défini : « J'aime <b>le</b> café » (pas « un café »)."},
+ prod:"Écris ta liste de courses : 5 choses avec un / une / des.",
+ exs:[
+  {ty:"c",q:"C'est ___ amie de Marco.",opts:["une","un","le"],a:0},
+  {ty:"c",q:"J'aime ___ café.",opts:["le","un","la"],a:0},
+  {ty:"c",q:"Tu as ___ stylo ?",opts:["un","le","une"],a:0},
+  {ty:"c",q:"___ école est fermée.",opts:["L'","La","Le"],a:0},
+  {ty:"f",q:"C'est ___ voiture de Paul. (défini)",a:["la"],show:"C'est la voiture de Paul."},
+  {ty:"f",q:"Il y a ___ livres sur la table. (indéfini)",a:["des"],show:"Il y a des livres sur la table."},
+  {ty:"f",q:"J'écoute ___ radio.",a:["la"],show:"J'écoute la radio."},
+  {ty:"f",q:"Elle a ___ ordinateur.",a:["un"],show:"Elle a un ordinateur."},
+  {ty:"t",q:"« un livre » → au pluriel",a:["des livres"],show:"des livres"},
+  {ty:"t",q:"« la lettre » → au pluriel",a:["les lettres"],show:"les lettres"},
+  {ty:"t",q:"« l'ami » → au pluriel",a:["les amis"],show:"les amis"},
+  {ty:"t",q:"« des questions » → au singulier",a:["une question"],show:"une question"},
+  {ty:"o",w:["J'aime","le","chocolat","et","les","gâteaux"],show:"J'aime le chocolat et les gâteaux."},
+  {ty:"o",w:["Il y a","une","banque","dans","la","rue"],show:"Il y a une banque dans la rue."},
+  {ty:"c",q:"Il y a ___ étudiants dans la classe.",opts:["des","les","un"],a:0},
+  {ty:"c",q:"___ soleil brille.",opts:["Le","Un","La"],a:0},
+  {ty:"f",q:"Je voudrais ___ baguette, s'il vous plaît. (indéfini)",a:["une"],show:"Je voudrais une baguette."},
+  {ty:"f",q:"___ enfants de Marco sont petits. (défini)",a:["les"],show:"Les enfants de Marco sont petits."},
+  {ty:"f",q:"Tu regardes ___ télévision ?",a:["la"],show:"Tu regardes la télévision ?"},
+  {ty:"f",q:"C'est ___ hôtel moderne. (indéfini)",a:["un"],show:"C'est un hôtel moderne."},
+  {ty:"t",q:"« le garçon » → au pluriel",a:["les garçons"],show:"les garçons"},
+  {ty:"t",q:"« une amie » → au pluriel",a:["des amies"],show:"des amies"},
+  {ty:"t",q:"« J'ai des questions. » → au singulier",a:["j'ai une question"],show:"J'ai une question."},
+  {ty:"o",w:["Le","professeur","corrige","les","exercices"],show:"Le professeur corrige les exercices."}
+ ]},
+{n:4,bloc:2,ready:true,t:"Ne… pas — la négation & la question",s:"négation simple · est-ce que · pas de",
+ src:"Grammaire A1.1 ch. 6, 17 · A1 ch. 5, 20 · A2-B1 ch. 3",
+ rule:{f:"Négation : <b>ne</b> + verbe + <b>pas</b> · « Je <b>ne</b> parle <b>pas</b> italien. »<br>Devant une voyelle : <b>n'</b> · « Elle <b>n'</b>aime <b>pas</b> le thé. »<br>Question simple : intonation (« Tu viens ? ») ou <b>Est-ce que</b> (« Est-ce que tu viens ? »).",
+  ex:[["Je ne parle pas italien.","I don't speak Italian."],
+      ["Elle n'a pas de frère.","She doesn't have a brother."],
+      ["Est-ce que vous habitez à Paris ? — Non, je n'habite pas à Paris.","Do you live in Paris? — No, I don't."]],
+  warn:"⚠ Après la négation : un / une / des → <b>de</b> · « J'ai une voiture → Je n'ai pas <b>de</b> voiture. » MAIS l'article défini reste : « Je n'aime pas <b>le</b> café. »"},
+ prod:"Écris 3 phrases : une chose que tu ne fais pas le week-end, une chose que tu n'aimes pas, une chose que tu n'as pas.",
+ exs:[
+  {ty:"c",q:"Je ___ comprends pas.",opts:["ne","n'","pas"],a:0},
+  {ty:"c",q:"Il ___ aime pas le thé.",opts:["n'","ne"],a:0},
+  {ty:"c",q:"Tu as un vélo ? — Non, je n'ai pas ___ vélo.",opts:["de","un","le"],a:0},
+  {ty:"c",q:"___ que vous parlez anglais ?",opts:["Est-ce","Qu'est-ce","C'est"],a:0},
+  {ty:"f",q:"Nous ne travaillons ___ le dimanche.",a:["pas"],show:"Nous ne travaillons pas le dimanche."},
+  {ty:"f",q:"Elle n'a pas ___ enfants.",a:["d'","d","de"],show:"Elle n'a pas d'enfants."},
+  {ty:"f",q:"Je ___ suis pas français.",a:["ne"],show:"Je ne suis pas français."},
+  {ty:"f",q:"Vous n'___ pas faim ? (avoir)",a:["avez"],show:"Vous n'avez pas faim ?"},
+  {ty:"t",q:"« Je parle espagnol. » → négation",a:["je ne parle pas espagnol"],show:"Je ne parle pas espagnol."},
+  {ty:"t",q:"« Elle a une voiture. » → négation",a:["elle n'a pas de voiture"],show:"Elle n'a pas de voiture."},
+  {ty:"t",q:"« Tu es fatigué. » → question avec est-ce que",a:["est-ce que tu es fatigué ?","est-ce que tu es fatigué"],show:"Est-ce que tu es fatigué ?"},
+  {ty:"t",q:"« J'aime le sport. » → négation",a:["je n'aime pas le sport"],show:"Je n'aime pas le sport."},
+  {ty:"o",w:["Je","ne","comprends","pas"],show:"Je ne comprends pas."},
+  {ty:"o",w:["Il","n'y a","pas","de","pain"],show:"Il n'y a pas de pain."},
+  {ty:"c",q:"Vous ___ pas fatigués ?",opts:["n'êtes","ne êtes","êtes"],a:0},
+  {ty:"c",q:"Il n'y a pas ___ problème.",opts:["de","un","du"],a:0},
+  {ty:"f",q:"Ils ne parlent ___ français.",a:["pas"],show:"Ils ne parlent pas français."},
+  {ty:"f",q:"Je n'ai pas ___ argent.",a:["d'","d","de"],show:"Je n'ai pas d'argent."},
+  {ty:"f",q:"___-ce que tu viens ce soir ?",a:["est"],show:"Est-ce que tu viens ce soir ?"},
+  {ty:"f",q:"Non, elle ___ travaille pas ici.",a:["ne"],show:"Elle ne travaille pas ici."},
+  {ty:"t",q:"« Nous avons des enfants. » → négation",a:["nous n'avons pas d'enfants"],show:"Nous n'avons pas d'enfants."},
+  {ty:"t",q:"« Il est français. » → négation",a:["il n'est pas français"],show:"Il n'est pas français."},
+  {ty:"t",q:"« Vous aimez la musique. » → question avec est-ce que",a:["est-ce que vous aimez la musique ?","est-ce que vous aimez la musique"],show:"Est-ce que vous aimez la musique ?"},
+  {ty:"o",w:["Elle","ne","mange","pas","de","viande"],show:"Elle ne mange pas de viande."}
+ ]},
+{n:5,bloc:3,ready:true,t:"C'est / il est",s:"identifier & décrire",
+ src:"Grammaire A1.1 ch. 7, 9, 12 · A1 ch. 25–27 · A2-B1 ch. 5",
+ rule:{f:"<b>C'est</b> + nom (avec article) : « C'est <b>un ami</b>. C'est <b>la sœur</b> de Léo. »<br><b>Il / Elle est</b> + adjectif ou profession (sans article !) : « Il est <b>grand</b>. Elle est <b>médecin</b>. »<br>Commentaire général : <b>C'est</b> + adjectif masculin : « Le chocolat, c'est <b>bon</b> ! »",
+  ex:[["C'est Marie. Elle est professeure.","This is Marie. She's a teacher."],
+      ["C'est un bon restaurant, mais il est cher !","It's a good restaurant, but it's expensive!"],
+      ["Qu'est-ce que c'est ? — C'est un cadeau.","What is it? — It's a present."]],
+  warn:"⚠ Négation : <b>ce n'est pas</b> · « Ce n'est pas mon sac. » · Questions : <b>Qui est-ce ?</b> (personne) · <b>Qu'est-ce que c'est ?</b> (chose)."},
+ prod:"Présente 3 objets de ton sac : « C'est… Il / Elle est… »",
+ exs:[
+  {ty:"c",q:"___ mon ami Paul.",opts:["C'est","Il est"],a:0},
+  {ty:"c",q:"___ médecin.",opts:["Il est","C'est"],a:0},
+  {ty:"c",q:"Le chocolat ? ___ bon !",opts:["C'est","Il est"],a:0},
+  {ty:"c",q:"___ une question difficile.",opts:["C'est","Elle est"],a:0},
+  {ty:"f",q:"___ est étudiante. (elle)",a:["elle"],show:"Elle est étudiante."},
+  {ty:"f",q:"Qu'est-ce que c'est ? — C'___ un dictionnaire.",a:["est"],show:"C'est un dictionnaire."},
+  {ty:"f",q:"Ce n'___ pas mon sac.",a:["est"],show:"Ce n'est pas mon sac."},
+  {ty:"f",q:"Qui est-ce ? — ___ la sœur de Marco. (2 mots)",a:["c'est","c est"],show:"C'est la sœur de Marco."},
+  {ty:"t",q:"« C'est un professeur. » → négation",a:["ce n'est pas un professeur"],show:"Ce n'est pas un professeur."},
+  {ty:"t",q:"« Il est acteur. » → avec c'est + article",a:["c'est un acteur"],show:"C'est un acteur."},
+  {ty:"t",q:"« C'est le livre de Paul ? » → négation",a:["ce n'est pas le livre de Paul"],show:"Ce n'est pas le livre de Paul."},
+  {ty:"t",q:"« la musique / génial » → commentaire avec c'est",a:["la musique, c'est génial","c'est génial, la musique","la musique c'est génial"],show:"La musique, c'est génial !"},
+  {ty:"o",w:["C'est","une","amie","de","ma","mère"],show:"C'est une amie de ma mère."},
+  {ty:"o",w:["Il","est","professeur","de","français"],show:"Il est professeur de français."},
+  {ty:"c",q:"___ ma voisine.",opts:["C'est","Elle est"],a:0},
+  {ty:"c",q:"___ très sympa, ce café !",opts:["C'est","Il est"],a:0},
+  {ty:"f",q:"Qui est-ce ? — C'est ___ ami de Léo. (indéfini)",a:["un"],show:"C'est un ami de Léo."},
+  {ty:"f",q:"Il ___ ingénieur.",a:["est"],show:"Il est ingénieur."},
+  {ty:"f",q:"Ce ___ pas difficile ! (2 mots)",a:["n'est","n est"],show:"Ce n'est pas difficile !"},
+  {ty:"f",q:"___-ce que c'est ? — C'est un cadeau.",a:["qu'est","qu est"],show:"Qu'est-ce que c'est ?"},
+  {ty:"t",q:"« C'est une actrice. » → la question (personne ?)",a:["qui est-ce ?","qui est-ce"],show:"Qui est-ce ?"},
+  {ty:"t",q:"« Elle est professeure. » → avec c'est + article",a:["c'est une professeure"],show:"C'est une professeure."},
+  {ty:"t",q:"« C'est facile. » → négation",a:["ce n'est pas facile"],show:"Ce n'est pas facile."},
+  {ty:"o",w:["C'est","le","frère","de","mon","amie"],show:"C'est le frère de mon amie."}
+ ]},
+{n:6,bloc:3,ready:true,t:"Mon, ma, mes · ce, cette, ces",s:"possessifs & démonstratifs",
+ src:"Grammaire A1.1 ch. 22–23 · A1 ch. 14–15 · A2-B1 ch. 6, 8",
+ rule:{f:"Possessifs : <b>mon / ma / mes</b> · <b>ton / ta / tes</b> · <b>son / sa / ses</b> · <b>notre / nos</b> · <b>votre / vos</b> · <b>leur / leurs</b>.<br>Démonstratifs : <b>ce</b> sac · <b>cet</b> homme (voyelle) · <b>cette</b> robe · <b>ces</b> chaussures.",
+  ex:[["C'est ma sœur et voici mon frère.","This is my sister and here's my brother."],
+      ["Regarde cette photo !","Look at this photo!"],
+      ["Mon amie Julie habite à Lyon.","My friend Julie lives in Lyon."]],
+  warn:"⚠ Devant une voyelle, <b>ma → mon</b> : mon <b>a</b>mie, mon <b>é</b>cole (même si le nom est féminin !)."},
+ prod:"Écris 3 phrases sur ta famille avec mon / ma / mes.",
+ exs:[
+  {ty:"c",q:"C'est ___ amie. (à moi)",opts:["mon","ma","mes"],a:0},
+  {ty:"c",q:"___ parents habitent à Rome. (à eux)",opts:["Leurs","Leur","Ses"],a:0},
+  {ty:"c",q:"Regarde ___ homme !",opts:["cet","ce","cette"],a:0},
+  {ty:"c",q:"Tu aimes ___ robe ?",opts:["cette","cet","ce"],a:0},
+  {ty:"f",q:"Voici ___ livre. (à toi)",a:["ton"],show:"Voici ton livre."},
+  {ty:"f",q:"Nous aimons ___ professeur. (à nous)",a:["notre"],show:"Nous aimons notre professeur."},
+  {ty:"f",q:"___ chaussures sont belles. (démonstratif)",a:["ces"],show:"Ces chaussures sont belles."},
+  {ty:"f",q:"Il parle avec ___ mère. (à lui)",a:["sa"],show:"Il parle avec sa mère."},
+  {ty:"t",q:"« le vélo de Paul » → avec un possessif",a:["son vélo"],show:"son vélo"},
+  {ty:"t",q:"« la maison de mes parents » → avec un possessif",a:["leur maison"],show:"leur maison"},
+  {ty:"t",q:"« J'aime ce film. » → au pluriel (les films)",a:["j'aime ces films"],show:"J'aime ces films."},
+  {ty:"t",q:"« C'est mon stylo. » → à vous",a:["c'est votre stylo"],show:"C'est votre stylo."},
+  {ty:"o",w:["C'est","la","photo","de","ma","famille"],show:"C'est la photo de ma famille."},
+  {ty:"o",w:["Ses","enfants","vont","à","l'école"],show:"Ses enfants vont à l'école."},
+  {ty:"c",q:"J'adore ___ chansons ! (démonstratif)",opts:["ces","ses","cette"],a:0},
+  {ty:"c",q:"Il vient avec ___ femme. (à lui)",opts:["sa","son","ses"],a:0},
+  {ty:"f",q:"C'est ___ école ? (à toi)",a:["ton"],show:"C'est ton école ? (ta → ton devant une voyelle)"},
+  {ty:"f",q:"Nous invitons ___ amis. (à nous)",a:["nos"],show:"Nous invitons nos amis."},
+  {ty:"f",q:"Vous avez ___ passeports ? (à vous)",a:["vos"],show:"Vous avez vos passeports ?"},
+  {ty:"f",q:"Regarde ___ avion ! (démonstratif)",a:["cet"],show:"Regarde cet avion !"},
+  {ty:"t",q:"« les clés de ma mère » → possessif",a:["ses clés"],show:"ses clés"},
+  {ty:"t",q:"« le bureau de nos parents » → possessif",a:["leur bureau"],show:"leur bureau"},
+  {ty:"t",q:"« Cette valise est lourde. » → au pluriel",a:["ces valises sont lourdes"],show:"Ces valises sont lourdes."},
+  {ty:"o",w:["Mon","père","adore","sa","voiture"],show:"Mon père adore sa voiture."}
+ ]},
+{n:7,bloc:4,ready:true,t:"Où ? — dans, sur, sous, chez + il y a",s:"prépositions de lieu · l'existence",
+ src:"Grammaire A1.1 ch. 27–30 · A1 ch. 21, 23–24 · A2-B1 ch. 9–10",
+ rule:{f:"Prépositions de lieu : <b>dans</b> (à l'intérieur) · <b>sur / sous</b> · <b>devant / derrière</b> · <b>entre</b> · <b>à côté de / près de / loin de</b> · <b>chez</b> + personne.<br><b>Il y a</b> + nom = l'existence : « Il y a une fontaine sur la place. »",
+  ex:[["Le chat est sous la table.","The cat is under the table."],
+      ["Il y a une pharmacie près de la gare.","There's a pharmacy near the station."],
+      ["Je dîne chez Marco ce soir.","I'm having dinner at Marco's tonight."]],
+  warn:"⚠ Négation : <b>il n'y a pas de</b>… · « Il n'y a pas <b>de</b> métro ici. » · Question : <b>Qu'est-ce qu'il y a… ?</b> / <b>Où est… ?</b>"},
+ prod:"Décris ta chambre : 3 phrases avec dans / sur / sous / à côté de, et il y a.",
+ exs:[
+  {ty:"c",q:"Le livre est ___ la table.",opts:["sur","dans","chez"],a:0},
+  {ty:"c",q:"J'habite ___ de la gare.",opts:["près","sur","entre"],a:0},
+  {ty:"c",q:"Ce soir, on mange ___ mes parents.",opts:["chez","à","dans"],a:0},
+  {ty:"c",q:"___ un supermarché dans la rue ?",opts:["Il y a","C'est","Il est"],a:0},
+  {ty:"f",q:"Les clés sont ___ mon sac. (à l'intérieur)",a:["dans"],show:"Les clés sont dans mon sac."},
+  {ty:"f",q:"Il n'y a pas ___ métro ici.",a:["de"],show:"Il n'y a pas de métro ici."},
+  {ty:"f",q:"La poste est ___ la banque et le café.",a:["entre"],show:"La poste est entre la banque et le café."},
+  {ty:"f",q:"Où ___ la gare, s'il vous plaît ?",a:["est"],show:"Où est la gare, s'il vous plaît ?"},
+  {ty:"t",q:"« Il y a un café ici. » → négation",a:["il n'y a pas de café ici"],show:"Il n'y a pas de café ici."},
+  {ty:"t",q:"« Le vélo est devant la maison. » → derrière",a:["le vélo est derrière la maison"],show:"Le vélo est derrière la maison."},
+  {ty:"t",q:"« Je vais à la maison de Julie. » → avec chez",a:["je vais chez Julie"],show:"Je vais chez Julie."},
+  {ty:"t",q:"« un chat / sous / le lit » → phrase avec il y a",a:["il y a un chat sous le lit"],show:"Il y a un chat sous le lit."},
+  {ty:"o",w:["Il y a","une","fontaine","sur","la","place"],show:"Il y a une fontaine sur la place."},
+  {ty:"o",w:["Le","restaurant","est","à côté de","l'hôtel"],show:"Le restaurant est à côté de l'hôtel."},
+  {ty:"c",q:"La pharmacie est ___ la banque.",opts:["à côté de","chez","dans"],a:0},
+  {ty:"c",q:"Ton téléphone est ___ le canapé.",opts:["sous","chez","entre"],a:0},
+  {ty:"f",q:"Le tableau est ___ le mur.",a:["sur"],show:"Le tableau est sur le mur."},
+  {ty:"f",q:"Qu'est-ce qu'___ dans le frigo ? (3 mots)",a:["il y a"],show:"Qu'est-ce qu'il y a dans le frigo ?"},
+  {ty:"f",q:"J'habite loin ___ centre-ville. (de + le)",a:["du"],show:"J'habite loin du centre-ville."},
+  {ty:"f",q:"Le jardin est ___ la maison. (à l'arrière)",a:["derrière"],show:"Le jardin est derrière la maison."},
+  {ty:"t",q:"« Il y a des magasins. » → question avec est-ce qu'",a:["est-ce qu'il y a des magasins ?","est-ce qu'il y a des magasins"],show:"Est-ce qu'il y a des magasins ?"},
+  {ty:"t",q:"« Le chat est sur le lit. » → sous",a:["le chat est sous le lit"],show:"Le chat est sous le lit."},
+  {ty:"t",q:"« Nous dînons au restaurant de Paul. » → avec chez",a:["nous dînons chez Paul"],show:"Nous dînons chez Paul."},
+  {ty:"o",w:["Mes","clés","sont","dans","mon","sac"],show:"Mes clés sont dans mon sac."}
+ ]},
+{n:8,bloc:4,ready:true,t:"En France, au Japon",s:"à/en/au/aux + villes & pays · au, du, aux",
+ src:"Grammaire A1.1 ch. 29, 32 · A1 ch. 13, 22 · A2-B1 ch. 10",
+ rule:{f:"Ville → <b>à</b> : à Paris. · Pays féminin (ou voyelle) → <b>en</b> : en France, en Italie. · Pays masculin → <b>au</b> : au Japon, au Luxembourg. · Pluriel → <b>aux</b> : aux États-Unis.<br>Articles contractés : à + le = <b>au</b> · à + les = <b>aux</b> · de + le = <b>du</b> · de + les = <b>des</b>.",
+  ex:[["J'habite à Paris, en France.","I live in Paris, in France."],
+      ["Il travaille au Japon.","He works in Japan."],
+      ["Nous allons au cinéma.","We're going to the cinema."]],
+  warn:"⚠ On ne dit jamais « à le » ni « de le » : je vais <b>au</b> marché · la porte <b>du</b> garage."},
+ prod:"Trois pays où tu veux voyager : « Je veux aller en / au / aux… »",
+ exs:[
+  {ty:"c",q:"Elle habite ___ Berlin.",opts:["à","en","au"],a:0},
+  {ty:"c",q:"Nous allons ___ Portugal.",opts:["au","en","à"],a:0},
+  {ty:"c",q:"Ils vivent ___ Chine.",opts:["en","au","à"],a:0},
+  {ty:"c",q:"Je vais ___ cinéma.",opts:["au","à le","en"],a:0},
+  {ty:"f",q:"Il va ___ États-Unis.",a:["aux"],show:"Il va aux États-Unis."},
+  {ty:"f",q:"Le train arrive ___ la gare.",a:["à"],show:"Le train arrive à la gare."},
+  {ty:"f",q:"C'est la voiture ___ voisin. (de + le)",a:["du"],show:"C'est la voiture du voisin."},
+  {ty:"f",q:"Je viens ___ Luxembourg. (pays masculin)",a:["du"],show:"Je viens du Luxembourg."},
+  {ty:"t",q:"« Je vais à le marché. » → corrige la faute",a:["je vais au marché"],show:"Je vais au marché."},
+  {ty:"t",q:"« Elle habite en Canada. » → corrige la faute",a:["elle habite au canada"],show:"Elle habite au Canada."},
+  {ty:"t",q:"« la porte de le garage » → corrige la faute",a:["la porte du garage"],show:"la porte du garage"},
+  {ty:"t",q:"« Il parle à les enfants. » → corrige la faute",a:["il parle aux enfants"],show:"Il parle aux enfants."},
+  {ty:"o",w:["J'habite","au","Luxembourg","avec","ma","famille"],show:"J'habite au Luxembourg avec ma famille."},
+  {ty:"o",w:["Elle","va","en","Italie","en","été"],show:"Elle va en Italie en été."},
+  {ty:"c",q:"Elle étudie ___ Espagne.",opts:["en","au","à"],a:0},
+  {ty:"c",q:"On va ___ toilettes ?",opts:["aux","à les","au"],a:0},
+  {ty:"f",q:"Il habite ___ Pays-Bas. (pluriel)",a:["aux"],show:"Il habite aux Pays-Bas."},
+  {ty:"f",q:"Je rentre ___ bureau à 18 h. (de + le)",a:["du"],show:"Je rentre du bureau à 18 h."},
+  {ty:"f",q:"Nous partons ___ Maroc. (masculin)",a:["au"],show:"Nous partons au Maroc."},
+  {ty:"f",q:"Tu viens ___ Italie ? (origine, féminin)",a:["d'","d"],show:"Tu viens d'Italie ?"},
+  {ty:"t",q:"« Je suis à le restaurant. » → corrige la faute",a:["je suis au restaurant"],show:"Je suis au restaurant."},
+  {ty:"t",q:"« Ils habitent en Portugal. » → corrige la faute",a:["ils habitent au portugal"],show:"Ils habitent au Portugal."},
+  {ty:"t",q:"« Elle revient de le Japon. » → corrige la faute",a:["elle revient du japon"],show:"Elle revient du Japon."},
+  {ty:"o",w:["Nous","voyageons","aux","États-Unis","en","avion"],show:"Nous voyageons aux États-Unis en avion."}
+ ]},
+{n:9,bloc:5,ready:true,t:"Du pain, pas de pain",s:"les partitifs & les quantités",
+ src:"Grammaire A1.1 ch. 37–38 · A1 ch. 31–32",
+ rule:{f:"Quantité non comptée → partitif : <b>du</b> pain · <b>de la</b> salade · <b>de l'</b>eau · <b>des</b> frites.<br>Quantité précise → <b>de</b> : un kilo <b>de</b> pommes · beaucoup <b>de</b> monde · un peu <b>de</b> sucre · une bouteille <b>d'</b>eau.",
+  ex:[["Je mange du pain et de la salade.","I eat bread and salad."],
+      ["Tu veux de l'eau ?","Do you want some water?"],
+      ["J'achète un kilo de pommes.","I'm buying a kilo of apples."]],
+  warn:"⚠ Après la négation, le partitif devient <b>de</b> : « Il ne boit pas <b>de</b> café. » « Il n'y a pas <b>d'</b>eau. »"},
+ prod:"Ton petit-déjeuner : 3 phrases avec du / de la / des.",
+ exs:[
+  {ty:"c",q:"Je bois ___ café le matin.",opts:["du","le","de"],a:0},
+  {ty:"c",q:"Elle mange ___ salade.",opts:["de la","du","des"],a:0},
+  {ty:"c",q:"Tu veux ___ eau ?",opts:["de l'","de la","du"],a:0},
+  {ty:"c",q:"Il achète un kilo ___ tomates.",opts:["de","des","du"],a:0},
+  {ty:"f",q:"Nous mangeons ___ fromage. (partitif)",a:["du"],show:"Nous mangeons du fromage."},
+  {ty:"f",q:"Je ne mange pas ___ viande.",a:["de"],show:"Je ne mange pas de viande."},
+  {ty:"f",q:"Il y a beaucoup ___ monde.",a:["de"],show:"Il y a beaucoup de monde."},
+  {ty:"f",q:"Vous voulez ___ frites ? (partitif pluriel)",a:["des"],show:"Vous voulez des frites ?"},
+  {ty:"t",q:"« Je bois du lait. » → négation",a:["je ne bois pas de lait"],show:"Je ne bois pas de lait."},
+  {ty:"t",q:"« Elle achète des oranges. » → avec un kilo",a:["elle achète un kilo d'oranges"],show:"Elle achète un kilo d'oranges."},
+  {ty:"t",q:"« Tu manges de la soupe ? » → négation",a:["tu ne manges pas de soupe","tu ne manges pas de soupe ?"],show:"Tu ne manges pas de soupe ?"},
+  {ty:"t",q:"« du sucre / un peu » → phrase avec je veux",a:["je veux un peu de sucre"],show:"Je veux un peu de sucre."},
+  {ty:"o",w:["Je","voudrais","du","pain","et","du","fromage"],show:"Je voudrais du pain et du fromage."},
+  {ty:"o",w:["Elle","boit","de l'","eau","minérale"],show:"Elle boit de l'eau minérale."},
+  {ty:"c",q:"Tu prends ___ sucre ?",opts:["du","le","de"],a:0},
+  {ty:"c",q:"Il mange trop ___ chocolat.",opts:["de","du","des"],a:0},
+  {ty:"f",q:"Elle boit ___ thé vert. (partitif)",a:["du"],show:"Elle boit du thé vert."},
+  {ty:"f",q:"Achète une bouteille ___ huile.",a:["d'","d"],show:"Achète une bouteille d'huile."},
+  {ty:"f",q:"Nous avons un peu ___ temps.",a:["de"],show:"Nous avons un peu de temps."},
+  {ty:"f",q:"Je voudrais ___ confiture. (partitif, 2 mots)",a:["de la"],show:"Je voudrais de la confiture."},
+  {ty:"t",q:"« Il y a du fromage. » → négation",a:["il n'y a pas de fromage"],show:"Il n'y a pas de fromage."},
+  {ty:"t",q:"« Je mange des frites. » → avec beaucoup",a:["je mange beaucoup de frites"],show:"Je mange beaucoup de frites."},
+  {ty:"t",q:"« Vous buvez de l'alcool ? » → négation",a:["vous ne buvez pas d'alcool","vous ne buvez pas d'alcool ?"],show:"Vous ne buvez pas d'alcool ?"},
+  {ty:"o",w:["Le matin,","je","bois","du","café","au","lait"],show:"Le matin, je bois du café au lait."}
+ ]},
+{n:10,bloc:5,ready:true,t:"Je me lave — les verbes pronominaux",s:"se lever, s'habiller… · la routine",
+ src:"Grammaire A1 ch. 9",
+ rule:{f:"Verbe pronominal = verbe + pronom réfléchi : <b>me, te, se, nous, vous, se</b>.<br><b>se lever</b> : je <b>me</b> lève · tu <b>te</b> lèves · il/elle <b>se</b> lève · nous <b>nous</b> levons · vous <b>vous</b> levez · ils/elles <b>se</b> lèvent.<br>La routine : se réveiller, se lever, se laver, s'habiller, se préparer, se coucher.",
+  ex:[["Je me lève à sept heures.","I get up at seven."],
+      ["Elle se couche tard.","She goes to bed late."],
+      ["Nous nous habillons vite.","We get dressed quickly."]],
+  warn:"⚠ Devant une voyelle : me → <b>m'</b>, te → <b>t'</b>, se → <b>s'</b> : je <b>m'</b>appelle, il <b>s'</b>habille. Négation : « Je <b>ne</b> me lève <b>pas</b> tôt. »"},
+ prod:"Ta routine du matin : 3 phrases avec des verbes pronominaux.",
+ exs:[
+  {ty:"c",q:"Je ___ lève à 7 heures.",opts:["me","se","te"],a:0},
+  {ty:"c",q:"Tu ___ appelles comment ?",opts:["t'","te","s'"],a:0},
+  {ty:"c",q:"Ils ___ couchent à minuit.",opts:["se","nous","vous"],a:0},
+  {ty:"c",q:"Nous ___ préparons pour la classe.",opts:["nous","vous","se"],a:0},
+  {ty:"f",q:"Elle ___ lave les mains.",a:["se"],show:"Elle se lave les mains."},
+  {ty:"f",q:"Vous ___ levez à quelle heure ?",a:["vous"],show:"Vous vous levez à quelle heure ?"},
+  {ty:"f",q:"Je ___ habille dans ma chambre.",a:["m'","m"],show:"Je m'habille dans ma chambre."},
+  {ty:"f",q:"Mon frère ___ appelle Tom.",a:["s'","s"],show:"Mon frère s'appelle Tom."},
+  {ty:"t",q:"« Je me lève tôt. » → négation",a:["je ne me lève pas tôt"],show:"Je ne me lève pas tôt."},
+  {ty:"t",q:"« se coucher / il / à onze heures » → phrase",a:["il se couche à onze heures"],show:"Il se couche à onze heures."},
+  {ty:"t",q:"« Tu te laves. » → vous",a:["vous vous lavez"],show:"Vous vous lavez."},
+  {ty:"t",q:"« Elle se réveille à six heures. » → nous",a:["nous nous réveillons à six heures"],show:"Nous nous réveillons à six heures."},
+  {ty:"o",w:["Je","me","couche","à","minuit"],show:"Je me couche à minuit."},
+  {ty:"o",w:["Le matin,","nous","nous","levons","à","sept heures"],show:"Le matin, nous nous levons à sept heures."},
+  {ty:"c",q:"Elle ___ maquille le matin.",opts:["se","me","te"],a:0},
+  {ty:"c",q:"Vous ___ reposez le dimanche ?",opts:["vous","nous","se"],a:0},
+  {ty:"f",q:"Nous ___ couchons tôt.",a:["nous"],show:"Nous nous couchons tôt."},
+  {ty:"f",q:"Tu ___ réveilles à quelle heure ?",a:["te"],show:"Tu te réveilles à quelle heure ?"},
+  {ty:"f",q:"Ils ___ habillent pour la fête.",a:["s'","s"],show:"Ils s'habillent pour la fête."},
+  {ty:"f",q:"Je ___ repose après le travail.",a:["me"],show:"Je me repose après le travail."},
+  {ty:"t",q:"« Il se lève à 6 h. » → ils",a:["ils se lèvent à 6 h"],show:"Ils se lèvent à 6 h."},
+  {ty:"t",q:"« Vous vous couchez tard. » → négation",a:["vous ne vous couchez pas tard"],show:"Vous ne vous couchez pas tard."},
+  {ty:"t",q:"« se préparer / elle / vite » → phrase",a:["elle se prépare vite"],show:"Elle se prépare vite."},
+  {ty:"o",w:["Je","me","lave","les","dents","le soir"],show:"Je me lave les dents le soir."}
+ ]},
+{n:11,bloc:6,ready:false,t:"Plus… que — la comparaison",s:"comparatif & superlatif",src:"Grammaire A1 ch. 33–34"},
+{n:12,bloc:6,ready:false,t:"Où ? Quand ? Combien ? Quel ?",s:"l'interrogation (2) (3)",src:"Grammaire A1.1 ch. 2, 46 · A1 ch. 51–52"},
+{n:13,bloc:7,ready:false,t:"Le, la, lui, leur — les pronoms",s:"COD · COI · pronoms toniques",src:"Grammaire A1 ch. 57–59"},
+{n:14,bloc:7,ready:false,t:"Il y a / pendant / depuis",s:"les expressions de temps",src:"Grammaire A1 ch. 50 · A2-B1 ch. 14, 17"},
+{n:15,bloc:8,ready:false,t:"Ne… rien, jamais, personne",s:"la négation (2) · négation au passé",src:"Grammaire A1 ch. 53–54"},
+{n:16,bloc:8,ready:false,t:"En, y · qui, que",s:"pronoms en/y · relatifs · pièges DELF",src:"Grammaire A1 ch. 55–56, 60"}
+];
+/* === GRAMMAR_END === */
 
 /* === LESSONS_START === */
 const LESSONS=[
@@ -1039,10 +1566,10 @@ const EXAMS=[
    ]}
  ],
  write:[
-  {p:"Décris ta famille (50 mots) : qui, leurs métiers, ce qu'ils aiment.",
-   m:"Dans ma famille, nous sommes quatre. Mon père est ingénieur, il adore la lecture. Ma mère travaille dans un bureau ; elle aime la musique et joue du piano. Mon frère est étudiant. Il joue au football le samedi. Et moi, j'adore les voyages !"},
-  {p:"Écris un message à un ami : demande-lui d'aller au marché avec une petite liste de courses (40 mots).",
-   m:"Salut Marco ! Tu peux aller au marché samedi matin, s'il te plaît ? Achète un kilo de pommes, du pain, un morceau de fromage et une bouteille d'eau. Merci beaucoup ! Je t'appelle ce soir. Bises, Iris"}
+  {p:"Décris ta famille (50 mots) : qui, leurs métiers, ce qu'ils aiment — et une chose qu'ils n'aiment pas (utilise ne… pas !).",
+   m:"Dans ma famille, nous sommes quatre. Mon père est ingénieur, il adore la lecture. Ma mère travaille dans un bureau ; elle aime la musique, mais elle n'aime pas le sport. Mon frère est étudiant. Il joue au football le samedi. Et moi, j'adore les voyages !"},
+  {p:"Écris un message à un ami : demande-lui d'aller au marché avec une petite liste de courses (40 mots) — avec les bons articles (un, une, des, du…) et une chose qu'il ne faut PAS acheter.",
+   m:"Salut Marco ! Tu peux aller au marché samedi matin, s'il te plaît ? Achète un kilo de pommes, du pain, un morceau de fromage et une bouteille d'eau. N'achète pas de tomates — j'ai déjà des tomates ! Merci beaucoup ! Bises, Iris"}
  ],
  speak:[
   {h:"Partie 1 · Entretien dirigé (l'examinateur pose des questions)",items:[
@@ -1165,6 +1692,10 @@ function renderHome(){
     <button class="act" onclick="startReview()">🔁 Révision mixte (20 questions)</button>
     <button class="act goldb" onclick="openClasse()">🎓 Mode Classe</button>
   </div>
+  <div class="homebtns">
+    <button class="act ghost" onclick="openGramHome()">📐 Grammaire (G1–G16)</button>
+    <button class="act ghost" onclick="openConjHome()">🔤 Conjugaison &amp; Tableaux</button>
+  </div>
   <div class="exportline">
     <button onclick="exportProgress()">Copier ma progression</button> ·
     <button onclick="backupProgress()">Sauvegarder</button> ·
@@ -1272,10 +1803,12 @@ function openLesson(n){
     window.scrollTo(0,0);return;
   }
   const nouns=genrePool();
+  const bl=blocOf(L.n),gsBloc=GUNITS.filter(g=>g.bloc===bl),stB=stageForBloc(bl);
   let h=`
   <span class="back" onclick="renderHome()">← Toutes les leçons</span>
   <div class="lesson-title">Leçon ${L.n} — ${esc(L.t)}</div>
   <div class="lesson-meta">${BOOKS[L.b]} · ${esc(L.ch)} · ${L.w.length} mots</div>
+  <span class="gchip" onclick="openGram(${gsBloc[0]?gsBloc[0].n:1})">📐 Grammaire du bloc ${bl} : ${gsBloc.map(g=>"G"+g.n+" "+esc(g.t)).join(" · ")} →</span>
   <div class="tabs">
     <button id="tb_learn" class="on" onclick="showTab('learn')">Apprendre</button>
     <button id="tb_quiz" onclick="showTab('quiz')">Quiz</button>
@@ -1342,12 +1875,14 @@ function openLesson(n){
 
   <div class="panel" id="pn_conj">
     <div class="card">
-      <div class="q">Conjugue le verbe au présent :</div>
+      <div class="q" id="cHead">Conjugue :</div>
       <div class="prompt" id="cPrompt">—</div>
       <input class="txt" id="cIn" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')checkConj()">
+      ${accBar("cIn")}
       <button class="newword" onclick="explainConj()">🤔 Je ne sais pas — montre la conjugaison</button>
       <div class="feedback" id="cFb"></div>
       <div class="row"><button class="act" onclick="checkConj()">Vérifier</button><button class="act ghost" onclick="newConj()">Passer →</button></div>
+      <p class="hint">Étape du bloc ${bl} — tous les tableaux sont dans 🔤 Conjugaison (accueil).</p>
     </div>
   </div>
 
@@ -1410,7 +1945,8 @@ function pickIdx(pool,last){
 }
 function resetBtn(t){return `<span class="sub2"><button class="link2" onclick="resetDrill('${t}')">↻ Recommencer cette série</button></span>`;}
 function resetDrill(t){
-  Object.keys(P.ms).forEach(k=>{if(k.indexOf(t+":"+L.n+":")===0)delete P.ms[k];});
+  if(t==="c"){const st=lessonStage();Object.keys(P.ms).forEach(k=>{if(k.indexOf("C"+st.id+":")===0)delete P.ms[k];});}
+  else Object.keys(P.ms).forEach(k=>{if(k.indexOf(t+":"+L.n+":")===0)delete P.ms[k];});
   saveAll();
   if(t==="q"){const i2=$("qIn");if(i2)i2.style.display="";newQuiz();}
   else if(t==="e")newEcoute();
@@ -1555,45 +2091,112 @@ function checkSent(){
 }
 function explainSent(){if(!sx)return;const f=$("sFb");f.className="feedback ok";f.innerHTML=`<b>${esc(pers(sx[1][0]))}</b> ${spkBtn(pers(sx[1][0]))}`;msLose(mk("s",sxi));}
 
-/* --- conjugation --- */
-function conjVerbs(){return (L&&L.v&&L.v.length?L.v:CORE).filter(v=>VERBS[v]);}
+/* --- conjugaison (v5 : étapes C1–C7, données CONJ) --- */
+const IMPF_END=["ais","ais","ait","ions","iez","aient"],FUT_END=["ai","as","a","ons","ez","ont"];
+const AUX_A=["ai","as","a","avons","avez","ont"];
+const PCE_P=["il","elle","ils","elles"],PCE_AUX=["est","est","sont","sont"],PCE_AGR=["","e","s","es"];
+const IMPE_P=["(tu)","(nous)","(vous)"];
+const CONJ_HEAD={pres:"Conjugue au présent :",impf:"Conjugue à l'imparfait :",fut:"Conjugue au futur simple :",pc:"Conjugue au passé composé :",impe:"Mets à l'impératif :"};
+function impfForm(v,i){const c=CONJ[v];const o=typeof c.impf==="string"?{s:c.impf}:c.impf;const e=IMPF_END[i];return o.s+(e[0]==="a"?(o.soft||""):(o.hard||""))+e;}
+function futForm(v,i){return CONJ[v].fut+FUT_END[i];}
+function impeForms(v){const c=CONJ[v];if(c.impe)return c.impe;return [c.pres[1].replace(/es$/,"e"),c.pres[3],c.pres[4]];}
+function elide(pr,form){if((pr==="je"||pr==="Je")&&/^[aeiouyhâàêéèëïîô]/i.test(form))return "j'"+form;return pr+" "+form;}
+function dispPers(i){return PRON[i];}
+function blocOf(n){return Math.ceil(n/5);}
+function currentBloc(){const first=LESSONS.find(l=>!P.done[l.n]&&l.w.length);return blocOf(first?first.n:40);}
+function stageForBloc(b){return CSTAGES[Math.min(Math.max(b,1),7)-1];}
+function stageKey(st,v){return "C"+st.id+":"+v;}
+function stageVerbs(st){return st.verbs.filter(v=>CONJ[v]&&!(st.tense==="impe"&&CONJ[v].noImpe));}
+function stageProgress(st){const vs=stageVerbs(st);return vs.filter(v=>msGet(stageKey(st,v))>=2).length+"/"+vs.length;}
+function conjQ(st,v){
+  const c=CONJ[v],t=st.tense;
+  if(t==="pres"||t==="impf"||t==="fut"){
+    const i=Math.floor(Math.random()*6);
+    const form=t==="pres"?c.pres[i]:(t==="impf"?impfForm(v,i):futForm(v,i));
+    const pr=i===0?"je":PRON[i].split(" / ")[0];
+    return {v:v,st:st,label:`${esc(v)} — <i>${PRON[i]}</i> ______`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
+  }
+  if(t==="pc"&&c.aux==="a"){
+    const i=Math.floor(Math.random()*6);
+    const form=AUX_A[i]+" "+c.pp;
+    const pr=i===0?"je":PRON[i].split(" / ")[0];
+    return {v:v,st:st,label:`${esc(v)} — <i>${PRON[i]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé)</span>`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
+  }
+  if(t==="pc"){
+    const pi=Math.floor(Math.random()*4);
+    const form=PCE_AUX[pi]+" "+c.pp+PCE_AGR[pi];
+    return {v:v,st:st,label:`${esc(v)} — <i>${PCE_P[pi]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé — accord !)</span>`,accept:[form],disp:PCE_P[pi]+" "+form,say:PCE_P[pi]+" "+form};
+  }
+  const pi=Math.floor(Math.random()*3);
+  const form=impeForms(v)[pi];
+  return {v:v,st:st,label:`${esc(v)} — impératif <i>${IMPE_P[pi]}</i> ______`,accept:[form],disp:form+" !",say:form+" !"};
+}
+function conjRows(v,tense){
+  const c=CONJ[v];
+  if(tense==="pres")return c.pres.map((f2,i)=>({p:PRON[i],f:f2}));
+  if(tense==="impf")return IMPF_END.map((e,i)=>({p:PRON[i],f:impfForm(v,i)}));
+  if(tense==="fut")return FUT_END.map((e,i)=>({p:PRON[i],f:futForm(v,i)}));
+  if(tense==="pc"&&c.aux==="a")return AUX_A.map((a,i)=>({p:PRON[i],f:a+" "+c.pp}));
+  if(tense==="pc")return [["je","suis",""],["tu","es",""],["il","est",""],["elle","est","e"],["nous","sommes","(e)s"],["vous","êtes","(e)(s)"],["ils","sont","s"],["elles","sont","es"]].map(r=>({p:r[0],f:r[1]+" "+c.pp+(r[0]==="je"||r[0]==="tu"?"(e)":r[2])}));
+  return impeForms(v).map((f2,i)=>({p:IMPE_P[i],f:f2+" !"}));
+}
+function chartHtml(v,tense,title){
+  const rows=conjRows(v,tense);
+  let h=`<div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:10px 0 4px;">${esc(title||v)}</div><table class="conjtable">`;
+  rows.forEach(r=>{
+    const say=elide(r.p.split(" / ")[0].replace(/[()]/g,""),r.f.replace(/\([^)]*\)/g,""));
+    h+=`<tr><td class="pn2">${esc(r.p)}</td><td><b>${esc(r.f)}</b>${spkBtn(say)}</td></tr>`;
+  });
+  return h+`</table>`;
+}
+function accBar(id){
+  return `<div class="accbar">${["é","è","ê","à","ç","ô","î","û","ï","'"].map(a=>`<button type="button" onclick="accIns('${id}','${a==="'"?"\\'":a}')">${a}</button>`).join("")}</div>`;
+}
+function accIns(id,ch){
+  const el=$(id);if(!el)return;
+  const s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;
+  el.value=el.value.slice(0,s)+ch+el.value.slice(e);
+  el.focus();el.selectionStart=el.selectionEnd=s+1;
+}
+/* drill de leçon : suit l'étape du bloc de la leçon */
+let CQ=null;
+function lessonStage(){return stageForBloc(blocOf(L.n));}
 function newConj(){
-  const vs=conjVerbs().filter(v=>msGet(mk("c",v))<2);
+  const st=lessonStage();
+  const vs=stageVerbs(st).filter(v=>msGet(stageKey(st,v))<2);
   const f=$("cFb");
+  const hd=$("cHead");if(hd)hd.textContent=`Étape C${st.id} · ${CONJ_HEAD[st.tense]}`;
   if(!vs.length){
-    cv=null;$("cPrompt").textContent="🎉";$("cIn").style.display="none";
-    f.className="feedback ok";f.innerHTML="Bravo ! Conjugaison maîtrisée ✓"+resetBtn("c");
+    CQ=null;$("cPrompt").textContent="🎉";$("cIn").style.display="none";
+    f.className="feedback ok";f.innerHTML=`Bravo ! Étape C${st.id} maîtrisée ✓`+resetBtn("c");
     return;
   }
   $("cIn").style.display="";
-  cv=pick(vs,cv);cp=Math.floor(Math.random()*6);
-  $("cPrompt").innerHTML=`${esc(cv)} — <i>${PRON[cp]}</i> ______`;
+  const v=pick(vs,CQ&&CQ.v);
+  CQ=conjQ(st,v);
+  $("cPrompt").innerHTML=CQ.label;
   $("cIn").value="";f.textContent="";f.className="feedback";
 }
-function conjShow(){
-  const form=VERBS[cv][cp];
-  let pr=PRON[cp].split(" ")[0];
-  if(pr==="je"&&/^[aeiouâêé]/.test(form))return "j'"+form;
-  return pr+" "+form;
-}
 function checkConj(){
-  if(!cv)return;const inp=$("cIn").value;if(!inp.trim())return;
+  if(!CQ)return;const inp=$("cIn").value;if(!inp.trim())return;
   const f=$("cFb");
-  const form=VERBS[cv][cp];
   const cleaned=norm(inp).replace(/^(je|j|tu|il|elle|on|nous|vous|ils|elles) /,"");
-  if(cleaned===norm(form)){
-    const mastered=msWin(mk("c",cv));
-    f.className="feedback ok";f.innerHTML=`✓ Bravo ! <b>${esc(conjShow())}</b> ${spkBtn(conjShow())}${mastered?" 🏆":""}`;
+  if(CQ.accept.some(a=>norm(a)===cleaned||norm(a)===norm(inp))){
+    const mastered=msWin(stageKey(CQ.st,CQ.v));
+    f.className="feedback ok";f.innerHTML=`✓ Bravo ! <b>${esc(CQ.disp)}</b> ${spkBtn(CQ.say)}${mastered?" 🏆":""}`;
+    if(mastered)masteredToast();
     scoreGood();setTimeout(newConj,1500);
   }else{
-    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(conjShow())}</b> ${spkBtn(conjShow())}`;
-    msLose(mk("c",cv));
+    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(CQ.disp)}</b> ${spkBtn(CQ.say)}`;
+    msLose(stageKey(CQ.st,CQ.v));
   }
 }
 function explainConj(){
-  if(!cv)return;const f=$("cFb");
+  if(!CQ)return;const f=$("cFb");
+  const rows=conjRows(CQ.v,CQ.st.tense);
   f.className="feedback ok";
-  f.innerHTML=`<b>${esc(cv)}</b> : ${VERBS[cv].map((fm,i)=>`${PRON[i].split(" ")[0]} <b>${esc(fm)}</b>`).join(" · ")}`;
+  f.innerHTML=`<b>${esc(CQ.v)}</b> : ${rows.map(r=>`${esc(r.p.split(" / ")[0])} <b>${esc(r.f)}</b>`).join(" · ")}`;
+  msLose(stageKey(CQ.st,CQ.v));
 }
 
 /* --- dialogue (3 niveaux) --- */
@@ -1719,6 +2322,287 @@ function dlgWin(lvl){
   else{toast("Niveau "+lvl+" validé — passe au niveau "+(lvl+1)+" !");renderDlg(lvl+1);}
 }
 
+/* ================= GRAMMAIRE (G-unités) ================= */
+function gKey(n,i){return "G:"+n+":"+i;}
+function gMastered(g){return g.exs?g.exs.filter((x,i)=>msGet(gKey(g.n,i))>=2).length:0;}
+function gIsDone(g){return g.ready&&g.exs&&gMastered(g)>=g.exs.length;}
+function openGramHome(){
+  let h=`<span class="back" onclick="renderHome()">← Accueil</span>
+  <div class="lesson-title">📐 La Grammaire</div>
+  <div class="lesson-meta">Programme fusionné des 3 livres Grammaire Progressive · 2 unités par bloc de 5 leçons (voir class-plan.md)</div>`;
+  let lastBloc=0;
+  GUNITS.forEach(g=>{
+    if(g.bloc!==lastBloc){lastBloc=g.bloc;
+      const st=stageForBloc(g.bloc);
+      h+=`<div class="bookhead">Bloc ${g.bloc} · Leçons ${g.bloc*5-4}–${g.bloc*5} · Conjugaison : ${g.bloc<=7?"C"+st.id+" "+esc(st.t):"révision de tous les temps"}</div>`;}
+    let stt,cls;
+    if(!g.ready){stt="à préparer";cls="todo";}
+    else if(gIsDone(g)){stt="✓ maîtrisée";cls="done";}
+    else if(gMastered(g)>0){stt=gMastered(g)+"/"+g.exs.length;cls="now";}
+    else{stt="prête";cls="now";}
+    h+=`<div class="lesson" onclick="openGram(${g.n})">
+      <span class="num">G${g.n}</span>
+      <div class="t">${esc(g.t)}<small>${esc(g.s)} · ${esc(g.src)}</small></div>
+      <span class="st ${cls}">${stt}</span></div>`;
+  });
+  h+=`<footer>Les règles sont réécrites pour la classe — les numéros de chapitres renvoient à vos livres papier.</footer>`;
+  $("app").innerHTML=h;window.scrollTo(0,0);
+}
+let GX=null;
+function openGram(n){
+  const g=GUNITS.find(x=>x.n===n);if(!g)return;
+  if(!g.ready){
+    $("app").innerHTML=`<span class="back" onclick="openGramHome()">← La Grammaire</span>
+    <div class="lesson-title">G${g.n} — ${esc(g.t)}</div>
+    <div class="lesson-meta">Bloc ${g.bloc} · ${esc(g.src)}</div>
+    <div class="note">📐 Cette unité sera chargée quand la classe approche du bloc ${g.bloc}.
+    Dites au tuteur : <b>« Prépare G${g.n} »</b>. En attendant : les chapitres dans vos livres (${esc(g.src)}).</div>`;
+    window.scrollTo(0,0);return;
+  }
+  GX={g:g,i:-1,o:null};
+  const r=g.rule;
+  let h=`<span class="back" onclick="openGramHome()">← La Grammaire</span>
+  <div class="lesson-title">G${g.n} — ${esc(g.t)}</div>
+  <div class="lesson-meta">Bloc ${g.bloc} (leçons ${g.bloc*5-4}–${g.bloc*5}) · ${esc(g.src)}</div>
+  <div class="grule"><b>LA RÈGLE — </b>${r.f}
+    ${r.ex.map(x=>`<div class="gx">${esc(pers(x[0]))} ${spkBtn(pers(x[0]))}<br><span class="entr">${esc(x[1])}</span></div>`).join("")}
+    ${r.warn?`<div class="warn2">${r.warn}</div>`:""}
+  </div>
+  <div class="card" id="gxCard"><div id="gxBox"></div></div>
+  <div class="prodbox">✍️ <b>Production (papier) :</b> ${esc(g.prod)}</div>
+  <div class="row">
+    ${GUNITS.find(x=>x.n===n-1)?`<button class="act ghost" onclick="openGram(${n-1})">← G${n-1}</button>`:""}
+    ${GUNITS.find(x=>x.n===n+1)?`<button class="act ghost" onclick="openGram(${n+1})">G${n+1} →</button>`:""}
+  </div>`;
+  $("app").innerHTML=h;
+  gNext();window.scrollTo(0,0);
+}
+function gNext(){
+  const g=GX.g;
+  const idx=g.exs.findIndex((x,i)=>msGet(gKey(g.n,i))<2);
+  if(idx<0){
+    $("gxBox").innerHTML=`<div class="q">Exercices</div>
+    <div class="prompt" style="font-size:1.3rem;">🎉 Unité G${g.n} maîtrisée — bravo !</div>
+    <div class="feedback ok">Les ${g.exs.length} exercices sont réussis.
+    <span class="sub2"><button class="link2" onclick="gReset()">↻ Recommencer l'unité</button></span></div>`;
+    return;
+  }
+  GX.i=idx;GX.o=null;
+  const x=g.exs[idx];
+  const head=`<div class="q">Exercice ${idx+1}/${g.exs.length} · ${x.ty==="c"?"Choisis":x.ty==="f"?"Complète":x.ty==="t"?"Transforme":"Remets en ordre"} · maîtrisés : ${gMastered(g)}/${g.exs.length}</div>`;
+  let body="";
+  if(x.ty==="c"){
+    body=`<div class="prompt" style="font-size:1.25rem;">${esc(pers(x.q))}</div>
+    <div class="opts">${shuffle(x.opts.map((o,oi)=>oi)).map(oi=>`<div class="opt" onclick="gAnsC(this,${oi})">${esc(x.opts[oi])}</div>`).join("")}</div>
+    <div class="feedback" id="gFb2"></div>`;
+  }else if(x.ty==="f"||x.ty==="t"){
+    body=`<div class="prompt" style="font-size:1.2rem;">${esc(pers(x.q))}</div>
+    <input class="txt" id="gIn" placeholder="${x.ty==="f"?"écris le mot manquant…":"écris la phrase…"}" autocomplete="off" onkeydown="if(event.key==='Enter')gAnsF()">
+    ${accBar("gIn")}
+    <button class="newword" onclick="gShow()">🤔 Je ne sais pas — montre la réponse</button>
+    <div class="feedback" id="gFb2"></div>
+    <div class="row"><button class="act" onclick="gAnsF()">Vérifier</button></div>`;
+  }else{
+    GX.o={order:shuffle(x.w.map((w,wi)=>wi)),picked:[]};
+    body=`<div class="prompt" style="font-size:1.15rem;">Touche les mots dans le bon ordre :</div>
+    <div class="ochips" id="gChips"></div>
+    <div class="obuild" id="gBuild">…</div>
+    <button class="newword" onclick="gShow()">🤔 Je ne sais pas — montre la réponse</button>
+    <div class="feedback" id="gFb2"></div>
+    <div class="row"><button class="act" onclick="gAnsO()">Vérifier</button><button class="act ghost" onclick="gClearO()">↻ Effacer</button></div>`;
+  }
+  $("gxBox").innerHTML=head+body;
+  if(x.ty==="o")gDrawO();
+}
+function gShowAnswer(){const x=GX.g.exs[GX.i];return pers(x.show||x.opts[x.a]);}
+function gDrawO(){
+  const x=GX.g.exs[GX.i],o=GX.o;
+  $("gChips").innerHTML=o.order.map(wi=>`<button class="ochip ${o.picked.indexOf(wi)>=0?"used":""}" onclick="gPickO(${wi})">${esc(pers(x.w[wi]))}</button>`).join("");
+  $("gBuild").textContent=o.picked.length?o.picked.map(wi=>pers(x.w[wi])).join(" "):"…";
+}
+function gPickO(wi){if(GX.o.picked.indexOf(wi)<0){GX.o.picked.push(wi);gDrawO();}}
+function gClearO(){GX.o.picked=[];gDrawO();$("gFb2").className="feedback";$("gFb2").textContent="";}
+function gWin(){
+  const g=GX.g,i=GX.i;
+  P.ms[gKey(g.n,i)]=2;saveAll();
+  const f=$("gFb2");
+  f.className="feedback ok";
+  f.innerHTML=`✓ Bravo ! <b>${esc(gShowAnswer())}</b> ${spkBtn(gShowAnswer())} 🏆`;
+  scoreGood();setTimeout(gNext,1600);
+}
+function gFail(){
+  const f=$("gFb2");
+  f.className="feedback ko";
+  f.innerHTML=`✗ La réponse : <b>${esc(gShowAnswer())}</b> ${spkBtn(gShowAnswer())}`;
+  msLose(gKey(GX.g.n,GX.i));
+}
+function gAnsC(el,oi){
+  const x=GX.g.exs[GX.i];
+  if(oi===x.a){el.classList.add("okc");gWin();}
+  else{el.classList.add("koc");gFail();}
+}
+function gAnsF(){
+  const x=GX.g.exs[GX.i],inp=$("gIn").value;if(!inp.trim())return;
+  if(x.a.some(a=>norm(pers(a))===norm(inp)))gWin();else gFail();
+}
+function gAnsO(){
+  const x=GX.g.exs[GX.i],o=GX.o;
+  if(o.picked.length!==x.w.length){toast("Utilise tous les mots !");return;}
+  const built=o.picked.map(wi=>x.w[wi]).join(" ");
+  if(norm(pers(built))===norm(pers(x.w.join(" "))))gWin();else gFail();
+}
+function gShow(){
+  const f=$("gFb2");
+  f.className="feedback ok";
+  f.innerHTML=`<b>${esc(gShowAnswer())}</b> ${spkBtn(gShowAnswer())}`;
+  msLose(gKey(GX.g.n,GX.i));
+}
+function gReset(){
+  const g=GX.g;
+  Object.keys(P.ms).forEach(k=>{if(k.indexOf("G:"+g.n+":")===0)delete P.ms[k];});
+  saveAll();gNext();
+}
+
+/* ================= CONJUGAISON (étapes + tableaux) ================= */
+let CJ={s:1,sub:"et",v:"être"},C2=null;
+function openConjHome(sid,sub){
+  if(sid)CJ.s=sid;else CJ.s=stageForBloc(currentBloc()).id;
+  if(sub)CJ.sub=sub;
+  renderConj();
+}
+function conjSub(sub){CJ.sub=sub;renderConj();}
+function conjStage(sid){CJ.s=sid;C2=null;renderConj();}
+function conjVerb(v){CJ.v=v;if($("cjChips")){cjDrawChips();cjDrawCard();const c=$("cjCard");if(c)c.scrollIntoView({behavior:"smooth"});}else renderConj();}
+function renderConj(){
+  const st=CSTAGES[CJ.s-1];
+  let h=`<span class="back" onclick="renderHome()">← Accueil</span>
+  <div class="lesson-title">🔤 La Conjugaison</div>
+  <div class="lesson-meta">7 étapes = la colonne Conjugaison du plan · Conjugaison Progressive (débutant A1-A2.1)</div>
+  <div class="stagepills">${CSTAGES.map(s2=>`<span class="stg ${s2.id===CJ.s?"on":(stageMastered(s2)?"done":"")}" onclick="conjStage(${s2.id})">${stageMastered(s2)?"✓ ":""}C${s2.id} ${esc(s2.t)}</span>`).join("")}</div>
+  <div class="lvlbtns">
+    <button class="${CJ.sub==="et"?"on":""}" onclick="conjSub('et')">📖 Étudier</button>
+    <button class="${CJ.sub==="tr"?"on":""}" onclick="conjSub('tr')">✏️ S'entraîner (${stageProgress(st)})</button>
+    <button class="${CJ.sub==="tb"?"on":""}" onclick="conjSub('tb')">📚 Tableaux</button>
+  </div><div id="cjBox"></div>`;
+  $("app").innerHTML=h;
+  if(CJ.sub==="et")cjEtudier(st);
+  else if(CJ.sub==="tr")cjTrain(st);
+  else cjTableaux();
+  window.scrollTo(0,0);
+}
+function stageMastered(st){return stageVerbs(st).every(v=>msGet(stageKey(st,v))>=2);}
+function cjEtudier(st){
+  let h=`<div class="grule"><b>C${st.id} · ${esc(st.t)} — </b>${st.rule}`;
+  st.models.forEach(v=>{h+=chartHtml(v,st.tense,v+(st.tense==="pc"?" (passé composé)":""));});
+  h+=`<div class="warn2">Sur ces modèles : <b>${stageVerbs(st).join(", ")}</b>.</div></div>
+  <div class="row"><button class="act" onclick="conjSub('tr')">✏️ S'entraîner maintenant →</button></div>`;
+  $("cjBox").innerHTML=h;
+}
+function cjTrain(st){
+  $("cjBox").innerHTML=`<div class="card">
+    <div class="q" id="c2Head">${esc(CONJ_HEAD[st.tense])}</div>
+    <div class="prompt" id="c2Prompt">—</div>
+    <input class="txt" id="c2In" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')conj2Check()">
+    ${accBar("c2In")}
+    <button class="newword" onclick="conj2Explain()">🤔 Je ne sais pas — montre la conjugaison</button>
+    <div class="feedback" id="c2Fb"></div>
+    <div class="row"><button class="act" onclick="conj2Check()">Vérifier</button><button class="act ghost" onclick="conj2New()">Passer →</button></div>
+    <p class="hint">Maîtrise = 2 bonnes réponses de suite par verbe · la même étape est dans l'onglet Conjugaison des leçons du bloc ${st.bloc}.</p>
+  </div>`;
+  conj2New();
+}
+function conj2New(){
+  const st=CSTAGES[CJ.s-1];
+  const vs=stageVerbs(st).filter(v=>msGet(stageKey(st,v))<2);
+  const f=$("c2Fb");
+  if(!vs.length){
+    C2=null;$("c2Prompt").textContent="🎉";$("c2In").style.display="none";
+    f.className="feedback ok";f.innerHTML=`Bravo ! Étape C${st.id} maîtrisée ✓
+    <span class="sub2"><button class="link2" onclick="conj2Reset()">↻ Recommencer l'étape</button></span>`;
+    return;
+  }
+  $("c2In").style.display="";
+  const v=pick(vs,C2&&C2.v);
+  C2=conjQ(st,v);
+  $("c2Prompt").innerHTML=C2.label;
+  $("c2In").value="";f.textContent="";f.className="feedback";
+}
+function conj2Check(){
+  if(!C2)return;const inp=$("c2In").value;if(!inp.trim())return;
+  const f=$("c2Fb");
+  const cleaned=norm(inp).replace(/^(je|j|tu|il|elle|on|nous|vous|ils|elles) /,"");
+  if(C2.accept.some(a=>norm(a)===cleaned||norm(a)===norm(inp))){
+    const mastered=msWin(stageKey(C2.st,C2.v));
+    f.className="feedback ok";f.innerHTML=`✓ Bravo ! <b>${esc(C2.disp)}</b> ${spkBtn(C2.say)}${mastered?" 🏆":""}`;
+    if(mastered)masteredToast();
+    scoreGood();setTimeout(conj2New,1500);
+  }else{
+    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(C2.disp)}</b> ${spkBtn(C2.say)}`;
+    msLose(stageKey(C2.st,C2.v));
+  }
+}
+function conj2Explain(){
+  if(!C2)return;const f=$("c2Fb");
+  const rows=conjRows(C2.v,C2.st.tense);
+  f.className="feedback ok";
+  f.innerHTML=`<b>${esc(C2.v)}</b> : ${rows.map(r=>`${esc(r.p.split(" / ")[0])} <b>${esc(r.f)}</b>`).join(" · ")}`;
+  msLose(stageKey(C2.st,C2.v));
+}
+function conj2Reset(){
+  const st=CSTAGES[CJ.s-1];
+  Object.keys(P.ms).forEach(k=>{if(k.indexOf("C"+st.id+":")===0)delete P.ms[k];});
+  saveAll();conj2New();
+}
+let CJQ="",CJOPEN={cours:true};
+function cjSearch(v){CJQ=v;cjDrawChips();}
+function cjToggleGrp(k){CJOPEN[k]=!CJOPEN[k];cjDrawChips();}
+function cjTableaux(){
+  $("cjBox").innerHTML=`
+  <input class="txt" id="cjQ" placeholder="Cherche un verbe — en français ou en anglais…" style="text-align:left;margin-bottom:8px;" value="${esc(CJQ)}" oninput="cjSearch(this.value)">
+  <div class="hint" id="cjCount" style="margin:0 0 10px;text-align:left;"></div>
+  <div id="cjChips"></div>
+  <div id="cjCard"></div>`;
+  cjDrawChips();cjDrawCard();
+}
+function vRow(v){
+  return `<div class="vrow ${v===CJ.v?"on":""}" onclick="conjVerb('${v.replace(/'/g,"\\'")}')"><b>${esc(v)}</b><span class="en2">${esc(VEN[v]||"")}</span></div>`;
+}
+function cjDrawChips(){
+  const all=Object.keys(CONJ).sort((a,b)=>a.localeCompare(b,"fr"));
+  const q=norm(CJQ||"");
+  $("cjCount").innerHTML=`<b>${all.length} verbes</b> en ${VGROUPS.length} familles · il en manque un ? Dis au tuteur : « ajoute le verbe… »`;
+  if(q){
+    const hits=all.filter(v=>norm(v).indexOf(q)>=0||norm(VEN[v]||"").indexOf(q)>=0);
+    $("cjChips").innerHTML=hits.length?
+      `<div class="vgrp"><div class="vgrp-h">${hits.length} trouvé${hits.length>1?"s":""}<span class="cnt2">recherche</span></div>${hits.slice(0,50).map(vRow).join("")}${hits.length>50?`<div class="vrow"><span class="en2">… + ${hits.length-50} autres — précise ta recherche</span></div>`:""}</div>`:
+      `<div class="hint" style="text-align:left;">Aucun verbe trouvé pour « ${esc(CJQ)} » — dis au tuteur : « ajoute le verbe ${esc(CJQ)} ».</div>`;
+    return;
+  }
+  let h="";
+  VGROUPS.forEach(([k,label])=>{
+    const vs=all.filter(v=>VFAM[v]===k);
+    if(!vs.length)return;
+    const open=!!CJOPEN[k];
+    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('${k}')"><span class="car">${open?"▾":"▸"}</span>${label}<span class="cnt2">${vs.length} verbes</span></div>${open?vs.map(vRow).join(""):""}</div>`;
+  });
+  $("cjChips").innerHTML=h;
+}
+function cjDrawCard(){
+  const c=CONJ[CJ.v];if(!c){$("cjCard").innerHTML="";return;}
+  $("cjCard").innerHTML=`<div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;">
+      <span class="lesson-title" style="font-size:1.5rem;">${esc(CJ.v)}</span>
+      <span style="color:var(--ink-soft);font-size:.95rem;font-style:italic;">${esc(VEN[CJ.v]||"")}</span>
+    </div>
+    <div class="hint" style="margin:2px 0 6px;text-align:left;">participe passé : <b style="color:var(--gold);">${esc(c.pp)}</b> · auxiliaire : <b style="color:var(--gold);">${c.aux==="e"?"être":"avoir"}</b></div>
+    ${chartHtml(CJ.v,"pres","Présent")}
+    ${chartHtml(CJ.v,"pc","Passé composé")}
+    ${chartHtml(CJ.v,"impf","Imparfait")}
+    ${chartHtml(CJ.v,"fut","Futur simple")}
+    ${c.noImpe?"":chartHtml(CJ.v,"impe","Impératif")}
+  </div>`;
+}
+
 /* ================= révision mixte ================= */
 let RV=null;
 function startReview(){
@@ -1734,14 +2618,15 @@ function startReview(){
       if(l2&&l2.w[+wk[1]]){li=l2;wi=+wk[1];}
     }
     if(!li){li=pool[Math.floor(Math.random()*pool.length)];}
-    const types=["quiz","ecoute","genre","conj"];
+    const gReady=GUNITS.filter(g2=>g2.ready&&g2.bloc<=currentBloc());
+    const types=["quiz","ecoute","genre","conj"].concat(gReady.length?["gram","gram"]:[]);
     let ty=types[Math.floor(Math.random()*types.length)];
     if(ty==="ecoute"&&!TTS)ty="quiz";
     if(ty==="genre"){
       const gp=li.w.filter(w=>w[3]&&/^(un|une|le|la|l')/i.test(w[1])&&!/^les /i.test(w[1]));
       if(!gp.length)ty="quiz";
     }
-    RV.qs.push({ty:ty,l:li,wi:wi});
+    RV.qs.push({ty:ty,l:li,wi:wi,g:ty==="gram"?gReady[Math.floor(Math.random()*gReady.length)]:null});
   }
   reviewStep();
 }
@@ -1785,16 +2670,36 @@ function reviewStep(){
     <div class="genrebtns"><button class="un" onclick="revGenre('m')">un</button><button class="une" onclick="revGenre('f')">une</button></div>
     <div class="feedback" id="rFb"></div>`;
     RV.cur={w:gw2,l:l2,mode:"genre"};
+  }else if(q.ty==="gram"){
+    const g=q.g;
+    const cand=g.exs.map((x,i)=>i).filter(i=>g.exs[i].ty!=="o");
+    const xi=cand[Math.floor(Math.random()*cand.length)];
+    const x=g.exs[xi];
+    if(x.ty==="c"){
+      inner=`<div class="q">G${g.n} · ${esc(g.t)} — choisis :</div>
+      <div class="prompt" style="font-size:1.2rem;">${esc(pers(x.q))}</div>
+      <div class="opts">${shuffle(x.opts.map((o,oi)=>oi)).map(oi=>`<div class="opt" onclick="revGramC(this,${oi})">${esc(x.opts[oi])}</div>`).join("")}</div>
+      <div class="feedback" id="rFb"></div>`;
+    }else{
+      inner=`<div class="q">G${g.n} · ${esc(g.t)} — ${x.ty==="f"?"complète :":"transforme :"}</div>
+      <div class="prompt" style="font-size:1.15rem;">${esc(pers(x.q))}</div>
+      <input class="txt" id="rIn" autocomplete="off" onkeydown="if(event.key==='Enter')revGramF()">
+      ${accBar("rIn")}
+      <div class="feedback" id="rFb"></div>
+      <div class="row"><button class="act" onclick="revGramF()">Vérifier</button><button class="act ghost" onclick="revSkip()">Je ne sais pas</button></div>`;
+    }
+    RV.cur={g:g,xi:xi,x:x,mode:"gram"};
   }else{
-    const vs=(l2.v&&l2.v.length?l2.v:CORE).filter(v=>VERBS[v]);
-    const cv2=vs[Math.floor(Math.random()*vs.length)];
-    const cp2=Math.floor(Math.random()*6);
-    inner=`<div class="q">Leçon ${l2.n} · Conjugue :</div>
-    <div class="prompt">${esc(cv2)} — <i>${PRON[cp2]}</i> ______</div>
+    const st2=stageForBloc(blocOf(l2.n));
+    const vs=stageVerbs(st2);
+    const cq=conjQ(st2,vs[Math.floor(Math.random()*vs.length)]);
+    inner=`<div class="q">Étape C${st2.id} · ${esc(CONJ_HEAD[st2.tense])}</div>
+    <div class="prompt">${cq.label}</div>
     <input class="txt" id="rIn" autocomplete="off" onkeydown="if(event.key==='Enter')revConj()">
+    ${accBar("rIn")}
     <div class="feedback" id="rFb"></div>
     <div class="row"><button class="act" onclick="revConj()">Vérifier</button><button class="act ghost" onclick="revSkip()">Je ne sais pas</button></div>`;
-    RV.cur={verb:cv2,pi:cp2,l:l2,mode:"conj"};
+    RV.cur={cq:cq,l:l2,mode:"conj"};
   }
   $("app").innerHTML=`
   <span class="back" onclick="renderHome()">← Quitter la révision</span>
@@ -1817,9 +2722,21 @@ function revCheck(){
 }
 function revSkip(){
   const c=RV.cur,f=$("rFb");
-  if(c.mode==="conj"){f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(VERBS[c.verb][c.pi])}</b>`;}
+  if(c.mode==="conj"){f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(c.cq.disp)}</b>`;}
+  else if(c.mode==="gram"){f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;}
   else{f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(c.w[1])}</b>`;markWeak(wkey(c.l,c.w));saveAll();}
   revNext(false);
+}
+function revGramC(el,oi){
+  const c=RV.cur,f=$("rFb");
+  if(oi===c.x.a){el.classList.add("okc");f.className="feedback ok";f.innerHTML=`✓ <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;scoreGood();revNext(true);}
+  else{el.classList.add("koc");f.className="feedback ko";f.innerHTML=`✗ La réponse : <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;msLose(gKey(c.g.n,c.xi));revNext(false);}
+}
+function revGramF(){
+  const c=RV.cur,inp=$("rIn").value;if(!inp.trim())return;
+  const f=$("rFb");
+  if(c.x.a.some(a=>norm(pers(a))===norm(inp))){f.className="feedback ok";f.innerHTML=`✓ <b>${esc(pers(c.x.show||""))}</b>`;scoreGood();revNext(true);}
+  else{f.className="feedback ko";f.innerHTML=`✗ <b>${esc(pers(c.x.show||c.x.a[0]))}</b>`;msLose(gKey(c.g.n,c.xi));revNext(false);}
 }
 function revPick(el,ok){
   const c=RV.cur,f=$("rFb");
@@ -1834,10 +2751,9 @@ function revGenre(g){
 function revConj(){
   const c=RV.cur,inp=$("rIn").value;if(!inp.trim())return;
   const f=$("rFb");
-  const form=VERBS[c.verb][c.pi];
   const cleaned=norm(inp).replace(/^(je|j|tu|il|elle|on|nous|vous|ils|elles) /,"");
-  if(cleaned===norm(form)){f.className="feedback ok";f.innerHTML=`✓ <b>${esc(form)}</b>`;scoreGood();revNext(true);}
-  else{f.className="feedback ko";f.innerHTML=`✗ <b>${esc(form)}</b>`;revNext(false);}
+  if(c.cq.accept.some(a=>norm(a)===cleaned||norm(a)===norm(inp))){f.className="feedback ok";f.innerHTML=`✓ <b>${esc(c.cq.disp)}</b>`;scoreGood();revNext(true);}
+  else{f.className="feedback ko";f.innerHTML=`✗ <b>${esc(c.cq.disp)}</b>`;revNext(false);}
 }
 
 /* ================= exam ================= */
@@ -1985,7 +2901,7 @@ const PARLER={
  20:["Décris ton/ta meilleur(e) ami(e) : ses qualités, ses petits défauts.","Décris ton caractère à un recruteur : points forts, points faibles.","Décris quelqu'un de la classe — on devine qui c'est !"]
 };
 
-let CLS={n:parseInt(localStorage.getItem("fclc_pos")||"1",10)||1,slide:0,on:false,slides:[]};
+let CLS={n:parseInt(localStorage.getItem("fclc_pos")||"1",10)||1,slide:0,on:false,slides:[],mode:"l",gslide:0,gslides:[]};
 function clsSaveState(){localStorage.setItem("fclc_pos",String(CLS.n));}
 function buildSlides(l){
   const slides=[{ty:"title"}];
@@ -1996,10 +2912,23 @@ function buildSlides(l){
   slides.push({ty:"devoirs"});
   return slides;
 }
+function buildGSlides(bloc){
+  const gs=GUNITS.filter(g=>g.bloc===bloc&&g.ready);
+  if(!gs.length)return [{ty:"g_none",bloc:bloc}];
+  const slides=[];
+  gs.forEach(g=>{
+    slides.push({ty:"g_title",g:g});
+    slides.push({ty:"g_rule",g:g});
+    slides.push({ty:"g_ex",g:g});
+    slides.push({ty:"g_avous",g:g});
+  });
+  return slides;
+}
 function openClasse(){
-  CLS.on=true;document.body.classList.add("classe");
+  CLS.on=true;CLS.mode="l";document.body.classList.add("classe");
   const l=lessonByN(CLS.n);
   CLS.slides=l.w.length?buildSlides(l):[];
+  CLS.gslides=buildGSlides(blocOf(CLS.n));
   if(CLS.slide>=CLS.slides.length)CLS.slide=0;
   renderClasse();
 }
@@ -2007,17 +2936,26 @@ function quitClasse(){CLS.on=false;document.body.classList.remove("classe");if(T
 function clsLesson(delta){
   const nn=CLS.n+delta;
   if(nn<1||nn>40)return;
-  CLS.n=nn;CLS.slide=0;clsSaveState();
+  CLS.n=nn;CLS.slide=0;CLS.gslide=0;clsSaveState();
   const l=lessonByN(CLS.n);
   CLS.slides=l.w.length?buildSlides(l):[];
+  CLS.gslides=buildGSlides(blocOf(CLS.n));
+  renderClasse();
+}
+function clsGramToggle(){
+  CLS.mode=CLS.mode==="g"?"l":"g";
+  if(CLS.mode==="g"&&CLS.gslide>=CLS.gslides.length)CLS.gslide=0;
   renderClasse();
 }
 function clsGo(delta){
-  const ns=CLS.slide+delta;
-  if(ns<0||ns>=CLS.slides.length)return;
-  CLS.slide=ns;renderClasse();
+  const deck=CLS.mode==="g"?CLS.gslides:CLS.slides;
+  const cur=CLS.mode==="g"?CLS.gslide:CLS.slide;
+  const ns=cur+delta;
+  if(ns<0||ns>=deck.length)return;
+  if(CLS.mode==="g")CLS.gslide=ns;else CLS.slide=ns;
+  renderClasse();
 }
-function clsJump(i){CLS.slide=i;renderClasse();}
+function clsJump(i){if(CLS.mode==="g")CLS.gslide=i;else CLS.slide=i;renderClasse();}
 let PLGEN=0;
 function playList(texts){
   if(!TTS){toast("Pas de voix française sur cet appareil");return;}
@@ -2040,12 +2978,59 @@ function clsPlaySlide(){
 function renderClasse(){
   PLGEN++;if(TTS)speechSynthesis.cancel();
   const l=lessonByN(CLS.n);
+  const blc=blocOf(CLS.n);
   let top=`<div class="cls-top">
     <button class="cls-lnav" onclick="clsLesson(-1)">‹ leçon préc.</button>
     <span class="cls-lnav big">Leçon ${l.n} — ${esc(l.t)}</span>
     <button class="cls-lnav" onclick="clsLesson(1)">leçon suiv. ›</button>
+    <button class="cls-lnav" style="${CLS.mode==="g"?"background:var(--gold);border-color:var(--gold);color:#fff;":"color:var(--gold);border-color:var(--gold-edge);background:var(--gold-bg);"}" onclick="clsGramToggle()">${CLS.mode==="g"?"← retour à la leçon":"📐 grammaire du bloc "+blc}</button>
     <button class="cls-lnav x" onclick="quitClasse()">✕ quitter</button>
   </div>`;
+  if(CLS.mode==="g"){
+    const s=CLS.gslides[CLS.gslide];
+    let body="";
+    if(s.ty==="g_none"){
+      body=`<div style="text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:50vh;">
+        <div class="cls-eyebrow">Grammaire · bloc ${s.bloc}</div>
+        <div class="cls-title">À préparer</div>
+        <div class="cls-sub">Les unités de grammaire du bloc ${s.bloc} ne sont pas encore chargées.<br>Dites au tuteur : <b>« Prépare G${s.bloc*2-1} »</b>.</div>
+      </div>`;
+    }else if(s.ty==="g_title"){
+      body=`<div style="text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:50vh;">
+        <div class="cls-eyebrow">La grammaire du bloc ${s.g.bloc}</div>
+        <div class="cls-title">G${s.g.n}<br>${esc(s.g.t)}</div>
+        <div class="cls-sub">${esc(s.g.s)}<br><span style="font-size:.8em;">${esc(s.g.src)}</span></div>
+      </div>`;
+    }else if(s.ty==="g_rule"){
+      body=`<div class="cls-eyebrow">G${s.g.n} · La règle</div>
+      <div class="cls-gram">${s.g.rule.f}</div>
+      ${s.g.rule.warn?`<div class="cls-tip" style="text-align:left;">${s.g.rule.warn}</div>`:""}`;
+    }else if(s.ty==="g_ex"){
+      body=`<div class="cls-eyebrow">G${s.g.n} · Les exemples — écoutez et répétez ensemble !</div>`;
+      s.g.rule.ex.forEach(x=>{
+        body+=`<div class="cls-word"><span class="fr">${esc(x[0])}</span>${spkBtn(x[0])}<span class="en">${esc(x[1])}</span></div>`;
+      });
+      body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="playList(GUNITS.find(g=>g.n===${s.g.n}).rule.ex.map(x=>x[0]))">▶ Écouter tout — la classe répète</button></div>`;
+    }else{
+      body=`<div class="cls-eyebrow">G${s.g.n} · À vous ! — production orale et écrite</div>
+      <ul class="cls-parler">
+        <li>Chacun invente <b>une phrase</b> avec la règle du jour — à voix haute. Les profs corrigent.</li>
+        <li>✍️ ${esc(s.g.prod)}</li>
+        <li>Chacun lit sa production — la classe écoute et corrige ensemble.</li>
+      </ul>
+      <div class="cls-tip">Dans l'app à la maison : 📐 Grammaire → G${s.g.n} (les ${s.g.exs.length} exercices).</div>`;
+    }
+    const dots=CLS.gslides.map((x,i)=>`<span class="${i===CLS.gslide?"on":""}" onclick="clsJump(${i})"></span>`).join("");
+    $("app").innerHTML=top+`<div class="cls-slide">${body}</div>
+    <div class="cls-nav">
+      <button onclick="clsGo(-1)" ${CLS.gslide===0?"disabled":""}>◀</button>
+      <span class="cnt">${CLS.gslide+1} / ${CLS.gslides.length}</span>
+      <button onclick="clsGo(1)" ${CLS.gslide===CLS.gslides.length-1?"disabled":""}>▶</button>
+    </div>
+    <div class="cls-dots">${dots}</div>
+    <p class="hint">Diaporama grammaire du bloc ${blc} · flèches ← → · « retour à la leçon » pour reprendre</p>`;
+    window.scrollTo(0,0);return;
+  }
   if(!l.w.length){
     $("app").innerHTML=top+`<div class="cls-slide" style="display:flex;align-items:center;justify-content:center;">
       <div style="text-align:center;max-width:34em;">
@@ -2086,10 +3071,14 @@ function renderClasse(){
     <ul class="cls-parler">${prompts.map(p2=>`<li>${esc(p2)}</li>`).join("")}</ul>
     <div class="cls-tip">Chacun parle — les profs corrigent la prononciation. Pas de stress, on apprend !</div>`;
   }else{
+    const gsB=GUNITS.filter(g=>g.bloc===blc&&g.ready);
+    const stB2=stageForBloc(blc);
     body=`<div class="cls-eyebrow">Devoirs — avant la prochaine classe</div>
     <ul class="cls-parler">
       <li>📖 Le livre : relisez ${esc(l.ch)} et faites les exercices de la page de droite (sur papier).</li>
       <li>📱 L'app, sur VOTRE téléphone : Quiz + Écoute + Genre + Conjugaison de la leçon ${l.n}, et le Dialogue jusqu'au niveau ③.</li>
+      ${gsB.length?`<li>📐 Grammaire : les exercices de ${gsB.map(g=>"G"+g.n).join(" et ")} + l'étape C${stB2.id} (${esc(stB2.t)}).</li>`:""}
+      ${gsB.length?`<li>✍️ Production (papier, à rendre aux profs) : ${esc(gsB[0].prod)}</li>`:""}
       <li>🔁 Une Révision mixte (10 questions) par jour.</li>
     </ul>
     <div class="cls-tip">Les rapides peuvent prendre de l'avance sur la leçon suivante — la classe, elle, avance au rythme des profs !</div>`;
