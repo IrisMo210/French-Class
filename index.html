@@ -216,13 +216,18 @@
   .prodbox b{color:var(--gold);}
   .vgrp{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:8px;overflow:hidden;}
   .vgrp-h{display:flex;align-items:center;gap:8px;padding:11px 13px;cursor:pointer;font-weight:700;font-size:.9rem;}
-  .vgrp-h .cnt2{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink-soft);}
+  .vgrp-h .cnt2{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink-soft);white-space:nowrap;}
+  .grpall{margin-left:auto;border:1px solid var(--gold-edge);background:var(--gold-bg);color:var(--gold);border-radius:999px;font-size:.66rem;font-weight:700;padding:4px 10px;cursor:pointer;font-family:'Karla',sans-serif;flex:0 0 auto;}
   .vgrp-h .car{color:var(--gold);font-size:.8rem;}
   .vrow{display:flex;align-items:baseline;gap:9px;border-top:1px dashed var(--line);padding:9px 13px;cursor:pointer;}
   .vrow:hover{background:var(--gold-bg);}
   .vrow b{font-size:.95rem;}
   .vrow.on b{color:var(--gold);}
   .vrow .en2{margin-left:auto;color:var(--ink-soft);font-size:.8rem;text-align:right;}
+  .vtgl{width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;flex:0 0 auto;cursor:pointer;margin-left:10px;align-self:center;transition:background .15s;}
+  .vtgl::after{content:"";position:absolute;top:2.5px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s;box-shadow:0 1px 3px rgba(35,38,43,.25);}
+  .vtgl.on{background:var(--gold);}
+  .vtgl.on::after{left:19px;}
   #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:999px;padding:9px 18px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9;max-width:90%;text-align:center;}
   footer{text-align:center;color:var(--ink-soft);font-size:.72rem;margin-top:34px;padding-top:16px;border-top:1px solid var(--line);}
 </style>
@@ -2108,29 +2113,30 @@ function stageForBloc(b){return CSTAGES[Math.min(Math.max(b,1),7)-1];}
 function stageKey(st,v){return "C"+st.id+":"+v;}
 function stageVerbs(st){return st.verbs.filter(v=>CONJ[v]&&!(st.tense==="impe"&&CONJ[v].noImpe));}
 function stageProgress(st){const vs=stageVerbs(st);return vs.filter(v=>msGet(stageKey(st,v))>=2).length+"/"+vs.length;}
-function conjQ(st,v){
-  const c=CONJ[v],t=st.tense;
+function conjQFor(v,t){
+  const c=CONJ[v];
   if(t==="pres"||t==="impf"||t==="fut"){
     const i=Math.floor(Math.random()*6);
     const form=t==="pres"?c.pres[i]:(t==="impf"?impfForm(v,i):futForm(v,i));
     const pr=i===0?"je":PRON[i].split(" / ")[0];
-    return {v:v,st:st,label:`${esc(v)} — <i>${PRON[i]}</i> ______`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
+    return {v:v,t:t,label:`${esc(v)} — <i>${PRON[i]}</i> ______`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
   }
   if(t==="pc"&&c.aux==="a"){
     const i=Math.floor(Math.random()*6);
     const form=AUX_A[i]+" "+c.pp;
     const pr=i===0?"je":PRON[i].split(" / ")[0];
-    return {v:v,st:st,label:`${esc(v)} — <i>${PRON[i]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé)</span>`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
+    return {v:v,t:t,label:`${esc(v)} — <i>${PRON[i]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé)</span>`,accept:[form],disp:elide(i===0?"je":PRON[i],form),say:elide(pr,form)};
   }
   if(t==="pc"){
     const pi=Math.floor(Math.random()*4);
     const form=PCE_AUX[pi]+" "+c.pp+PCE_AGR[pi];
-    return {v:v,st:st,label:`${esc(v)} — <i>${PCE_P[pi]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé — accord !)</span>`,accept:[form],disp:PCE_P[pi]+" "+form,say:PCE_P[pi]+" "+form};
+    return {v:v,t:t,label:`${esc(v)} — <i>${PCE_P[pi]}</i> ______ <span style="color:var(--ink-soft);font-size:.8em;">(passé composé — accord !)</span>`,accept:[form],disp:PCE_P[pi]+" "+form,say:PCE_P[pi]+" "+form};
   }
   const pi=Math.floor(Math.random()*3);
   const form=impeForms(v)[pi];
-  return {v:v,st:st,label:`${esc(v)} — impératif <i>${IMPE_P[pi]}</i> ______`,accept:[form],disp:form+" !",say:form+" !"};
+  return {v:v,t:t,label:`${esc(v)} — impératif <i>${IMPE_P[pi]}</i> ______`,accept:[form],disp:form+" !",say:form+" !"};
 }
+function conjQ(st,v){const q=conjQFor(v,st.tense);q.st=st;return q;}
 function conjRows(v,tense){
   const c=CONJ[v];
   if(tense==="pres")return c.pres.map((f2,i)=>({p:PRON[i],f:f2}));
@@ -2464,126 +2470,186 @@ function gReset(){
 }
 
 /* ================= CONJUGAISON (étapes + tableaux) ================= */
-let CJ={s:1,sub:"et",v:"être"},C2=null;
-function openConjHome(sid,sub){
-  if(sid)CJ.s=sid;else CJ.s=stageForBloc(currentBloc()).id;
-  if(sub)CJ.sub=sub;
-  renderConj();
+let CJ={v:"être",mode:"list"},CD2=null,CJROPEN={};
+const TENSES=[["pres","Présent"],["pc","Passé composé"],["impf","Imparfait"],["fut","Futur simple"],["impe","Impératif"]];
+function csel(){
+  if(!P.csel||!P.csel.v||!P.csel.t){const st=stageForBloc(currentBloc());P.csel={v:stageVerbs(st).slice(),t:[st.tense]};saveAll();}
+  return P.csel;
 }
-function conjSub(sub){CJ.sub=sub;renderConj();}
-function conjStage(sid){CJ.s=sid;C2=null;renderConj();}
+function cselLabel(){
+  const s=csel();
+  return `${s.v.length} verbe${s.v.length>1?"s":""} sélectionné${s.v.length>1?"s":""} · temps : ${s.t.length?s.t.map(t=>TENSES.find(x=>x[0]===t)[1]).join(", "):"—"}`;
+}
+function cselCombos(){
+  const s=csel(),out=[];
+  s.v.forEach(v=>{if(!CONJ[v])return;s.t.forEach(t=>{if(t==="impe"&&CONJ[v].noImpe)return;out.push([v,t]);});});
+  return out;
+}
+function cselToggle(v){
+  const s=csel(),i=s.v.indexOf(v);
+  if(i>=0)s.v.splice(i,1);else s.v.push(v);
+  saveAll();cjDrawChips();
+  const c=$("cselCount");if(c)c.textContent=cselLabel();
+}
+function cselTense(t){
+  const s=csel(),i=s.t.indexOf(t);
+  if(i>=0)s.t.splice(i,1);else s.t.push(t);
+  saveAll();renderConj();
+}
+function cselClear(){csel().v=[];saveAll();renderConj();}
+function cselPreset(){
+  const st=stageForBloc(currentBloc());
+  P.csel={v:stageVerbs(st).slice(),t:[st.tense]};saveAll();renderConj();
+  toast("Sélection = étape C"+st.id+" · "+st.t);
+}
+function openConjHome(){CJ.mode="list";renderConj();}
 function conjVerb(v){CJ.v=v;if($("cjChips")){cjDrawChips();cjDrawCard();const c=$("cjCard");if(c)c.scrollIntoView({behavior:"smooth"});}else renderConj();}
+function cjStart(){
+  const s=csel();
+  if(!s.v.length){toast("Coche d'abord des verbes (interrupteurs) !");return;}
+  if(!s.t.length){toast("Choisis au moins un temps !");return;}
+  if(!cselCombos().length){toast("Ces verbes n'ont pas d'impératif — choisis un autre temps.");return;}
+  CJ.mode="drill";CD2=null;renderConj();
+}
 function renderConj(){
-  const st=CSTAGES[CJ.s-1];
+  const st=stageForBloc(currentBloc());
+  const sel=csel();
   let h=`<span class="back" onclick="renderHome()">← Accueil</span>
   <div class="lesson-title">🔤 La Conjugaison</div>
-  <div class="lesson-meta">7 étapes = la colonne Conjugaison du plan · Conjugaison Progressive (débutant A1-A2.1)</div>
-  <div class="stagepills">${CSTAGES.map(s2=>`<span class="stg ${s2.id===CJ.s?"on":(stageMastered(s2)?"done":"")}" onclick="conjStage(${s2.id})">${stageMastered(s2)?"✓ ":""}C${s2.id} ${esc(s2.t)}</span>`).join("")}</div>
-  <div class="lvlbtns">
-    <button class="${CJ.sub==="et"?"on":""}" onclick="conjSub('et')">📖 Étudier</button>
-    <button class="${CJ.sub==="tr"?"on":""}" onclick="conjSub('tr')">✏️ S'entraîner (${stageProgress(st)})</button>
-    <button class="${CJ.sub==="tb"?"on":""}" onclick="conjSub('tb')">📚 Tableaux</button>
-  </div><div id="cjBox"></div>`;
-  $("app").innerHTML=h;
-  if(CJ.sub==="et")cjEtudier(st);
-  else if(CJ.sub==="tr")cjTrain(st);
-  else cjTableaux();
-  window.scrollTo(0,0);
-}
-function stageMastered(st){return stageVerbs(st).every(v=>msGet(stageKey(st,v))>=2);}
-function cjEtudier(st){
-  let h=`<div class="grule"><b>C${st.id} · ${esc(st.t)} — </b>${st.rule}`;
-  st.models.forEach(v=>{h+=chartHtml(v,st.tense,v+(st.tense==="pc"?" (passé composé)":""));});
-  h+=`<div class="warn2">Sur ces modèles : <b>${stageVerbs(st).join(", ")}</b>.</div></div>
-  <div class="row"><button class="act" onclick="conjSub('tr')">✏️ S'entraîner maintenant →</button></div>`;
-  $("cjBox").innerHTML=h;
-}
-function cjTrain(st){
-  $("cjBox").innerHTML=`<div class="card">
-    <div class="q" id="c2Head">${esc(CONJ_HEAD[st.tense])}</div>
-    <div class="prompt" id="c2Prompt">—</div>
-    <input class="txt" id="c2In" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')conj2Check()">
-    ${accBar("c2In")}
-    <button class="newword" onclick="conj2Explain()">🤔 Je ne sais pas — montre la conjugaison</button>
-    <div class="feedback" id="c2Fb"></div>
-    <div class="row"><button class="act" onclick="conj2Check()">Vérifier</button><button class="act ghost" onclick="conj2New()">Passer →</button></div>
-    <p class="hint">Maîtrise = 2 bonnes réponses de suite par verbe · la même étape est dans l'onglet Conjugaison des leçons du bloc ${st.bloc}.</p>
-  </div>`;
-  conj2New();
-}
-function conj2New(){
-  const st=CSTAGES[CJ.s-1];
-  const vs=stageVerbs(st).filter(v=>msGet(stageKey(st,v))<2);
-  const f=$("c2Fb");
-  if(!vs.length){
-    C2=null;$("c2Prompt").textContent="🎉";$("c2In").style.display="none";
-    f.className="feedback ok";f.innerHTML=`Bravo ! Étape C${st.id} maîtrisée ✓
-    <span class="sub2"><button class="link2" onclick="conj2Reset()">↻ Recommencer l'étape</button></span>`;
-    return;
+  <div class="lesson-meta">Coche tes verbes ⊙, choisis tes temps, puis pratique — ou touche un verbe pour son tableau complet.</div>`;
+  if(CJ.mode==="drill"){
+    h+=`<div class="card">
+      <div class="q" id="d2Head">Pratique</div>
+      <div class="prompt" id="d2Prompt">—</div>
+      <input class="txt" id="d2In" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')cjdCheck()">
+      ${accBar("d2In")}
+      <button class="newword" onclick="cjdExplain()">🤔 Je ne sais pas — montre la conjugaison</button>
+      <div class="feedback" id="d2Fb"></div>
+      <div class="row"><button class="act" onclick="cjdCheck()">Vérifier</button><button class="act ghost" onclick="cjdNew()">Passer →</button></div>
+      <div class="row"><button class="act ghost" onclick="CJ.mode='list';renderConj()">✕ Quitter la pratique</button></div>
+      <p class="hint" id="d2Prog"></p>
+    </div>`;
+    $("app").innerHTML=h;
+    cjdNew();window.scrollTo(0,0);return;
   }
-  $("c2In").style.display="";
-  const v=pick(vs,C2&&C2.v);
-  C2=conjQ(st,v);
-  $("c2Prompt").innerHTML=C2.label;
-  $("c2In").value="";f.textContent="";f.className="feedback";
-}
-function conj2Check(){
-  if(!C2)return;const inp=$("c2In").value;if(!inp.trim())return;
-  const f=$("c2Fb");
-  const cleaned=norm(inp).replace(/^(je|j|tu|il|elle|on|nous|vous|ils|elles) /,"");
-  if(C2.accept.some(a=>norm(a)===cleaned||norm(a)===norm(inp))){
-    const mastered=msWin(stageKey(C2.st,C2.v));
-    f.className="feedback ok";f.innerHTML=`✓ Bravo ! <b>${esc(C2.disp)}</b> ${spkBtn(C2.say)}${mastered?" 🏆":""}`;
-    if(mastered)masteredToast();
-    scoreGood();setTimeout(conj2New,1500);
-  }else{
-    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(C2.disp)}</b> ${spkBtn(C2.say)}`;
-    msLose(stageKey(C2.st,C2.v));
-  }
-}
-function conj2Explain(){
-  if(!C2)return;const f=$("c2Fb");
-  const rows=conjRows(C2.v,C2.st.tense);
-  f.className="feedback ok";
-  f.innerHTML=`<b>${esc(C2.v)}</b> : ${rows.map(r=>`${esc(r.p.split(" / ")[0])} <b>${esc(r.f)}</b>`).join(" · ")}`;
-  msLose(stageKey(C2.st,C2.v));
-}
-function conj2Reset(){
-  const st=CSTAGES[CJ.s-1];
-  Object.keys(P.ms).forEach(k=>{if(k.indexOf("C"+st.id+":")===0)delete P.ms[k];});
-  saveAll();conj2New();
-}
-let CJQ="",CJOPEN={cours:true};
-function cjSearch(v){CJQ=v;cjDrawChips();}
-function cjToggleGrp(k){CJOPEN[k]=!CJOPEN[k];cjDrawChips();}
-function cjTableaux(){
-  $("cjBox").innerHTML=`
+  h+=`<div class="card" style="padding:16px;">
+    <div class="q">Ma pratique — les temps :</div>
+    <div class="verbchips" style="margin:10px 0 6px;">${TENSES.map(([k,l])=>`<span class="vchip ${sel.t.indexOf(k)>=0?"on":""}" onclick="cselTense('${k}')">${l}</span>`).join("")}</div>
+    <div class="hint" style="text-align:left;margin:0 0 6px;" id="cselCount">${cselLabel()}</div>
+    <div class="row" style="margin-top:6px;">
+      <button class="act goldb" onclick="cjStart()">▶ Commencer la pratique</button>
+      <button class="act ghost" onclick="cselPreset()">🎯 Étape du bloc (C${st.id})</button>
+    </div>
+    <div class="exportline" style="margin:8px 0 0;"><button onclick="cselClear()">tout désélectionner</button></div>
+  </div>
+  ${cjRulesHtml()}
   <input class="txt" id="cjQ" placeholder="Cherche un verbe — en français ou en anglais…" style="text-align:left;margin-bottom:8px;" value="${esc(CJQ)}" oninput="cjSearch(this.value)">
   <div class="hint" id="cjCount" style="margin:0 0 10px;text-align:left;"></div>
   <div id="cjChips"></div>
   <div id="cjCard"></div>`;
+  $("app").innerHTML=h;
   cjDrawChips();cjDrawCard();
+  window.scrollTo(0,0);
 }
+function cjRulesToggle(id){CJROPEN[id]=!CJROPEN[id];const el=$("cjRulesBox");if(el)el.outerHTML=cjRulesHtml();else renderConj();}
+function cjRulesHtml(){
+  return `<div id="cjRulesBox">${CSTAGES.map(st=>`<div class="vgrp"><div class="vgrp-h" onclick="cjRulesToggle(${st.id})"><span class="car">${CJROPEN[st.id]?"▾":"▸"}</span>📖 C${st.id} · ${esc(st.t)}<span class="cnt2">règle + modèles</span></div>${CJROPEN[st.id]?`<div style="padding:10px 13px;border-top:1px dashed var(--line);"><div class="grule" style="margin:0;">${st.rule}${st.models.map(v=>chartHtml(v,st.tense,v)).join("")}<div class="warn2">Verbes de l'étape : ${stageVerbs(st).join(", ")}.</div></div></div>`:""}</div>`).join("")}</div>`;
+}
+function cjdNew(){
+  const allC=cselCombos();
+  const combos=allC.filter(([v,t])=>msGet("CP:"+t+":"+v)<2);
+  const f=$("d2Fb");
+  $("d2Prog").textContent=`Maîtrisés : ${allC.length-combos.length}/${allC.length} (2 bonnes réponses de suite par verbe et par temps)`;
+  if(!combos.length){
+    CD2=null;$("d2Prompt").textContent="🎉";$("d2In").style.display="none";
+    $("d2Head").textContent="Pratique terminée !";
+    f.className="feedback ok";f.innerHTML=`Bravo ! Toute ta sélection est maîtrisée ✓
+    <span class="sub2"><button class="link2" onclick="cjdReset()">↻ Recommencer cette sélection</button></span>`;
+    return;
+  }
+  $("d2In").style.display="";
+  const [v,t]=combos[Math.floor(Math.random()*combos.length)];
+  CD2=conjQFor(v,t);
+  $("d2Head").textContent=CONJ_HEAD[t];
+  $("d2Prompt").innerHTML=CD2.label;
+  $("d2In").value="";f.textContent="";f.className="feedback";
+}
+function cjdCheck(){
+  if(!CD2)return;const inp=$("d2In").value;if(!inp.trim())return;
+  const f=$("d2Fb");
+  const cleaned=norm(inp).replace(/^(je|j|tu|il|elle|on|nous|vous|ils|elles) /,"");
+  if(CD2.accept.some(a=>norm(a)===cleaned||norm(a)===norm(inp))){
+    const mastered=msWin("CP:"+CD2.t+":"+CD2.v);
+    f.className="feedback ok";f.innerHTML=`✓ Bravo ! <b>${esc(CD2.disp)}</b> ${spkBtn(CD2.say)}${mastered?" 🏆":""}`;
+    if(mastered)masteredToast();
+    scoreGood();setTimeout(cjdNew,1500);
+  }else{
+    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(CD2.disp)}</b> ${spkBtn(CD2.say)}`;
+    msLose("CP:"+CD2.t+":"+CD2.v);
+  }
+}
+function cjdExplain(){
+  if(!CD2)return;const f=$("d2Fb");
+  const rows=conjRows(CD2.v,CD2.t);
+  f.className="feedback ok";
+  f.innerHTML=`<b>${esc(CD2.v)}</b> : ${rows.map(r=>`${esc(r.p.split(" / ")[0])} <b>${esc(r.f)}</b>`).join(" · ")}`;
+  msLose("CP:"+CD2.t+":"+CD2.v);
+}
+function cjdReset(){
+  cselCombos().forEach(([v,t])=>{delete P.ms["CP:"+t+":"+v];});
+  saveAll();cjdNew();
+}
+let CJQ="",CJOPEN={cours:true,_sel:true};
+function cjSearch(v){CJQ=v;cjDrawChips();}
+function cjToggleGrp(k){CJOPEN[k]=!CJOPEN[k];cjDrawChips();}
 function vRow(v){
-  return `<div class="vrow ${v===CJ.v?"on":""}" onclick="conjVerb('${v.replace(/'/g,"\\'")}')"><b>${esc(v)}</b><span class="en2">${esc(VEN[v]||"")}</span></div>`;
+  const vq=v.replace(/'/g,"\\'");
+  const on=csel().v.indexOf(v)>=0;
+  return `<div class="vrow ${v===CJ.v?"on":""}"><b onclick="conjVerb('${vq}')">${esc(v)}</b><span class="en2" onclick="conjVerb('${vq}')">${esc(VEN[v]||"")}</span><span class="vtgl ${on?"on":""}" onclick="cselToggle('${vq}')" title="pratiquer ce verbe"></span></div>`;
+}
+function grpVerbs(k){
+  const all=Object.keys(CONJ);
+  if(k==="_sel")return csel().v.filter(v=>CONJ[v]);
+  if(k==="_q"){const q=norm(CJQ||"");return all.filter(v=>norm(v).indexOf(q)>=0||norm(VEN[v]||"").indexOf(q)>=0).slice(0,50);}
+  return all.filter(v=>VFAM[v]===k);
+}
+function grpAllBtn(k){
+  const vs=grpVerbs(k),s=csel();
+  const allIn=vs.length&&vs.every(v=>s.v.indexOf(v)>=0);
+  return `<button class="grpall" onclick="cselGrpAll('${k}',event)">${allIn?"tout décocher":"tout cocher"}</button>`;
+}
+function cselGrpAll(k,ev){
+  if(ev)ev.stopPropagation();
+  const vs=grpVerbs(k),s=csel();
+  const allIn=vs.length&&vs.every(v=>s.v.indexOf(v)>=0);
+  if(allIn)s.v=s.v.filter(v=>vs.indexOf(v)<0);
+  else vs.forEach(v=>{if(s.v.indexOf(v)<0)s.v.push(v);});
+  saveAll();cjDrawChips();
+  const c=$("cselCount");if(c)c.textContent=cselLabel();
 }
 function cjDrawChips(){
+  if(!$("cjChips"))return;
   const all=Object.keys(CONJ).sort((a,b)=>a.localeCompare(b,"fr"));
   const q=norm(CJQ||"");
-  $("cjCount").innerHTML=`<b>${all.length} verbes</b> en ${VGROUPS.length} familles · il en manque un ? Dis au tuteur : « ajoute le verbe… »`;
+  $("cjCount").innerHTML=`<b>${all.length} verbes</b> en ${VGROUPS.length} familles · l'interrupteur ⊙ ajoute le verbe à ta pratique · il en manque un ? Dis au tuteur : « ajoute le verbe… »`;
   if(q){
     const hits=all.filter(v=>norm(v).indexOf(q)>=0||norm(VEN[v]||"").indexOf(q)>=0);
     $("cjChips").innerHTML=hits.length?
-      `<div class="vgrp"><div class="vgrp-h">${hits.length} trouvé${hits.length>1?"s":""}<span class="cnt2">recherche</span></div>${hits.slice(0,50).map(vRow).join("")}${hits.length>50?`<div class="vrow"><span class="en2">… + ${hits.length-50} autres — précise ta recherche</span></div>`:""}</div>`:
+      `<div class="vgrp"><div class="vgrp-h">${hits.length} trouvé${hits.length>1?"s":""}${grpAllBtn("_q")}<span class="cnt2">recherche</span></div>${hits.slice(0,50).map(vRow).join("")}${hits.length>50?`<div class="vrow"><span class="en2">… + ${hits.length-50} autres — précise ta recherche</span></div>`:""}</div>`:
       `<div class="hint" style="text-align:left;">Aucun verbe trouvé pour « ${esc(CJQ)} » — dis au tuteur : « ajoute le verbe ${esc(CJQ)} ».</div>`;
     return;
   }
   let h="";
+  const selv=csel().v.filter(v=>CONJ[v]).sort((a,b)=>a.localeCompare(b,"fr"));
+  if(selv.length){
+    const open=!!CJOPEN["_sel"];
+    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('_sel')"><span class="car">${open?"▾":"▸"}</span>✅ Ma sélection (pour la pratique)${grpAllBtn("_sel")}<span class="cnt2">${selv.length} verbes</span></div>${open?selv.map(vRow).join(""):""}</div>`;
+  }
   VGROUPS.forEach(([k,label])=>{
     const vs=all.filter(v=>VFAM[v]===k);
     if(!vs.length)return;
     const open=!!CJOPEN[k];
-    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('${k}')"><span class="car">${open?"▾":"▸"}</span>${label}<span class="cnt2">${vs.length} verbes</span></div>${open?vs.map(vRow).join(""):""}</div>`;
+    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('${k}')"><span class="car">${open?"▾":"▸"}</span>${label}${grpAllBtn(k)}<span class="cnt2">${vs.length} verbes</span></div>${open?vs.map(vRow).join(""):""}</div>`;
   });
   $("cjChips").innerHTML=h;
 }
