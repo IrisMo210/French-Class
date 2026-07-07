@@ -338,16 +338,16 @@ const V_DERIV=[["devenir","venir","to become"],["revenir","venir","to come back"
 const V_ETRE=new Set(["monter","rentrer","retourner","descendre","naître","mourir","devenir","revenir","repartir"]);
 const VFAM={};
 const VGROUPS=[
- ["cours","⭐ Les verbes du cours (étapes C1–C7)"],
- ["er","Verbes en -er réguliers"],
- ["ersp","Verbes en -er particuliers (mange, commençons, lève, espère, jette, paie…)"],
- ["ir2","Verbes en -ir · type finir (-issons)"],
- ["ir3","Verbes en -ir · type dormir, partir"],
- ["re","Verbes en -re · type vendre"],
- ["vrir","Verbes en -vrir / -frir (ouvert, offert)"],
- ["uire","Verbes en -uire (conduit, traduit)"],
- ["irr","Irréguliers"],
- ["der","Composés des irréguliers (devenir, permettre…)"]
+ ["cours","⭐ Course verbs (stages C1–C7)"],
+ ["er","Regular -er verbs"],
+ ["ersp","-er verbs with spelling changes (mange, commençons, lève, espère, jette, paie…)"],
+ ["ir2","-ir verbs · finir type (-issons)"],
+ ["ir3","-ir verbs · dormir / partir type"],
+ ["re","-re verbs · vendre type"],
+ ["vrir","-vrir / -frir verbs (ouvert, offert)"],
+ ["uire","-uire verbs (conduit, traduit)"],
+ ["irr","Irregular verbs"],
+ ["der","Compounds of the irregulars (devenir, permettre…)"]
 ];
 (function buildVerbBank(){
   Object.keys(CONJ).forEach(v=>VFAM[v]="cours");
@@ -378,31 +378,31 @@ const CSTAGES=[
  {id:1,bloc:1,t:"Présent · être, avoir & -er",tense:"pres",
   models:["être","avoir","parler"],
   verbs:["être","avoir","parler","habiter","aimer","travailler","manger","acheter","appeler","étudier","écouter","regarder","jouer","donner","commencer","préférer"],
-  rule:"Verbes en <b>-er</b> : radical + <b>e, es, e, ons, ez, ent</b>. Attention : j'ach<b>è</b>te / nous achetons · j'appe<b>ll</b>e / nous appelons · nous man<b>ge</b>ons · nous commen<b>ç</b>ons. <b>Être</b> et <b>avoir</b> : à apprendre par cœur !"},
- {id:2,bloc:2,t:"Présent · verbes irréguliers",tense:"pres",
+  rule:"<b>-er</b> verbs: stem + <b>e, es, e, ons, ez, ent</b>. Watch the spelling changes: j'ach<b>è</b>te / nous achetons · j'appe<b>ll</b>e / nous appelons · nous man<b>ge</b>ons · nous commen<b>ç</b>ons. <b>Être</b> and <b>avoir</b>: learn them by heart!"},
+ {id:2,bloc:2,t:"Présent · irregular verbs",tense:"pres",
   models:["aller","faire","prendre","finir"],
   verbs:["aller","faire","venir","prendre","apprendre","comprendre","finir","choisir","dormir","partir","sortir","attendre","entendre","répondre","lire","écrire","boire","voir","savoir","connaître","mettre","dire","vouloir","pouvoir","devoir"],
-  rule:"Familles : <b>-ir type finir</b> (nous finissons) · <b>-ir type dormir</b> (nous dormons) · <b>-dre</b> (j'attends, nous attendons · je prends, nous prenons, ils prennent) · <b>-oir</b> (je veux, nous voulons). Écoute bien les 3 formes : je / nous / ils."},
+  rule:"The families: <b>-ir, finir type</b> (nous finissons) · <b>-ir, dormir type</b> (nous dormons) · <b>-dre</b> (j'attends, nous attendons · je prends, nous prenons, ils prennent) · <b>-oir</b> (je veux, nous voulons). Listen carefully to the 3 key forms: je / nous / ils."},
  {id:3,bloc:3,t:"L'impératif",tense:"impe",
   models:["parler","aller","faire","être"],
   verbs:["parler","écouter","regarder","manger","aller","faire","venir","prendre","finir","être","avoir","écrire","lire","dire","attendre"],
-  rule:"L'impératif = le présent <b>sans le sujet</b>, à 3 personnes : (tu) <b>Parle !</b> (nous) <b>Parlons !</b> (vous) <b>Parlez !</b> Verbes en -er : pas de <b>s</b> à « tu » (Tu parles → Parle !). Irréguliers : <b>sois / soyons / soyez</b> (être), <b>aie / ayons / ayez</b> (avoir), <b>va !</b> (aller)."},
- {id:4,bloc:4,t:"Passé composé avec avoir",tense:"pc",
+  rule:"The imperative = the present tense <b>without the subject</b>, in 3 persons: (tu) <b>Parle !</b> (nous) <b>Parlons !</b> (vous) <b>Parlez !</b> For -er verbs, drop the <b>s</b> in the « tu » form (Tu parles → Parle !). Irregulars: <b>sois / soyons / soyez</b> (être), <b>aie / ayons / ayez</b> (avoir), <b>va !</b> (aller)."},
+ {id:4,bloc:4,t:"Passé composé with avoir",tense:"pc",
   models:["parler","faire","prendre"],
   verbs:["parler","manger","travailler","acheter","regarder","écouter","finir","choisir","dormir","prendre","apprendre","comprendre","attendre","répondre","lire","écrire","boire","voir","faire","dire","mettre","vouloir","pouvoir","devoir","être","avoir"],
-  rule:"Passé composé = <b>avoir au présent + participe passé</b>. Participes : -er → <b>-é</b> (parlé) · -ir → <b>-i</b> (fini, dormi) · irréguliers à retenir : <b>fait, pris, lu, écrit, bu, vu, dit, mis, eu, été, voulu, pu, dû, attendu, répondu</b>."},
- {id:5,bloc:5,t:"Passé composé avec être",tense:"pc",
+  rule:"Passé composé (the everyday past) = <b>avoir in the present + past participle</b>. Participles: -er → <b>-é</b> (parlé) · -ir → <b>-i</b> (fini, dormi) · irregulars to memorise: <b>fait, pris, lu, écrit, bu, vu, dit, mis, eu, été, voulu, pu, dû, attendu, répondu</b>."},
+ {id:5,bloc:5,t:"Passé composé with être",tense:"pc",
   models:["aller","venir","partir"],
   verbs:["aller","venir","partir","sortir","arriver","rester","entrer","tomber"],
-  rule:"Les verbes de déplacement prennent <b>être</b> : aller, venir, partir, sortir, arriver, rester, entrer, tomber… Le participe <b>s'accorde</b> avec le sujet : il est all<b>é</b> · elle est all<b>ée</b> · ils sont all<b>és</b> · elles sont all<b>ées</b>."},
+  rule:"Movement verbs take <b>être</b> instead of avoir: aller, venir, partir, sortir, arriver, rester, entrer, tomber… The participle <b>agrees</b> with the subject: il est all<b>é</b> · elle est all<b>ée</b> · ils sont all<b>és</b> · elles sont all<b>ées</b>."},
  {id:6,bloc:6,t:"L'imparfait",tense:"impf",
   models:["parler","être","faire"],
   verbs:["être","avoir","faire","parler","habiter","travailler","manger","aller","vouloir","pouvoir","prendre","lire","boire","finir","venir","voir"],
-  rule:"Imparfait = radical de <b>« nous » au présent</b> (sans -ons) + <b>ais, ais, ait, ions, iez, aient</b>. Nous fais<s>ons</s> → je fais<b>ais</b>. Une seule exception : <b>être → j'étais</b>. Usage : description et habitude du passé (« Quand j'étais petite… »)."},
+  rule:"Imparfait = the <b>« nous » present stem</b> (drop -ons) + <b>ais, ais, ait, ions, iez, aient</b>. Nous fais<s>ons</s> → je fais<b>ais</b>. Only one exception: <b>être → j'étais</b>. Use it for descriptions and habits in the past (« Quand j'étais petite… » — when I was little…)."},
  {id:7,bloc:7,t:"Le futur · proche & simple",tense:"fut",
   models:["parler","être","avoir"],
   verbs:["être","avoir","aller","faire","venir","voir","pouvoir","vouloir","devoir","savoir","parler","travailler","manger","prendre","partir","écrire"],
-  rule:"<b>Futur proche</b> = aller + infinitif : « Je <b>vais manger</b>. » (tout de suite / bientôt). <b>Futur simple</b> = infinitif + <b>ai, as, a, ons, ez, ont</b> : je parler<b>ai</b>. Radicaux irréguliers : <b>ser-</b> (être), <b>aur-</b> (avoir), <b>ir-</b> (aller), <b>fer-</b> (faire), <b>viendr-</b>, <b>verr-</b>, <b>pourr-</b>, <b>voudr-</b>, <b>devr-</b>, <b>saur-</b>."}
+  rule:"<b>Futur proche</b> (near future) = aller + infinitive: « Je <b>vais manger</b>. » (right away / soon). <b>Futur simple</b> = infinitive + <b>ai, as, a, ons, ez, ont</b>: je parler<b>ai</b>. Irregular stems: <b>ser-</b> (être), <b>aur-</b> (avoir), <b>ir-</b> (aller), <b>fer-</b> (faire), <b>viendr-</b>, <b>verr-</b>, <b>pourr-</b>, <b>voudr-</b>, <b>devr-</b>, <b>saur-</b>."}
 ];
 /* === CONJ_END === */
 const PRON=["je","tu","il / elle","nous","vous","ils / elles"];
@@ -415,15 +415,15 @@ const GEN_DIST=["Je ne sais pas.","Merci, au revoir !","Oui, bien sûr.","Non me
    f/t : a = réponses acceptées (comparées via norm) · show = corrigé affiché.
    o : w = phrase dans le BON ordre (mélangée à l'écran) · show = corrigé. */
 const GUNITS=[
-{n:1,bloc:1,ready:true,t:"Je suis… — la présentation",s:"les pronoms sujets · être · s'appeler",
+{n:1,bloc:1,ready:true,t:"Je suis… — introducing yourself",s:"subject pronouns · être · s'appeler",
  src:"Grammaire A1.1 ch. 1–3 · A1 ch. 1 · A2-B1 ch. 1",
- rule:{f:"Les pronoms sujets : <b>je, tu, il / elle / on, nous, vous, ils / elles</b>.<br>« <b>Je suis</b> + nationalité / profession » · « <b>Je m'appelle</b> + nom ».<br><b>Tu</b> = ami, famille · <b>Vous</b> = poli, ou plusieurs personnes · <b>On</b> = nous (familier).",
+ rule:{f:"The subject pronouns: <b>je, tu, il / elle / on, nous, vous, ils / elles</b>.<br>“<b>Je suis</b> + nationality / job” · “<b>Je m'appelle</b> + name”.<br><b>Tu</b> = friends, family · <b>Vous</b> = polite, or several people · <b>On</b> = we (informal).",
   ex:[["Bonjour ! Je m'appelle Iris.","Hello! My name is Iris."],
       ["Je suis chinoise et j'habite au Luxembourg.","I'm Chinese and I live in Luxembourg."],
       ["Vous êtes français ? — Non, je suis italien.","Are you French? — No, I'm Italian."],
       ["On est dans la classe de français.","We're in French class."]],
-  warn:"⚠ « je » devient <b>j'</b> devant une voyelle : <b>j'</b>habite, <b>j'</b>aime."},
- prod:"Écris 3 phrases pour te présenter : ton nom, ta nationalité, ta ville. Les profs corrigent en classe.",
+  warn:"⚠ « je » becomes <b>j'</b> before a vowel: <b>j'</b>habite, <b>j'</b>aime."},
+ prod:"Write 3 sentences introducing yourself: your name, your nationality, your city. The teachers correct them in class.",
  exs:[
   {ty:"c",q:"___ m'appelle Marco.",opts:["Je","Tu","Il"],a:0},
   {ty:"c",q:"Tu ___ de Paris ?",opts:["es","est","êtes"],a:0},
@@ -433,9 +433,9 @@ const GUNITS=[
   {ty:"f",q:"Nous ___ (être) dans la classe.",a:["sommes"],show:"Nous sommes dans la classe."},
   {ty:"f",q:"Ils ___ (être) médecins.",a:["sont"],show:"Ils sont médecins."},
   {ty:"f",q:"Comment tu t'___ ? (appeler)",a:["appelles"],show:"Comment tu t'appelles ?"},
-  {ty:"t",q:"« Tu es italien ? » → poliment, avec vous",a:["vous êtes italien ?","vous êtes italien"],show:"Vous êtes italien ?"},
+  {ty:"t",q:"« Tu es italien ? » → politely, with vous",a:["vous êtes italien ?","vous êtes italien"],show:"Vous êtes italien ?"},
   {ty:"t",q:"« Je suis français. » → elle",a:["elle est française"],show:"Elle est française."},
-  {ty:"t",q:"« Nous sommes étudiants. » → avec on",a:["on est étudiants","on est étudiant"],show:"On est étudiants."},
+  {ty:"t",q:"« Nous sommes étudiants. » → with on",a:["on est étudiants","on est étudiant"],show:"On est étudiants."},
   {ty:"t",q:"« Il s'appelle Paul. » → je",a:["je m'appelle Paul"],show:"Je m'appelle Paul."},
   {ty:"o",w:["Je","m'appelle","Iris","Mo"],show:"Je m'appelle Iris Mo."},
   {ty:"o",w:["Vous","êtes","de","Paris","?"],show:"Vous êtes de Paris ?"},
@@ -450,14 +450,14 @@ const GUNITS=[
   {ty:"t",q:"« Je suis à Paris. » → nous",a:["nous sommes à Paris"],show:"Nous sommes à Paris."},
   {ty:"o",w:["Elle","s'appelle","Julie","et","elle","est","française"],show:"Elle s'appelle Julie et elle est française."}
  ]},
-{n:2,bloc:1,ready:true,t:"Masculin, féminin, pluriel",s:"l'accord des adjectifs",
+{n:2,bloc:1,ready:true,t:"Masculin, féminin, pluriel",s:"how adjectives agree",
  src:"Grammaire A1.1 ch. 4–5 · A1 ch. 2–3 · A2-B1 ch. 2",
- rule:{f:"Féminin = adjectif + <b>e</b> : grand → grand<b>e</b> · français → français<b>e</b>.<br>Déjà un -e ? Pas de changement : suisse, jeune, sympathique.<br>Pluriel = + <b>s</b> : ils sont grand<b>s</b> · elles sont grand<b>es</b>.",
+ rule:{f:"Feminine = adjective + <b>e</b>: grand → grand<b>e</b> · français → français<b>e</b>.<br>Already ends in -e? No change: suisse, jeune, sympathique.<br>Plural = + <b>s</b>: ils sont grand<b>s</b> · elles sont grand<b>es</b>.",
   ex:[["Il est grand. Elle est grande.","He is tall. She is tall."],
       ["Paul est italien. Maria est italienne.","Paul is Italian. Maria is Italian."],
       ["Ils sont contents. Elles sont contentes.","They are happy."]],
-  warn:"⚠ -ien → <b>-ienne</b> (italienne) · -eux → <b>-euse</b> (heureuse) · -if → <b>-ive</b> (sportive) · le e final fait <b>sonner la consonne</b> : grand /grɑ̃/ → grande /grɑ̃d/."},
- prod:"Décris deux personnes de ta famille — une femme et un homme — avec 2 adjectifs chacune.",
+  warn:"⚠ -ien → <b>-ienne</b> (italienne) · -eux → <b>-euse</b> (heureuse) · -if → <b>-ive</b> (sportive) · the final e makes the consonant <b>sound</b>: grand /grɑ̃/ → grande /grɑ̃d/."},
+ prod:"Describe two people in your family — a woman and a man — with 2 adjectives each.",
  exs:[
   {ty:"c",q:"Marie est ___.",opts:["française","français"],a:0},
   {ty:"c",q:"Ils sont ___.",opts:["contents","contente","content"],a:0},
@@ -480,52 +480,52 @@ const GUNITS=[
   {ty:"f",q:"Il est sportif, elle est ___.",a:["sportive"],show:"Elle est sportive."},
   {ty:"f",q:"Un homme poli, une femme ___.",a:["polie"],show:"Une femme polie."},
   {ty:"t",q:"« Il est content et calme. » → elle",a:["elle est contente et calme"],show:"Elle est contente et calme."},
-  {ty:"t",q:"« Le café est chaud. » → l'eau (féminin)",a:["l'eau est chaude"],show:"L'eau est chaude."},
+  {ty:"t",q:"« Le café est chaud. » → l'eau (feminine)",a:["l'eau est chaude"],show:"L'eau est chaude."},
   {ty:"t",q:"« Ils sont mariés. » → elles",a:["elles sont mariées"],show:"Elles sont mariées."},
   {ty:"o",w:["Ma","sœur","est","petite","et","brune"],show:"Ma sœur est petite et brune."}
  ]},
-{n:3,bloc:2,ready:true,t:"Un, une, des · le, la, les",s:"le nom & l'article",
+{n:3,bloc:2,ready:true,t:"Un, une, des · le, la, les",s:"nouns & articles",
  src:"Grammaire A1.1 ch. 10–13 · A1 ch. 10–12 · A2-B1 ch. 4",
- rule:{f:"Indéfini (on ne sait pas lequel) : <b>un</b> sac · <b>une</b> valise · <b>des</b> bagages.<br>Défini (on sait lequel / en général) : <b>le</b> sac · <b>la</b> valise · <b>les</b> bagages.<br>Devant une voyelle : <b>l'</b>école, <b>l'</b>ami.",
+ rule:{f:"Indefinite (any one, not specific): <b>un</b> sac · <b>une</b> valise · <b>des</b> bagages.<br>Definite (a specific one, or in general): <b>le</b> sac · <b>la</b> valise · <b>les</b> bagages.<br>Before a vowel: <b>l'</b>école, <b>l'</b>ami.",
   ex:[["C'est un sac. C'est le sac de Léo.","It's a bag. It's Léo's bag."],
       ["J'aime la musique et les voyages.","I love music and travelling."],
       ["Il y a une pharmacie dans la rue.","There's a pharmacy in the street."]],
-  warn:"⚠ Après <b>aimer, adorer, détester</b> → article défini : « J'aime <b>le</b> café » (pas « un café »)."},
- prod:"Écris ta liste de courses : 5 choses avec un / une / des.",
+  warn:"⚠ After <b>aimer, adorer, détester</b> → definite article: « J'aime <b>le</b> café » (not « un café »)."},
+ prod:"Write your shopping list: 5 things with un / une / des.",
  exs:[
   {ty:"c",q:"C'est ___ amie de Marco.",opts:["une","un","le"],a:0},
   {ty:"c",q:"J'aime ___ café.",opts:["le","un","la"],a:0},
   {ty:"c",q:"Tu as ___ stylo ?",opts:["un","le","une"],a:0},
   {ty:"c",q:"___ école est fermée.",opts:["L'","La","Le"],a:0},
-  {ty:"f",q:"C'est ___ voiture de Paul. (défini)",a:["la"],show:"C'est la voiture de Paul."},
-  {ty:"f",q:"Il y a ___ livres sur la table. (indéfini)",a:["des"],show:"Il y a des livres sur la table."},
+  {ty:"f",q:"C'est ___ voiture de Paul. (definite article)",a:["la"],show:"C'est la voiture de Paul."},
+  {ty:"f",q:"Il y a ___ livres sur la table. (indefinite article)",a:["des"],show:"Il y a des livres sur la table."},
   {ty:"f",q:"J'écoute ___ radio.",a:["la"],show:"J'écoute la radio."},
   {ty:"f",q:"Elle a ___ ordinateur.",a:["un"],show:"Elle a un ordinateur."},
-  {ty:"t",q:"« un livre » → au pluriel",a:["des livres"],show:"des livres"},
-  {ty:"t",q:"« la lettre » → au pluriel",a:["les lettres"],show:"les lettres"},
-  {ty:"t",q:"« l'ami » → au pluriel",a:["les amis"],show:"les amis"},
-  {ty:"t",q:"« des questions » → au singulier",a:["une question"],show:"une question"},
+  {ty:"t",q:"« un livre » → plural",a:["des livres"],show:"des livres"},
+  {ty:"t",q:"« la lettre » → plural",a:["les lettres"],show:"les lettres"},
+  {ty:"t",q:"« l'ami » → plural",a:["les amis"],show:"les amis"},
+  {ty:"t",q:"« des questions » → singular",a:["une question"],show:"une question"},
   {ty:"o",w:["J'aime","le","chocolat","et","les","gâteaux"],show:"J'aime le chocolat et les gâteaux."},
   {ty:"o",w:["Il y a","une","banque","dans","la","rue"],show:"Il y a une banque dans la rue."},
   {ty:"c",q:"Il y a ___ étudiants dans la classe.",opts:["des","les","un"],a:0},
   {ty:"c",q:"___ soleil brille.",opts:["Le","Un","La"],a:0},
-  {ty:"f",q:"Je voudrais ___ baguette, s'il vous plaît. (indéfini)",a:["une"],show:"Je voudrais une baguette."},
-  {ty:"f",q:"___ enfants de Marco sont petits. (défini)",a:["les"],show:"Les enfants de Marco sont petits."},
+  {ty:"f",q:"Je voudrais ___ baguette, s'il vous plaît. (indefinite article)",a:["une"],show:"Je voudrais une baguette."},
+  {ty:"f",q:"___ enfants de Marco sont petits. (definite article)",a:["les"],show:"Les enfants de Marco sont petits."},
   {ty:"f",q:"Tu regardes ___ télévision ?",a:["la"],show:"Tu regardes la télévision ?"},
-  {ty:"f",q:"C'est ___ hôtel moderne. (indéfini)",a:["un"],show:"C'est un hôtel moderne."},
-  {ty:"t",q:"« le garçon » → au pluriel",a:["les garçons"],show:"les garçons"},
-  {ty:"t",q:"« une amie » → au pluriel",a:["des amies"],show:"des amies"},
-  {ty:"t",q:"« J'ai des questions. » → au singulier",a:["j'ai une question"],show:"J'ai une question."},
+  {ty:"f",q:"C'est ___ hôtel moderne. (indefinite article)",a:["un"],show:"C'est un hôtel moderne."},
+  {ty:"t",q:"« le garçon » → plural",a:["les garçons"],show:"les garçons"},
+  {ty:"t",q:"« une amie » → plural",a:["des amies"],show:"des amies"},
+  {ty:"t",q:"« J'ai des questions. » → singular",a:["j'ai une question"],show:"J'ai une question."},
   {ty:"o",w:["Le","professeur","corrige","les","exercices"],show:"Le professeur corrige les exercices."}
  ]},
-{n:4,bloc:2,ready:true,t:"Ne… pas — la négation & la question",s:"négation simple · est-ce que · pas de",
+{n:4,bloc:2,ready:true,t:"Ne… pas — negation & questions",s:"simple negation · est-ce que · pas de",
  src:"Grammaire A1.1 ch. 6, 17 · A1 ch. 5, 20 · A2-B1 ch. 3",
- rule:{f:"Négation : <b>ne</b> + verbe + <b>pas</b> · « Je <b>ne</b> parle <b>pas</b> italien. »<br>Devant une voyelle : <b>n'</b> · « Elle <b>n'</b>aime <b>pas</b> le thé. »<br>Question simple : intonation (« Tu viens ? ») ou <b>Est-ce que</b> (« Est-ce que tu viens ? »).",
+ rule:{f:"Negation: <b>ne</b> + verb + <b>pas</b> · « Je <b>ne</b> parle <b>pas</b> italien. »<br>Before a vowel: <b>n'</b> · « Elle <b>n'</b>aime <b>pas</b> le thé. »<br>Simple question: rising intonation (« Tu viens ? ») or <b>Est-ce que</b> (« Est-ce que tu viens ? »).",
   ex:[["Je ne parle pas italien.","I don't speak Italian."],
       ["Elle n'a pas de frère.","She doesn't have a brother."],
       ["Est-ce que vous habitez à Paris ? — Non, je n'habite pas à Paris.","Do you live in Paris? — No, I don't."]],
-  warn:"⚠ Après la négation : un / une / des → <b>de</b> · « J'ai une voiture → Je n'ai pas <b>de</b> voiture. » MAIS l'article défini reste : « Je n'aime pas <b>le</b> café. »"},
- prod:"Écris 3 phrases : une chose que tu ne fais pas le week-end, une chose que tu n'aimes pas, une chose que tu n'as pas.",
+  warn:"⚠ After negation: un / une / des → <b>de</b> · « J'ai une voiture → Je n'ai pas <b>de</b> voiture. » BUT the definite article stays: « Je n'aime pas <b>le</b> café. »"},
+ prod:"Write 3 sentences: something you don't do at the weekend, something you don't like, something you don't have.",
  exs:[
   {ty:"c",q:"Je ___ comprends pas.",opts:["ne","n'","pas"],a:0},
   {ty:"c",q:"Il ___ aime pas le thé.",opts:["n'","ne"],a:0},
@@ -535,10 +535,10 @@ const GUNITS=[
   {ty:"f",q:"Elle n'a pas ___ enfants.",a:["d'","d","de"],show:"Elle n'a pas d'enfants."},
   {ty:"f",q:"Je ___ suis pas français.",a:["ne"],show:"Je ne suis pas français."},
   {ty:"f",q:"Vous n'___ pas faim ? (avoir)",a:["avez"],show:"Vous n'avez pas faim ?"},
-  {ty:"t",q:"« Je parle espagnol. » → négation",a:["je ne parle pas espagnol"],show:"Je ne parle pas espagnol."},
-  {ty:"t",q:"« Elle a une voiture. » → négation",a:["elle n'a pas de voiture"],show:"Elle n'a pas de voiture."},
-  {ty:"t",q:"« Tu es fatigué. » → question avec est-ce que",a:["est-ce que tu es fatigué ?","est-ce que tu es fatigué"],show:"Est-ce que tu es fatigué ?"},
-  {ty:"t",q:"« J'aime le sport. » → négation",a:["je n'aime pas le sport"],show:"Je n'aime pas le sport."},
+  {ty:"t",q:"« Je parle espagnol. » → make it negative",a:["je ne parle pas espagnol"],show:"Je ne parle pas espagnol."},
+  {ty:"t",q:"« Elle a une voiture. » → make it negative",a:["elle n'a pas de voiture"],show:"Elle n'a pas de voiture."},
+  {ty:"t",q:"« Tu es fatigué. » → a question with est-ce que",a:["est-ce que tu es fatigué ?","est-ce que tu es fatigué"],show:"Est-ce que tu es fatigué ?"},
+  {ty:"t",q:"« J'aime le sport. » → make it negative",a:["je n'aime pas le sport"],show:"Je n'aime pas le sport."},
   {ty:"o",w:["Je","ne","comprends","pas"],show:"Je ne comprends pas."},
   {ty:"o",w:["Il","n'y a","pas","de","pain"],show:"Il n'y a pas de pain."},
   {ty:"c",q:"Vous ___ pas fatigués ?",opts:["n'êtes","ne êtes","êtes"],a:0},
@@ -547,19 +547,19 @@ const GUNITS=[
   {ty:"f",q:"Je n'ai pas ___ argent.",a:["d'","d","de"],show:"Je n'ai pas d'argent."},
   {ty:"f",q:"___-ce que tu viens ce soir ?",a:["est"],show:"Est-ce que tu viens ce soir ?"},
   {ty:"f",q:"Non, elle ___ travaille pas ici.",a:["ne"],show:"Elle ne travaille pas ici."},
-  {ty:"t",q:"« Nous avons des enfants. » → négation",a:["nous n'avons pas d'enfants"],show:"Nous n'avons pas d'enfants."},
-  {ty:"t",q:"« Il est français. » → négation",a:["il n'est pas français"],show:"Il n'est pas français."},
-  {ty:"t",q:"« Vous aimez la musique. » → question avec est-ce que",a:["est-ce que vous aimez la musique ?","est-ce que vous aimez la musique"],show:"Est-ce que vous aimez la musique ?"},
+  {ty:"t",q:"« Nous avons des enfants. » → make it negative",a:["nous n'avons pas d'enfants"],show:"Nous n'avons pas d'enfants."},
+  {ty:"t",q:"« Il est français. » → make it negative",a:["il n'est pas français"],show:"Il n'est pas français."},
+  {ty:"t",q:"« Vous aimez la musique. » → a question with est-ce que",a:["est-ce que vous aimez la musique ?","est-ce que vous aimez la musique"],show:"Est-ce que vous aimez la musique ?"},
   {ty:"o",w:["Elle","ne","mange","pas","de","viande"],show:"Elle ne mange pas de viande."}
  ]},
-{n:5,bloc:3,ready:true,t:"C'est / il est",s:"identifier & décrire",
+{n:5,bloc:3,ready:true,t:"C'est / il est",s:"identifying & describing",
  src:"Grammaire A1.1 ch. 7, 9, 12 · A1 ch. 25–27 · A2-B1 ch. 5",
- rule:{f:"<b>C'est</b> + nom (avec article) : « C'est <b>un ami</b>. C'est <b>la sœur</b> de Léo. »<br><b>Il / Elle est</b> + adjectif ou profession (sans article !) : « Il est <b>grand</b>. Elle est <b>médecin</b>. »<br>Commentaire général : <b>C'est</b> + adjectif masculin : « Le chocolat, c'est <b>bon</b> ! »",
+ rule:{f:"<b>C'est</b> + noun (with an article): « C'est <b>un ami</b>. C'est <b>la sœur</b> de Léo. »<br><b>Il / Elle est</b> + adjective or job (no article!): « Il est <b>grand</b>. Elle est <b>médecin</b>. »<br>General comment: <b>C'est</b> + masculine adjective: « Le chocolat, c'est <b>bon</b> ! »",
   ex:[["C'est Marie. Elle est professeure.","This is Marie. She's a teacher."],
       ["C'est un bon restaurant, mais il est cher !","It's a good restaurant, but it's expensive!"],
       ["Qu'est-ce que c'est ? — C'est un cadeau.","What is it? — It's a present."]],
-  warn:"⚠ Négation : <b>ce n'est pas</b> · « Ce n'est pas mon sac. » · Questions : <b>Qui est-ce ?</b> (personne) · <b>Qu'est-ce que c'est ?</b> (chose)."},
- prod:"Présente 3 objets de ton sac : « C'est… Il / Elle est… »",
+  warn:"⚠ Negation: <b>ce n'est pas</b> · « Ce n'est pas mon sac. » · Questions: <b>Qui est-ce ?</b> (a person) · <b>Qu'est-ce que c'est ?</b> (a thing)."},
+ prod:"Introduce 3 objects from your bag: « C'est… Il / Elle est… »",
  exs:[
   {ty:"c",q:"___ mon ami Paul.",opts:["C'est","Il est"],a:0},
   {ty:"c",q:"___ médecin.",opts:["Il est","C'est"],a:0},
@@ -568,100 +568,100 @@ const GUNITS=[
   {ty:"f",q:"___ est étudiante. (elle)",a:["elle"],show:"Elle est étudiante."},
   {ty:"f",q:"Qu'est-ce que c'est ? — C'___ un dictionnaire.",a:["est"],show:"C'est un dictionnaire."},
   {ty:"f",q:"Ce n'___ pas mon sac.",a:["est"],show:"Ce n'est pas mon sac."},
-  {ty:"f",q:"Qui est-ce ? — ___ la sœur de Marco. (2 mots)",a:["c'est","c est"],show:"C'est la sœur de Marco."},
-  {ty:"t",q:"« C'est un professeur. » → négation",a:["ce n'est pas un professeur"],show:"Ce n'est pas un professeur."},
-  {ty:"t",q:"« Il est acteur. » → avec c'est + article",a:["c'est un acteur"],show:"C'est un acteur."},
-  {ty:"t",q:"« C'est le livre de Paul ? » → négation",a:["ce n'est pas le livre de Paul"],show:"Ce n'est pas le livre de Paul."},
-  {ty:"t",q:"« la musique / génial » → commentaire avec c'est",a:["la musique, c'est génial","c'est génial, la musique","la musique c'est génial"],show:"La musique, c'est génial !"},
+  {ty:"f",q:"Qui est-ce ? — ___ la sœur de Marco. (2 words)",a:["c'est","c est"],show:"C'est la sœur de Marco."},
+  {ty:"t",q:"« C'est un professeur. » → make it negative",a:["ce n'est pas un professeur"],show:"Ce n'est pas un professeur."},
+  {ty:"t",q:"« Il est acteur. » → with c'est + an article",a:["c'est un acteur"],show:"C'est un acteur."},
+  {ty:"t",q:"« C'est le livre de Paul ? » → make it negative",a:["ce n'est pas le livre de Paul"],show:"Ce n'est pas le livre de Paul."},
+  {ty:"t",q:"« la musique / génial » → a comment with c'est",a:["la musique, c'est génial","c'est génial, la musique","la musique c'est génial"],show:"La musique, c'est génial !"},
   {ty:"o",w:["C'est","une","amie","de","ma","mère"],show:"C'est une amie de ma mère."},
   {ty:"o",w:["Il","est","professeur","de","français"],show:"Il est professeur de français."},
   {ty:"c",q:"___ ma voisine.",opts:["C'est","Elle est"],a:0},
   {ty:"c",q:"___ très sympa, ce café !",opts:["C'est","Il est"],a:0},
-  {ty:"f",q:"Qui est-ce ? — C'est ___ ami de Léo. (indéfini)",a:["un"],show:"C'est un ami de Léo."},
+  {ty:"f",q:"Qui est-ce ? — C'est ___ ami de Léo. (indefinite article)",a:["un"],show:"C'est un ami de Léo."},
   {ty:"f",q:"Il ___ ingénieur.",a:["est"],show:"Il est ingénieur."},
-  {ty:"f",q:"Ce ___ pas difficile ! (2 mots)",a:["n'est","n est"],show:"Ce n'est pas difficile !"},
+  {ty:"f",q:"Ce ___ pas difficile ! (2 words)",a:["n'est","n est"],show:"Ce n'est pas difficile !"},
   {ty:"f",q:"___-ce que c'est ? — C'est un cadeau.",a:["qu'est","qu est"],show:"Qu'est-ce que c'est ?"},
-  {ty:"t",q:"« C'est une actrice. » → la question (personne ?)",a:["qui est-ce ?","qui est-ce"],show:"Qui est-ce ?"},
-  {ty:"t",q:"« Elle est professeure. » → avec c'est + article",a:["c'est une professeure"],show:"C'est une professeure."},
-  {ty:"t",q:"« C'est facile. » → négation",a:["ce n'est pas facile"],show:"Ce n'est pas facile."},
+  {ty:"t",q:"« C'est une actrice. » → the question (asking about a person)",a:["qui est-ce ?","qui est-ce"],show:"Qui est-ce ?"},
+  {ty:"t",q:"« Elle est professeure. » → with c'est + an article",a:["c'est une professeure"],show:"C'est une professeure."},
+  {ty:"t",q:"« C'est facile. » → make it negative",a:["ce n'est pas facile"],show:"Ce n'est pas facile."},
   {ty:"o",w:["C'est","le","frère","de","mon","amie"],show:"C'est le frère de mon amie."}
  ]},
-{n:6,bloc:3,ready:true,t:"Mon, ma, mes · ce, cette, ces",s:"possessifs & démonstratifs",
+{n:6,bloc:3,ready:true,t:"Mon, ma, mes · ce, cette, ces",s:"possessives (my, your…) & demonstratives (this, these)",
  src:"Grammaire A1.1 ch. 22–23 · A1 ch. 14–15 · A2-B1 ch. 6, 8",
- rule:{f:"Possessifs : <b>mon / ma / mes</b> · <b>ton / ta / tes</b> · <b>son / sa / ses</b> · <b>notre / nos</b> · <b>votre / vos</b> · <b>leur / leurs</b>.<br>Démonstratifs : <b>ce</b> sac · <b>cet</b> homme (voyelle) · <b>cette</b> robe · <b>ces</b> chaussures.",
+ rule:{f:"Possessives: <b>mon / ma / mes</b> (my) · <b>ton / ta / tes</b> (your) · <b>son / sa / ses</b> (his/her) · <b>notre / nos</b> (our) · <b>votre / vos</b> (your, formal/plural) · <b>leur / leurs</b> (their).<br>Demonstratives: <b>ce</b> sac · <b>cet</b> homme (before a vowel) · <b>cette</b> robe · <b>ces</b> chaussures.",
   ex:[["C'est ma sœur et voici mon frère.","This is my sister and here's my brother."],
       ["Regarde cette photo !","Look at this photo!"],
       ["Mon amie Julie habite à Lyon.","My friend Julie lives in Lyon."]],
-  warn:"⚠ Devant une voyelle, <b>ma → mon</b> : mon <b>a</b>mie, mon <b>é</b>cole (même si le nom est féminin !)."},
- prod:"Écris 3 phrases sur ta famille avec mon / ma / mes.",
+  warn:"⚠ Before a vowel, <b>ma → mon</b>: mon <b>a</b>mie, mon <b>é</b>cole (even when the noun is feminine!)."},
+ prod:"Write 3 sentences about your family with mon / ma / mes.",
  exs:[
-  {ty:"c",q:"C'est ___ amie. (à moi)",opts:["mon","ma","mes"],a:0},
-  {ty:"c",q:"___ parents habitent à Rome. (à eux)",opts:["Leurs","Leur","Ses"],a:0},
+  {ty:"c",q:"C'est ___ amie. (mine)",opts:["mon","ma","mes"],a:0},
+  {ty:"c",q:"___ parents habitent à Rome. (theirs)",opts:["Leurs","Leur","Ses"],a:0},
   {ty:"c",q:"Regarde ___ homme !",opts:["cet","ce","cette"],a:0},
   {ty:"c",q:"Tu aimes ___ robe ?",opts:["cette","cet","ce"],a:0},
-  {ty:"f",q:"Voici ___ livre. (à toi)",a:["ton"],show:"Voici ton livre."},
-  {ty:"f",q:"Nous aimons ___ professeur. (à nous)",a:["notre"],show:"Nous aimons notre professeur."},
-  {ty:"f",q:"___ chaussures sont belles. (démonstratif)",a:["ces"],show:"Ces chaussures sont belles."},
-  {ty:"f",q:"Il parle avec ___ mère. (à lui)",a:["sa"],show:"Il parle avec sa mère."},
-  {ty:"t",q:"« le vélo de Paul » → avec un possessif",a:["son vélo"],show:"son vélo"},
-  {ty:"t",q:"« la maison de mes parents » → avec un possessif",a:["leur maison"],show:"leur maison"},
-  {ty:"t",q:"« J'aime ce film. » → au pluriel (les films)",a:["j'aime ces films"],show:"J'aime ces films."},
-  {ty:"t",q:"« C'est mon stylo. » → à vous",a:["c'est votre stylo"],show:"C'est votre stylo."},
+  {ty:"f",q:"Voici ___ livre. (yours)",a:["ton"],show:"Voici ton livre."},
+  {ty:"f",q:"Nous aimons ___ professeur. (ours)",a:["notre"],show:"Nous aimons notre professeur."},
+  {ty:"f",q:"___ chaussures sont belles. (demonstrative)",a:["ces"],show:"Ces chaussures sont belles."},
+  {ty:"f",q:"Il parle avec ___ mère. (his)",a:["sa"],show:"Il parle avec sa mère."},
+  {ty:"t",q:"« le vélo de Paul » → use a possessive",a:["son vélo"],show:"son vélo"},
+  {ty:"t",q:"« la maison de mes parents » → use a possessive",a:["leur maison"],show:"leur maison"},
+  {ty:"t",q:"« J'aime ce film. » → plural (les films)",a:["j'aime ces films"],show:"J'aime ces films."},
+  {ty:"t",q:"« C'est mon stylo. » → make it yours (vous form)",a:["c'est votre stylo"],show:"C'est votre stylo."},
   {ty:"o",w:["C'est","la","photo","de","ma","famille"],show:"C'est la photo de ma famille."},
   {ty:"o",w:["Ses","enfants","vont","à","l'école"],show:"Ses enfants vont à l'école."},
-  {ty:"c",q:"J'adore ___ chansons ! (démonstratif)",opts:["ces","ses","cette"],a:0},
-  {ty:"c",q:"Il vient avec ___ femme. (à lui)",opts:["sa","son","ses"],a:0},
-  {ty:"f",q:"C'est ___ école ? (à toi)",a:["ton"],show:"C'est ton école ? (ta → ton devant une voyelle)"},
-  {ty:"f",q:"Nous invitons ___ amis. (à nous)",a:["nos"],show:"Nous invitons nos amis."},
-  {ty:"f",q:"Vous avez ___ passeports ? (à vous)",a:["vos"],show:"Vous avez vos passeports ?"},
-  {ty:"f",q:"Regarde ___ avion ! (démonstratif)",a:["cet"],show:"Regarde cet avion !"},
-  {ty:"t",q:"« les clés de ma mère » → possessif",a:["ses clés"],show:"ses clés"},
-  {ty:"t",q:"« le bureau de nos parents » → possessif",a:["leur bureau"],show:"leur bureau"},
-  {ty:"t",q:"« Cette valise est lourde. » → au pluriel",a:["ces valises sont lourdes"],show:"Ces valises sont lourdes."},
+  {ty:"c",q:"J'adore ___ chansons ! (demonstrative)",opts:["ces","ses","cette"],a:0},
+  {ty:"c",q:"Il vient avec ___ femme. (his)",opts:["sa","son","ses"],a:0},
+  {ty:"f",q:"C'est ___ école ? (yours)",a:["ton"],show:"C'est ton école ? (ta → ton devant une voyelle)"},
+  {ty:"f",q:"Nous invitons ___ amis. (ours)",a:["nos"],show:"Nous invitons nos amis."},
+  {ty:"f",q:"Vous avez ___ passeports ? (yours, vous form)",a:["vos"],show:"Vous avez vos passeports ?"},
+  {ty:"f",q:"Regarde ___ avion ! (demonstrative)",a:["cet"],show:"Regarde cet avion !"},
+  {ty:"t",q:"« les clés de ma mère » → use a possessive",a:["ses clés"],show:"ses clés"},
+  {ty:"t",q:"« le bureau de nos parents » → use a possessive",a:["leur bureau"],show:"leur bureau"},
+  {ty:"t",q:"« Cette valise est lourde. » → plural",a:["ces valises sont lourdes"],show:"Ces valises sont lourdes."},
   {ty:"o",w:["Mon","père","adore","sa","voiture"],show:"Mon père adore sa voiture."}
  ]},
-{n:7,bloc:4,ready:true,t:"Où ? — dans, sur, sous, chez + il y a",s:"prépositions de lieu · l'existence",
+{n:7,bloc:4,ready:true,t:"Où ? — dans, sur, sous, chez + il y a",s:"prepositions of place · il y a (there is)",
  src:"Grammaire A1.1 ch. 27–30 · A1 ch. 21, 23–24 · A2-B1 ch. 9–10",
- rule:{f:"Prépositions de lieu : <b>dans</b> (à l'intérieur) · <b>sur / sous</b> · <b>devant / derrière</b> · <b>entre</b> · <b>à côté de / près de / loin de</b> · <b>chez</b> + personne.<br><b>Il y a</b> + nom = l'existence : « Il y a une fontaine sur la place. »",
+ rule:{f:"Prepositions of place: <b>dans</b> (inside) · <b>sur / sous</b> (on / under) · <b>devant / derrière</b> (in front / behind) · <b>entre</b> (between) · <b>à côté de / près de / loin de</b> (next to / near / far from) · <b>chez</b> + person (at someone's place).<br><b>Il y a</b> + noun = there is / there are: « Il y a une fontaine sur la place. »",
   ex:[["Le chat est sous la table.","The cat is under the table."],
       ["Il y a une pharmacie près de la gare.","There's a pharmacy near the station."],
       ["Je dîne chez Marco ce soir.","I'm having dinner at Marco's tonight."]],
-  warn:"⚠ Négation : <b>il n'y a pas de</b>… · « Il n'y a pas <b>de</b> métro ici. » · Question : <b>Qu'est-ce qu'il y a… ?</b> / <b>Où est… ?</b>"},
- prod:"Décris ta chambre : 3 phrases avec dans / sur / sous / à côté de, et il y a.",
+  warn:"⚠ Negation: <b>il n'y a pas de</b>… · « Il n'y a pas <b>de</b> métro ici. » · Questions: <b>Qu'est-ce qu'il y a… ?</b> (what is there…?) / <b>Où est… ?</b> (where is…?)"},
+ prod:"Describe your bedroom: 3 sentences with dans / sur / sous / à côté de, and il y a.",
  exs:[
   {ty:"c",q:"Le livre est ___ la table.",opts:["sur","dans","chez"],a:0},
   {ty:"c",q:"J'habite ___ de la gare.",opts:["près","sur","entre"],a:0},
   {ty:"c",q:"Ce soir, on mange ___ mes parents.",opts:["chez","à","dans"],a:0},
   {ty:"c",q:"___ un supermarché dans la rue ?",opts:["Il y a","C'est","Il est"],a:0},
-  {ty:"f",q:"Les clés sont ___ mon sac. (à l'intérieur)",a:["dans"],show:"Les clés sont dans mon sac."},
+  {ty:"f",q:"Les clés sont ___ mon sac. (inside)",a:["dans"],show:"Les clés sont dans mon sac."},
   {ty:"f",q:"Il n'y a pas ___ métro ici.",a:["de"],show:"Il n'y a pas de métro ici."},
   {ty:"f",q:"La poste est ___ la banque et le café.",a:["entre"],show:"La poste est entre la banque et le café."},
   {ty:"f",q:"Où ___ la gare, s'il vous plaît ?",a:["est"],show:"Où est la gare, s'il vous plaît ?"},
-  {ty:"t",q:"« Il y a un café ici. » → négation",a:["il n'y a pas de café ici"],show:"Il n'y a pas de café ici."},
-  {ty:"t",q:"« Le vélo est devant la maison. » → derrière",a:["le vélo est derrière la maison"],show:"Le vélo est derrière la maison."},
-  {ty:"t",q:"« Je vais à la maison de Julie. » → avec chez",a:["je vais chez Julie"],show:"Je vais chez Julie."},
-  {ty:"t",q:"« un chat / sous / le lit » → phrase avec il y a",a:["il y a un chat sous le lit"],show:"Il y a un chat sous le lit."},
+  {ty:"t",q:"« Il y a un café ici. » → make it negative",a:["il n'y a pas de café ici"],show:"Il n'y a pas de café ici."},
+  {ty:"t",q:"« Le vélo est devant la maison. » → use derrière (behind)",a:["le vélo est derrière la maison"],show:"Le vélo est derrière la maison."},
+  {ty:"t",q:"« Je vais à la maison de Julie. » → use chez",a:["je vais chez Julie"],show:"Je vais chez Julie."},
+  {ty:"t",q:"« un chat / sous / le lit » → a sentence with il y a",a:["il y a un chat sous le lit"],show:"Il y a un chat sous le lit."},
   {ty:"o",w:["Il y a","une","fontaine","sur","la","place"],show:"Il y a une fontaine sur la place."},
   {ty:"o",w:["Le","restaurant","est","à côté de","l'hôtel"],show:"Le restaurant est à côté de l'hôtel."},
   {ty:"c",q:"La pharmacie est ___ la banque.",opts:["à côté de","chez","dans"],a:0},
   {ty:"c",q:"Ton téléphone est ___ le canapé.",opts:["sous","chez","entre"],a:0},
   {ty:"f",q:"Le tableau est ___ le mur.",a:["sur"],show:"Le tableau est sur le mur."},
-  {ty:"f",q:"Qu'est-ce qu'___ dans le frigo ? (3 mots)",a:["il y a"],show:"Qu'est-ce qu'il y a dans le frigo ?"},
+  {ty:"f",q:"Qu'est-ce qu'___ dans le frigo ? (3 words)",a:["il y a"],show:"Qu'est-ce qu'il y a dans le frigo ?"},
   {ty:"f",q:"J'habite loin ___ centre-ville. (de + le)",a:["du"],show:"J'habite loin du centre-ville."},
-  {ty:"f",q:"Le jardin est ___ la maison. (à l'arrière)",a:["derrière"],show:"Le jardin est derrière la maison."},
-  {ty:"t",q:"« Il y a des magasins. » → question avec est-ce qu'",a:["est-ce qu'il y a des magasins ?","est-ce qu'il y a des magasins"],show:"Est-ce qu'il y a des magasins ?"},
-  {ty:"t",q:"« Le chat est sur le lit. » → sous",a:["le chat est sous le lit"],show:"Le chat est sous le lit."},
-  {ty:"t",q:"« Nous dînons au restaurant de Paul. » → avec chez",a:["nous dînons chez Paul"],show:"Nous dînons chez Paul."},
+  {ty:"f",q:"Le jardin est ___ la maison. (behind)",a:["derrière"],show:"Le jardin est derrière la maison."},
+  {ty:"t",q:"« Il y a des magasins. » → a question with est-ce qu'",a:["est-ce qu'il y a des magasins ?","est-ce qu'il y a des magasins"],show:"Est-ce qu'il y a des magasins ?"},
+  {ty:"t",q:"« Le chat est sur le lit. » → use sous (under)",a:["le chat est sous le lit"],show:"Le chat est sous le lit."},
+  {ty:"t",q:"« Nous dînons au restaurant de Paul. » → use chez",a:["nous dînons chez Paul"],show:"Nous dînons chez Paul."},
   {ty:"o",w:["Mes","clés","sont","dans","mon","sac"],show:"Mes clés sont dans mon sac."}
  ]},
-{n:8,bloc:4,ready:true,t:"En France, au Japon",s:"à/en/au/aux + villes & pays · au, du, aux",
+{n:8,bloc:4,ready:true,t:"En France, au Japon",s:"à/en/au/aux + cities & countries · au, du, aux",
  src:"Grammaire A1.1 ch. 29, 32 · A1 ch. 13, 22 · A2-B1 ch. 10",
- rule:{f:"Ville → <b>à</b> : à Paris. · Pays féminin (ou voyelle) → <b>en</b> : en France, en Italie. · Pays masculin → <b>au</b> : au Japon, au Luxembourg. · Pluriel → <b>aux</b> : aux États-Unis.<br>Articles contractés : à + le = <b>au</b> · à + les = <b>aux</b> · de + le = <b>du</b> · de + les = <b>des</b>.",
+ rule:{f:"City → <b>à</b>: à Paris. · Feminine country (or starts with a vowel) → <b>en</b>: en France, en Italie. · Masculine country → <b>au</b>: au Japon, au Luxembourg. · Plural → <b>aux</b>: aux États-Unis.<br>Contracted articles: à + le = <b>au</b> · à + les = <b>aux</b> · de + le = <b>du</b> · de + les = <b>des</b>.",
   ex:[["J'habite à Paris, en France.","I live in Paris, in France."],
       ["Il travaille au Japon.","He works in Japan."],
       ["Nous allons au cinéma.","We're going to the cinema."]],
-  warn:"⚠ On ne dit jamais « à le » ni « de le » : je vais <b>au</b> marché · la porte <b>du</b> garage."},
- prod:"Trois pays où tu veux voyager : « Je veux aller en / au / aux… »",
+  warn:"⚠ Never say « à le » or « de le »: je vais <b>au</b> marché · la porte <b>du</b> garage."},
+ prod:"Three countries you want to visit: « Je veux aller en / au / aux… »",
  exs:[
   {ty:"c",q:"Elle habite ___ Berlin.",opts:["à","en","au"],a:0},
   {ty:"c",q:"Nous allons ___ Portugal.",opts:["au","en","à"],a:0},
@@ -671,65 +671,65 @@ const GUNITS=[
   {ty:"f",q:"Le train arrive ___ la gare.",a:["à"],show:"Le train arrive à la gare."},
   {ty:"f",q:"C'est la voiture ___ voisin. (de + le)",a:["du"],show:"C'est la voiture du voisin."},
   {ty:"f",q:"Je viens ___ Luxembourg. (pays masculin)",a:["du"],show:"Je viens du Luxembourg."},
-  {ty:"t",q:"« Je vais à le marché. » → corrige la faute",a:["je vais au marché"],show:"Je vais au marché."},
-  {ty:"t",q:"« Elle habite en Canada. » → corrige la faute",a:["elle habite au canada"],show:"Elle habite au Canada."},
-  {ty:"t",q:"« la porte de le garage » → corrige la faute",a:["la porte du garage"],show:"la porte du garage"},
-  {ty:"t",q:"« Il parle à les enfants. » → corrige la faute",a:["il parle aux enfants"],show:"Il parle aux enfants."},
+  {ty:"t",q:"« Je vais à le marché. » → correct the mistake",a:["je vais au marché"],show:"Je vais au marché."},
+  {ty:"t",q:"« Elle habite en Canada. » → correct the mistake",a:["elle habite au canada"],show:"Elle habite au Canada."},
+  {ty:"t",q:"« la porte de le garage » → correct the mistake",a:["la porte du garage"],show:"la porte du garage"},
+  {ty:"t",q:"« Il parle à les enfants. » → correct the mistake",a:["il parle aux enfants"],show:"Il parle aux enfants."},
   {ty:"o",w:["J'habite","au","Luxembourg","avec","ma","famille"],show:"J'habite au Luxembourg avec ma famille."},
   {ty:"o",w:["Elle","va","en","Italie","en","été"],show:"Elle va en Italie en été."},
   {ty:"c",q:"Elle étudie ___ Espagne.",opts:["en","au","à"],a:0},
   {ty:"c",q:"On va ___ toilettes ?",opts:["aux","à les","au"],a:0},
-  {ty:"f",q:"Il habite ___ Pays-Bas. (pluriel)",a:["aux"],show:"Il habite aux Pays-Bas."},
+  {ty:"f",q:"Il habite ___ Pays-Bas. (plural)",a:["aux"],show:"Il habite aux Pays-Bas."},
   {ty:"f",q:"Je rentre ___ bureau à 18 h. (de + le)",a:["du"],show:"Je rentre du bureau à 18 h."},
-  {ty:"f",q:"Nous partons ___ Maroc. (masculin)",a:["au"],show:"Nous partons au Maroc."},
-  {ty:"f",q:"Tu viens ___ Italie ? (origine, féminin)",a:["d'","d"],show:"Tu viens d'Italie ?"},
-  {ty:"t",q:"« Je suis à le restaurant. » → corrige la faute",a:["je suis au restaurant"],show:"Je suis au restaurant."},
-  {ty:"t",q:"« Ils habitent en Portugal. » → corrige la faute",a:["ils habitent au portugal"],show:"Ils habitent au Portugal."},
-  {ty:"t",q:"« Elle revient de le Japon. » → corrige la faute",a:["elle revient du japon"],show:"Elle revient du Japon."},
+  {ty:"f",q:"Nous partons ___ Maroc. (masculine)",a:["au"],show:"Nous partons au Maroc."},
+  {ty:"f",q:"Tu viens ___ Italie ? (from — feminine country)",a:["d'","d"],show:"Tu viens d'Italie ?"},
+  {ty:"t",q:"« Je suis à le restaurant. » → correct the mistake",a:["je suis au restaurant"],show:"Je suis au restaurant."},
+  {ty:"t",q:"« Ils habitent en Portugal. » → correct the mistake",a:["ils habitent au portugal"],show:"Ils habitent au Portugal."},
+  {ty:"t",q:"« Elle revient de le Japon. » → correct the mistake",a:["elle revient du japon"],show:"Elle revient du Japon."},
   {ty:"o",w:["Nous","voyageons","aux","États-Unis","en","avion"],show:"Nous voyageons aux États-Unis en avion."}
  ]},
-{n:9,bloc:5,ready:true,t:"Du pain, pas de pain",s:"les partitifs & les quantités",
+{n:9,bloc:5,ready:true,t:"Du pain, pas de pain",s:"partitives (du, de la…) & quantities",
  src:"Grammaire A1.1 ch. 37–38 · A1 ch. 31–32",
- rule:{f:"Quantité non comptée → partitif : <b>du</b> pain · <b>de la</b> salade · <b>de l'</b>eau · <b>des</b> frites.<br>Quantité précise → <b>de</b> : un kilo <b>de</b> pommes · beaucoup <b>de</b> monde · un peu <b>de</b> sucre · une bouteille <b>d'</b>eau.",
+ rule:{f:"Uncounted quantity (“some”) → partitive: <b>du</b> pain · <b>de la</b> salade · <b>de l'</b>eau · <b>des</b> frites.<br>Precise quantity → <b>de</b>: un kilo <b>de</b> pommes · beaucoup <b>de</b> monde · un peu <b>de</b> sucre · une bouteille <b>d'</b>eau.",
   ex:[["Je mange du pain et de la salade.","I eat bread and salad."],
       ["Tu veux de l'eau ?","Do you want some water?"],
       ["J'achète un kilo de pommes.","I'm buying a kilo of apples."]],
-  warn:"⚠ Après la négation, le partitif devient <b>de</b> : « Il ne boit pas <b>de</b> café. » « Il n'y a pas <b>d'</b>eau. »"},
- prod:"Ton petit-déjeuner : 3 phrases avec du / de la / des.",
+  warn:"⚠ After negation the partitive becomes <b>de</b>: « Il ne boit pas <b>de</b> café. » « Il n'y a pas <b>d'</b>eau. »"},
+ prod:"Your breakfast: 3 sentences with du / de la / des.",
  exs:[
   {ty:"c",q:"Je bois ___ café le matin.",opts:["du","le","de"],a:0},
   {ty:"c",q:"Elle mange ___ salade.",opts:["de la","du","des"],a:0},
   {ty:"c",q:"Tu veux ___ eau ?",opts:["de l'","de la","du"],a:0},
   {ty:"c",q:"Il achète un kilo ___ tomates.",opts:["de","des","du"],a:0},
-  {ty:"f",q:"Nous mangeons ___ fromage. (partitif)",a:["du"],show:"Nous mangeons du fromage."},
+  {ty:"f",q:"Nous mangeons ___ fromage. (partitive)",a:["du"],show:"Nous mangeons du fromage."},
   {ty:"f",q:"Je ne mange pas ___ viande.",a:["de"],show:"Je ne mange pas de viande."},
   {ty:"f",q:"Il y a beaucoup ___ monde.",a:["de"],show:"Il y a beaucoup de monde."},
-  {ty:"f",q:"Vous voulez ___ frites ? (partitif pluriel)",a:["des"],show:"Vous voulez des frites ?"},
-  {ty:"t",q:"« Je bois du lait. » → négation",a:["je ne bois pas de lait"],show:"Je ne bois pas de lait."},
-  {ty:"t",q:"« Elle achète des oranges. » → avec un kilo",a:["elle achète un kilo d'oranges"],show:"Elle achète un kilo d'oranges."},
-  {ty:"t",q:"« Tu manges de la soupe ? » → négation",a:["tu ne manges pas de soupe","tu ne manges pas de soupe ?"],show:"Tu ne manges pas de soupe ?"},
-  {ty:"t",q:"« du sucre / un peu » → phrase avec je veux",a:["je veux un peu de sucre"],show:"Je veux un peu de sucre."},
+  {ty:"f",q:"Vous voulez ___ frites ? (plural partitive)",a:["des"],show:"Vous voulez des frites ?"},
+  {ty:"t",q:"« Je bois du lait. » → make it negative",a:["je ne bois pas de lait"],show:"Je ne bois pas de lait."},
+  {ty:"t",q:"« Elle achète des oranges. » → with un kilo",a:["elle achète un kilo d'oranges"],show:"Elle achète un kilo d'oranges."},
+  {ty:"t",q:"« Tu manges de la soupe ? » → make it negative",a:["tu ne manges pas de soupe","tu ne manges pas de soupe ?"],show:"Tu ne manges pas de soupe ?"},
+  {ty:"t",q:"« du sucre / un peu » → a sentence with je veux (I want)",a:["je veux un peu de sucre"],show:"Je veux un peu de sucre."},
   {ty:"o",w:["Je","voudrais","du","pain","et","du","fromage"],show:"Je voudrais du pain et du fromage."},
   {ty:"o",w:["Elle","boit","de l'","eau","minérale"],show:"Elle boit de l'eau minérale."},
   {ty:"c",q:"Tu prends ___ sucre ?",opts:["du","le","de"],a:0},
   {ty:"c",q:"Il mange trop ___ chocolat.",opts:["de","du","des"],a:0},
-  {ty:"f",q:"Elle boit ___ thé vert. (partitif)",a:["du"],show:"Elle boit du thé vert."},
+  {ty:"f",q:"Elle boit ___ thé vert. (partitive)",a:["du"],show:"Elle boit du thé vert."},
   {ty:"f",q:"Achète une bouteille ___ huile.",a:["d'","d"],show:"Achète une bouteille d'huile."},
   {ty:"f",q:"Nous avons un peu ___ temps.",a:["de"],show:"Nous avons un peu de temps."},
-  {ty:"f",q:"Je voudrais ___ confiture. (partitif, 2 mots)",a:["de la"],show:"Je voudrais de la confiture."},
-  {ty:"t",q:"« Il y a du fromage. » → négation",a:["il n'y a pas de fromage"],show:"Il n'y a pas de fromage."},
-  {ty:"t",q:"« Je mange des frites. » → avec beaucoup",a:["je mange beaucoup de frites"],show:"Je mange beaucoup de frites."},
-  {ty:"t",q:"« Vous buvez de l'alcool ? » → négation",a:["vous ne buvez pas d'alcool","vous ne buvez pas d'alcool ?"],show:"Vous ne buvez pas d'alcool ?"},
+  {ty:"f",q:"Je voudrais ___ confiture. (partitive, 2 words)",a:["de la"],show:"Je voudrais de la confiture."},
+  {ty:"t",q:"« Il y a du fromage. » → make it negative",a:["il n'y a pas de fromage"],show:"Il n'y a pas de fromage."},
+  {ty:"t",q:"« Je mange des frites. » → with beaucoup (a lot of)",a:["je mange beaucoup de frites"],show:"Je mange beaucoup de frites."},
+  {ty:"t",q:"« Vous buvez de l'alcool ? » → make it negative",a:["vous ne buvez pas d'alcool","vous ne buvez pas d'alcool ?"],show:"Vous ne buvez pas d'alcool ?"},
   {ty:"o",w:["Le matin,","je","bois","du","café","au","lait"],show:"Le matin, je bois du café au lait."}
  ]},
-{n:10,bloc:5,ready:true,t:"Je me lave — les verbes pronominaux",s:"se lever, s'habiller… · la routine",
+{n:10,bloc:5,ready:true,t:"Je me lave — reflexive verbs",s:"se lever, s'habiller… · your daily routine",
  src:"Grammaire A1 ch. 9",
- rule:{f:"Verbe pronominal = verbe + pronom réfléchi : <b>me, te, se, nous, vous, se</b>.<br><b>se lever</b> : je <b>me</b> lève · tu <b>te</b> lèves · il/elle <b>se</b> lève · nous <b>nous</b> levons · vous <b>vous</b> levez · ils/elles <b>se</b> lèvent.<br>La routine : se réveiller, se lever, se laver, s'habiller, se préparer, se coucher.",
+ rule:{f:"Reflexive verb = verb + reflexive pronoun: <b>me, te, se, nous, vous, se</b>.<br><b>se lever</b> (to get up): je <b>me</b> lève · tu <b>te</b> lèves · il/elle <b>se</b> lève · nous <b>nous</b> levons · vous <b>vous</b> levez · ils/elles <b>se</b> lèvent.<br>The routine: se réveiller (wake up), se lever (get up), se laver (wash), s'habiller (get dressed), se préparer, se coucher (go to bed).",
   ex:[["Je me lève à sept heures.","I get up at seven."],
       ["Elle se couche tard.","She goes to bed late."],
       ["Nous nous habillons vite.","We get dressed quickly."]],
-  warn:"⚠ Devant une voyelle : me → <b>m'</b>, te → <b>t'</b>, se → <b>s'</b> : je <b>m'</b>appelle, il <b>s'</b>habille. Négation : « Je <b>ne</b> me lève <b>pas</b> tôt. »"},
- prod:"Ta routine du matin : 3 phrases avec des verbes pronominaux.",
+  warn:"⚠ Before a vowel: me → <b>m'</b>, te → <b>t'</b>, se → <b>s'</b>: je <b>m'</b>appelle, il <b>s'</b>habille. Negation: « Je <b>ne</b> me lève <b>pas</b> tôt. »"},
+ prod:"Your morning routine: 3 sentences with reflexive verbs.",
  exs:[
   {ty:"c",q:"Je ___ lève à 7 heures.",opts:["me","se","te"],a:0},
   {ty:"c",q:"Tu ___ appelles comment ?",opts:["t'","te","s'"],a:0},
@@ -739,8 +739,8 @@ const GUNITS=[
   {ty:"f",q:"Vous ___ levez à quelle heure ?",a:["vous"],show:"Vous vous levez à quelle heure ?"},
   {ty:"f",q:"Je ___ habille dans ma chambre.",a:["m'","m"],show:"Je m'habille dans ma chambre."},
   {ty:"f",q:"Mon frère ___ appelle Tom.",a:["s'","s"],show:"Mon frère s'appelle Tom."},
-  {ty:"t",q:"« Je me lève tôt. » → négation",a:["je ne me lève pas tôt"],show:"Je ne me lève pas tôt."},
-  {ty:"t",q:"« se coucher / il / à onze heures » → phrase",a:["il se couche à onze heures"],show:"Il se couche à onze heures."},
+  {ty:"t",q:"« Je me lève tôt. » → make it negative",a:["je ne me lève pas tôt"],show:"Je ne me lève pas tôt."},
+  {ty:"t",q:"« se coucher / il / à onze heures » → make a sentence",a:["il se couche à onze heures"],show:"Il se couche à onze heures."},
   {ty:"t",q:"« Tu te laves. » → vous",a:["vous vous lavez"],show:"Vous vous lavez."},
   {ty:"t",q:"« Elle se réveille à six heures. » → nous",a:["nous nous réveillons à six heures"],show:"Nous nous réveillons à six heures."},
   {ty:"o",w:["Je","me","couche","à","minuit"],show:"Je me couche à minuit."},
@@ -752,23 +752,23 @@ const GUNITS=[
   {ty:"f",q:"Ils ___ habillent pour la fête.",a:["s'","s"],show:"Ils s'habillent pour la fête."},
   {ty:"f",q:"Je ___ repose après le travail.",a:["me"],show:"Je me repose après le travail."},
   {ty:"t",q:"« Il se lève à 6 h. » → ils",a:["ils se lèvent à 6 h"],show:"Ils se lèvent à 6 h."},
-  {ty:"t",q:"« Vous vous couchez tard. » → négation",a:["vous ne vous couchez pas tard"],show:"Vous ne vous couchez pas tard."},
-  {ty:"t",q:"« se préparer / elle / vite » → phrase",a:["elle se prépare vite"],show:"Elle se prépare vite."},
+  {ty:"t",q:"« Vous vous couchez tard. » → make it negative",a:["vous ne vous couchez pas tard"],show:"Vous ne vous couchez pas tard."},
+  {ty:"t",q:"« se préparer / elle / vite » → make a sentence",a:["elle se prépare vite"],show:"Elle se prépare vite."},
   {ty:"o",w:["Je","me","lave","les","dents","le soir"],show:"Je me lave les dents le soir."}
  ]},
-{n:11,bloc:6,ready:false,t:"Plus… que — la comparaison",s:"comparatif & superlatif",src:"Grammaire A1 ch. 33–34"},
-{n:12,bloc:6,ready:false,t:"Où ? Quand ? Combien ? Quel ?",s:"l'interrogation (2) (3)",src:"Grammaire A1.1 ch. 2, 46 · A1 ch. 51–52"},
-{n:13,bloc:7,ready:false,t:"Le, la, lui, leur — les pronoms",s:"COD · COI · pronoms toniques",src:"Grammaire A1 ch. 57–59"},
-{n:14,bloc:7,ready:false,t:"Il y a / pendant / depuis",s:"les expressions de temps",src:"Grammaire A1 ch. 50 · A2-B1 ch. 14, 17"},
-{n:15,bloc:8,ready:false,t:"Ne… rien, jamais, personne",s:"la négation (2) · négation au passé",src:"Grammaire A1 ch. 53–54"},
-{n:16,bloc:8,ready:false,t:"En, y · qui, que",s:"pronoms en/y · relatifs · pièges DELF",src:"Grammaire A1 ch. 55–56, 60"}
+{n:11,bloc:6,ready:false,t:"Plus… que — comparison",s:"comparative & superlative",src:"Grammaire A1 ch. 33–34"},
+{n:12,bloc:6,ready:false,t:"Où ? Quand ? Combien ? Quel ?",s:"question words",src:"Grammaire A1.1 ch. 2, 46 · A1 ch. 51–52"},
+{n:13,bloc:7,ready:false,t:"Le, la, lui, leur — object pronouns",s:"direct & indirect object pronouns · moi, toi",src:"Grammaire A1 ch. 57–59"},
+{n:14,bloc:7,ready:false,t:"Il y a / pendant / depuis",s:"time expressions",src:"Grammaire A1 ch. 50 · A2-B1 ch. 14, 17"},
+{n:15,bloc:8,ready:false,t:"Ne… rien, jamais, personne",s:"negation (2) · negation in the past",src:"Grammaire A1 ch. 53–54"},
+{n:16,bloc:8,ready:false,t:"En, y · qui, que",s:"pronouns en/y · relative clauses · DELF traps",src:"Grammaire A1 ch. 55–56, 60"}
 ];
 /* === GRAMMAR_END === */
 
 /* === LESSONS_START === */
 const LESSONS=[
 {n:1,b:0,ch:"ch. 1–2 (p. 6–9)",t:"Les lettres & les nombres",s:"A, B, C… · 1, 2, 3… · épeler",
- g:"Les accents sur le e : <b>é</b> (accent aigu), <b>è</b> (grave), <b>ê</b> (circonflexe), <b>ë</b> (tréma). Attention : 70 = soixante-dix, 80 = quatre-vingts, 90 = quatre-vingt-dix. En Belgique on dit septante / nonante !",
+ g:"The accents on e: <b>é</b> (acute), <b>è</b> (grave), <b>ê</b> (circumflex), <b>ë</b> (trema). Careful: 70 = soixante-dix, 80 = quatre-vingts, 90 = quatre-vingt-dix. In Belgium they say septante / nonante!",
  v:["être","avoir"],
  w:[
   ["a letter","une lettre","/lɛtʁ/","f","Il y a quatre lettres dans « Iris ».","There are four letters in 'Iris'."],
@@ -828,7 +828,7 @@ const LESSONS=[
   ["M","De rien, au revoir !","You're welcome, goodbye!"]
  ]}},
 {n:2,b:0,ch:"ch. 3–4 (p. 10–13)",t:"En cours de français",s:"la classe, les jours, parler, écouter, lire, écrire",
- g:"Le samedi et le dimanche, c'est <b>le week-end</b>. Les jours fériés, on ne travaille pas. Les actions de la classe : le professeur <b>dit</b> « maison », l'élève <b>répète</b> « maison ».",
+ g:"Saturday and Sunday = <b>le week-end</b>. On public holidays (les jours fériés) nobody works. Classroom actions: the teacher <b>dit</b> (says) « maison », the student <b>répète</b> (repeats) « maison ».",
  v:["parler","comprendre","lire","écrire"],
  w:[
   ["a pen","un stylo","/stilo/","m","J'écris avec un stylo.","I write with a pen."],
@@ -877,7 +877,7 @@ const LESSONS=[
   ["M","Merci ! J'écris avec mon stylo.","Thank you! I write with my pen."]
  ]}},
 {n:3,b:0,ch:"ch. 5 (p. 14–17)",t:"Je m'appelle Marie Durand…",s:"identité : nom, âge, date de naissance",
- g:"« Je <b>m'appelle</b> Iris » (s'appeler) · « J'<b>ai</b> 30 ans » — en français on <b>a</b> un âge (avoir, pas être !) · « Je <b>suis</b> mariée. »",
+ g:"« Je <b>m'appelle</b> Iris » (s'appeler = to be called) · « J'<b>ai</b> 30 ans » — in French you <b>have</b> an age (avoir, not être!) · « Je <b>suis</b> mariée » (I am married).",
  v:["être","avoir","appeler (j'appelle)"],
  w:[
   ["a first name","un prénom","/pʁenɔ̃/","m","Mon prénom est Iris.","My first name is Iris."],
@@ -914,7 +914,7 @@ const LESSONS=[
   ["M","Voilà ma signature. Merci !","Here is my signature. Thanks!"]
  ]}},
 {n:4,b:0,ch:"ch. 6–7 (p. 18–23)",t:"Bonjour, comment ça va ? Enchanté !",s:"saluer, tu ou vous, présenter quelqu'un",
- g:"<b>« Tu » ou « vous » ?</b> On dit « vous » quand on ne connaît pas la personne (dans la rue, les magasins). On dit « tu » aux enfants, aux amis, en famille. Si vous n'êtes pas sûr → « vous » ! « Salut » = bonjour OU au revoir.",
+ g:"<b>« Tu » or « vous »?</b> Say « vous » to people you don't know (in the street, in shops). Say « tu » to children, friends and family. Not sure → « vous »! « Salut » = hello OR goodbye.",
  v:["aller"],
  w:[
   ["hello / good morning","bonjour","/bɔ̃ʒuʁ/","","Bonjour, madame !","Good morning, madam!"],
@@ -955,7 +955,7 @@ const LESSONS=[
   ["M","Au revoir, à bientôt !","Goodbye, see you soon!"]
  ]}},
 {n:5,b:0,ch:"ch. 8–9 (p. 24–29)",t:"Je suis chinois · Vous habitez où ?",s:"pays, nationalités, langues, habiter",
- g:"<b>en</b> + pays féminin (en France, en Chine) · <b>au</b> + pays masculin (au Japon, au Portugal) · <b>aux</b> + pluriel (aux États-Unis). Nationalité : il est chinois → elle est chinois<b>e</b>.",
+ g:"<b>en</b> + feminine country (en France, en Chine) · <b>au</b> + masculine country (au Japon, au Portugal) · <b>aux</b> + plural (aux États-Unis). Nationality: il est chinois → elle est chinois<b>e</b>.",
  v:["habiter","parler","venir"],
  w:[
   ["a country","un pays","/pei/","m","La France est un beau pays.","France is a beautiful country."],
@@ -992,7 +992,7 @@ const LESSONS=[
   ["M","Je parle chinois, anglais et un peu français !","I speak Chinese, English and a little French!"]
  ]}},
 {n:6,b:0,ch:"ch. 10 (p. 30–33)",t:"Mon numéro de téléphone et mon email",s:"les coordonnées, appeler, envoyer un message",
- g:"<b>Les coordonnées</b> = le nom + le numéro de téléphone + l'adresse (email). L'arobase = <b>@</b>. On dit un numéro par deux chiffres : 06 12 34… = zéro six, douze, trente-quatre…",
+ g:"<b>Les coordonnées</b> = your name + phone number + (email) address. The @ sign = <b>l'arobase</b>. Phone numbers are read two digits at a time: 06 12 34… = zéro six, douze, trente-quatre…",
  v:["appeler (j'appelle)","écrire"],
  w:[
   ["a phone number","un numéro de téléphone","/nymeʁo/","m","C'est le zéro six, douze, trente-quatre.","It's 06 12 34."],
@@ -1027,7 +1027,7 @@ const LESSONS=[
   ["M","D'accord, à bientôt !","OK, see you soon!"]
  ]}},
 {n:7,b:0,ch:"ch. 11 (p. 34–37)",t:"Je suis coiffeur — les professions",s:"les métiers, travailler, chercher un travail",
- g:"Beaucoup de métiers changent au féminin : coiffeur → coiff<b>euse</b>, vendeur → vend<b>euse</b>, infirmier → infirmi<b>ère</b>. « Je suis médecin » — <b>sans article</b> !",
+ g:"Many jobs change in the feminine: coiffeur → coiff<b>euse</b>, vendeur → vend<b>euse</b>, infirmier → infirmi<b>ère</b>. « Je suis médecin » — <b>no article</b>!",
  v:["travailler","être","faire"],
  w:[
   ["a job / profession","un métier","/metje/","m","Quel est votre métier ?","What is your job?"],
@@ -1066,7 +1066,7 @@ const LESSONS=[
   ["M","Super ! Vous travaillez le samedi aussi ?","Great! Do you work on Saturdays too?"]
  ]}},
 {n:8,b:0,ch:"ch. 12 (p. 38–41)",t:"J'aime le football et la guitare",s:"les goûts, les loisirs, jouer à / jouer de",
- g:"<b>jouer à</b> + sport/jeu (jouer au football, aux cartes) · <b>jouer de</b> + instrument (jouer de la guitare, du piano) · <b>faire de</b> + activité (faire du sport, de la danse). J'aime → j'adore ↑ · je n'aime pas → je déteste ↓",
+ g:"<b>jouer à</b> + sport/game (jouer au football, aux cartes) · <b>jouer de</b> + instrument (jouer de la guitare, du piano) · <b>faire de</b> + activity (faire du sport, de la danse). J'aime → j'adore ↑ · je n'aime pas → je déteste ↓",
  v:["aimer","jouer","faire"],
  w:[
   ["football","le football / le foot","/futbol/","m","J'aime le foot.","I like football."],
@@ -1106,7 +1106,7 @@ const LESSONS=[
   ["M","Oui, j'adore le cinéma ! À samedi !","Yes, I love the cinema! See you Saturday!"]
  ]}},
 {n:9,b:0,ch:"ch. 13 (p. 42–45)",t:"J'ai un frère — la famille",s:"les parents, les enfants, mon / ma / mes",
- g:"Possessifs : <b>mon</b> père, <b>ma</b> mère, <b>mes</b> parents. Attention : <b>mon</b> amie (devant une voyelle, même au féminin !).",
+ g:"Possessives: <b>mon</b> père, <b>ma</b> mère, <b>mes</b> parents. Careful: <b>mon</b> amie (before a vowel, even for feminine nouns!).",
  v:["avoir"],
  w:[
   ["the family","la famille","/famij/","f","J'aime ma famille.","I love my family."],
@@ -1146,7 +1146,7 @@ const LESSONS=[
   ["M","C'est super ! Comment elle s'appelle ?","That's great! What's her name?"]
  ]}},
 {n:10,b:0,ch:"ch. 14–15 (p. 48–55)",t:"1 kilo d'oranges — au supermarché",s:"les courses, les quantités, fruits & légumes",
- g:"Les quantités : un kilo <b>de</b> tomates, une bouteille <b>d'</b>eau, un paquet <b>de</b> pâtes — toujours <b>de</b> après une quantité ! « Je voudrais… » = poli pour « je veux ».",
+ g:"Quantities: un kilo <b>de</b> tomates, une bouteille <b>d'</b>eau, un paquet <b>de</b> pâtes — always <b>de</b> after a quantity! « Je voudrais… » = the polite way to say « je veux » (I want).",
  v:["acheter","aller"],
  w:[
   ["the shopping / groceries","les courses","/kuʁs/","f","Je fais les courses samedi.","I do the shopping on Saturday."],
@@ -1190,7 +1190,7 @@ const LESSONS=[
   ["M","Voilà. Merci, bonne journée !","Here you are. Thanks, have a good day!"]
  ]}},
 {n:11,b:0,ch:"ch. 16–17 (p. 56–61)",t:"Un croissant, s'il vous plaît ! À table !",s:"la boulangerie, les couverts, les repas",
- g:"À la boulangerie : « <b>Vous désirez ?</b> » — « <b>Je voudrais</b>… s'il vous plaît. » — « Il vous faut autre chose ? » — « <b>Ce sera tout ?</b> » Les repas : en France, le petit-déjeuner (matin), le déjeuner (midi), le dîner (soir). En Belgique et au Canada : déjeuner, dîner, <b>souper</b> !",
+ g:"At the bakery: « <b>Vous désirez ?</b> » (what would you like?) — « <b>Je voudrais</b>… s'il vous plaît. » — « Il vous faut autre chose ? » (anything else?) — « <b>Ce sera tout ?</b> » (will that be all?). Meals: in France, le petit-déjeuner (morning), le déjeuner (noon), le dîner (evening). In Belgium and Canada: déjeuner, dîner, <b>souper</b>!",
  v:["manger","boire","prendre"],
  w:[
   ["the bakery","la boulangerie","/bulɑ̃ʒʁi/","f","Prends du pain à la boulangerie !","Get some bread at the bakery!"],
@@ -1255,7 +1255,7 @@ const LESSONS=[
 {n:15,b:0,ch:"ch. 24–25 (p. 84–91)",t:"Je suis blond et grand · Je cherche une robe",s:"description physique, les vêtements",g:"",v:[],w:[],x:[],d:null},
 {n:16,b:0,ch:"ch. 26–29 (p. 92–103)",t:"Santé, émotions, logement",s:"j'ai mal au ventre · je suis content · appartement à louer",g:"",v:[],w:[],x:[],d:null},
 {n:17,b:1,ch:"ch. 1 (p. 6–13)",t:"Les usages & la politesse",s:"tu/vous, présenter, tutoyer, les gestes",
- g:"Si vous n'êtes pas sûr, utilisez « <b>vous</b> » — vous ne risquez pas d'être impoli. « Bonsoir » le soir. On ajoute « madame », « monsieur » ou le prénom : « Bonjour, madame ! »",
+ g:"If you're not sure, use « <b>vous</b> » — that way you can't be impolite. « Bonsoir » in the evening. Add « madame », « monsieur » or a first name: « Bonjour, madame ! »",
  v:["être","aller"],
  w:[
   ["the manners / customs","les usages","/yzaʒ/","m","",""],
@@ -1279,7 +1279,7 @@ const LESSONS=[
  ],
  d:null},
 {n:18,b:1,ch:"ch. 2 (p. 14–17)",t:"La famille & les périodes de la vie",s:"les beaux-parents, le gendre · bébé, ado, adulte",
- g:"La belle-famille : le <b>beau-père</b>, la <b>belle-mère</b>, la <b>belle-fille</b>, le <b>gendre</b>. En famille on dit : papa/maman, <b>papi/mamie</b>, tonton/tatie. « Bébé » est toujours masculin ; « personne » est toujours féminine !",
+ g:"The in-laws: le <b>beau-père</b>, la <b>belle-mère</b>, la <b>belle-fille</b>, le <b>gendre</b> (son-in-law). Within the family: papa/maman, <b>papi/mamie</b> (grandpa/grandma), tonton/tatie. « Bébé » is always masculine; « personne » is always feminine!",
  v:["avoir","être"],
  w:[
   ["the parents-in-law","les beaux-parents","/bo paʁɑ̃/","m","Victor et Jeanne sont les beaux-parents de Caroline.","Victor and Jeanne are Caroline's parents-in-law."],
@@ -1325,7 +1325,7 @@ const LESSONS=[
   ["M","Denis ? Il est ingénieur, il travaille à Lyon.","Denis? He's an engineer, he works in Lyon."]
  ]}},
 {n:19,b:1,ch:"ch. 3 (p. 18–23)",t:"L'amour & les émotions",s:"tomber amoureux, se marier · joie, colère, peur",
- g:"tomber amoureux <b>de</b> quelqu'un · furieux <b>contre</b> quelqu'un · avoir peur <b>de</b>. Échelle : j'aime bien &lt; j'aime beaucoup &lt; <b>j'aime</b> (le plus fort pour les personnes !). En France, seul le mariage <b>civil</b> (à la mairie) a une valeur légale.",
+ g:"tomber amoureux <b>de</b> quelqu'un (fall in love with) · furieux <b>contre</b> quelqu'un (furious at) · avoir peur <b>de</b> (be afraid of). Scale: j'aime bien &lt; j'aime beaucoup &lt; <b>j'aime</b> (the strongest, for people!). In France only the <b>civil</b> wedding (at the town hall) is legally valid.",
  v:["aimer","être","avoir"],
  w:[
   ["the love","l'amour","/amuʁ/","m","",""],
@@ -1378,7 +1378,7 @@ const LESSONS=[
   ["M","Oui, samedi à la mairie. Le soir, il y a une grande fête !","Yes, Saturday at the town hall. In the evening there's a big party!"]
  ]}},
 {n:20,b:1,ch:"ch. 4–5 (p. 24–33)",t:"Le caractère & la communication",s:"qualités & défauts · parler, raconter, mentir",
- g:"Féminin des adjectifs : + e (bavard → bavard<b>e</b>) · -eux → <b>-euse</b> (généreux → généreuse) · -if → <b>-ive</b> (agressif → agressive) · timide, calme ne changent pas. Parler <b>à</b> quelqu'un, parler <b>de</b> quelque chose ; demander <b>à</b> / répondre <b>à</b>.",
+ g:"Feminine adjectives: + e (bavard → bavard<b>e</b>) · -eux → <b>-euse</b> (généreux → généreuse) · -if → <b>-ive</b> (agressif → agressive) · timide, calme don't change. Parler <b>à</b> someone, parler <b>de</b> something; demander <b>à</b> / répondre <b>à</b>.",
  v:["parler","comprendre"],
  w:[
   ["to be good/bad-tempered","avoir bon / mauvais caractère","/kaʁaktɛʁ/","","Clément a bon caractère.","Clément is good-natured."],
@@ -1604,7 +1604,7 @@ function pickVoice(){
 }
 if(TTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
 function speak(txt){
-  if(!TTS){toast("Pas de voix française sur cet appareil");return;}
+  if(!TTS){toast("No French voice on this device");return;}
   try{
     speechSynthesis.cancel();
     const u=new SpeechSynthesisUtterance(txt);
@@ -1683,37 +1683,37 @@ function renderHome(){
   let h=`
   <div class="app-eyebrow">La Classe de Français</div>
   <div class="app-title">Notre <span class="m">Classe</span> de <span class="f">Français</span></div>
-  <div class="app-sub">Objectif DELF A2 · 5 mois · Vocabulaire Progressif (les 3 livres)</div>
-  <div class="who"><span>Qui pratique ?</span>`;
+  <div class="app-sub">Goal: DELF A2 · 5 months · Vocabulaire Progressif (the 3 books)</div>
+  <div class="who"><span>Who's practising?</span>`;
   people.forEach(p=>{h+=`<b class="pill ${p===cur?"on":""}" onclick="setPerson('${esc(p).replace(/'/g,"\\'")}')">${esc(p)}</b>`;});
-  h+=`<b class="pill add" onclick="addPerson()">+ ajouter un nom</b><b class="pill" style="border-style:dashed;" onclick="removePerson()">– retirer</b></div>
+  h+=`<b class="pill add" onclick="addPerson()">+ add a name</b><b class="pill" style="border-style:dashed;" onclick="removePerson()">– remove</b></div>
   <div class="progressline">
-    <div><b>${doneCount()}/40</b><small>Leçons</small></div>
-    <div><b>${examsPassed()}/8</b><small>Examens</small></div>
-    <div><b>${P.streak||0}</b><small>Jours de suite</small></div>
-    <div><b>${masteredCount()}</b><small>Mots maîtrisés</small></div>
+    <div><b>${doneCount()}/40</b><small>Lessons</small></div>
+    <div><b>${examsPassed()}/8</b><small>Exams</small></div>
+    <div><b>${P.streak||0}</b><small>Day streak</small></div>
+    <div><b>${masteredCount()}</b><small>Words mastered</small></div>
   </div>
   <div class="homebtns">
-    <button class="act" onclick="startReview()">🔁 Révision mixte (20 questions)</button>
-    <button class="act goldb" onclick="openClasse()">🎓 Mode Classe</button>
+    <button class="act" onclick="startReview()">🔁 Mixed review (20 questions)</button>
+    <button class="act goldb" onclick="openClasse()">🎓 Class Mode</button>
   </div>
   <div class="homebtns">
-    <button class="act ghost" onclick="openGramHome()">📐 Grammaire (G1–G16)</button>
-    <button class="act ghost" onclick="openConjHome()">🔤 Conjugaison &amp; Tableaux</button>
+    <button class="act ghost" onclick="openGramHome()">📐 Grammar (G1–G16)</button>
+    <button class="act ghost" onclick="openConjHome()">🔤 Conjugation &amp; Verb Tables</button>
   </div>
   <div class="exportline">
-    <button onclick="exportProgress()">Copier ma progression</button> ·
-    <button onclick="backupProgress()">Sauvegarder</button> ·
-    <button onclick="restoreProgress()">Restaurer</button>
+    <button onclick="exportProgress()">Copy my progress</button> ·
+    <button onclick="backupProgress()">Back up</button> ·
+    <button onclick="restoreProgress()">Restore</button>
   </div>`;
   let curBook=-1;
   LESSONS.forEach(l=>{
     if(l.b!==curBook){curBook=l.b;h+=`<div class="bookhead">${BOOKS[curBook]}</div>`;}
     let st,cls;
-    if(P.done[l.n]){st="✓ terminée";cls="done";}
-    else if(!l.w.length){st="à venir";cls="todo";}
-    else if(first&&l.n===first.n){st="en cours";cls="now";}
-    else{st="prête";cls="todo";}
+    if(P.done[l.n]){st="✓ done";cls="done";}
+    else if(!l.w.length){st="coming soon";cls="todo";}
+    else if(first&&l.n===first.n){st="in progress";cls="now";}
+    else{st="ready";cls="todo";}
     h+=`<div class="lesson" onclick="openLesson(${l.n})">
       <span class="num">L${String(l.n).padStart(2,"0")}</span>
       <div class="t">${esc(l.t)}<small>${esc(l.ch)} · ${esc(l.s)}</small></div>
@@ -1722,22 +1722,22 @@ function renderHome(){
       const e=EXAMS[l.n/5-1],sc=P.exam[e.n];
       let est,ecls;
       if(sc){est=(sc.pass?"✓ ":"")+sc.total+"/100";ecls="done";}
-      else if(examUnlocked(e)&&e.ready){est="débloqué !";ecls="now";}
-      else if(examUnlocked(e)&&!e.ready){est="à préparer";ecls="todo";}
-      else{est="verrouillé";ecls="todo";}
+      else if(examUnlocked(e)&&e.ready){est="unlocked!";ecls="now";}
+      else if(examUnlocked(e)&&!e.ready){est="to prepare";ecls="todo";}
+      else{est="locked";ecls="todo";}
       h+=`<div class="lesson exam" onclick="openExam(${e.n})">
         <span class="num">EX${e.n}</span>
-        <div class="t">Examen ${e.n} · Leçons ${e.after-4}–${e.after}${e.n===8?" · DELF blanc":""}</div>
+        <div class="t">Exam ${e.n} · Lessons ${e.after-4}–${e.after}${e.n===8?" · full DELF mock":""}</div>
         <span class="st ${ecls}">${est}</span></div>`;
     }
   });
-  h+=`<footer>La Classe de Français · leçons = les chapitres réels des 3 livres · examens au format DELF A2</footer>`;
+  h+=`<footer>La Classe de Français · lessons = the real chapters of the 3 books · exams in DELF A2 format</footer>`;
   $("app").innerHTML=h;
   window.scrollTo(0,0);
 }
 function setPerson(p){cur=p;loadP();saveAll();renderHome();}
 function addPerson(){
-  const n=prompt("Prénom du nouvel élève ?");
+  const n=prompt("New student's first name?");
   if(n&&n.trim()){
     const nm=n.trim();
     if(people.indexOf(nm)<0)people.push(nm);
@@ -1745,51 +1745,51 @@ function addPerson(){
   }
 }
 function removePerson(){
-  if(people.length<2){toast("Il faut garder au moins un nom !");return;}
-  const n=prompt("Quel nom retirer ? ("+people.join(", ")+")");
+  if(people.length<2){toast("You must keep at least one name!");return;}
+  const n=prompt("Which name to remove? ("+people.join(", ")+")");
   if(!n||!n.trim())return;
   const nm=n.trim();
   const idx=people.findIndex(p=>p.toLowerCase()===nm.toLowerCase());
-  if(idx<0){toast("« "+nm+" » n'est pas dans la liste.");return;}
+  if(idx<0){toast("“"+nm+"” is not in the list.");return;}
   const real=people[idx];
-  if(!confirm("Retirer « "+real+" » et effacer sa progression sur cet appareil ?"))return;
+  if(!confirm("Remove “"+real+"” and erase their progress on this device?"))return;
   people.splice(idx,1);
   localStorage.removeItem("fcl_p_"+real);
   if(cur===real){cur=people[0];loadP();}
-  saveAll();renderHome();toast("« "+real+" » retiré.");
+  saveAll();renderHome();toast("“"+real+"” removed.");
 }
 function exportProgress(){
-  let txt="LA CLASSE DE FRANÇAIS — progression de "+cur+" ("+today()+")\n";
-  txt+="Leçons terminées : "+(LESSONS.filter(l=>P.done[l.n]).map(l=>"L"+l.n).join(", ")||"aucune")+"\n";
-  txt+="Examens : "+(Object.keys(P.exam).map(k=>"EX"+k+" = "+P.exam[k].total+"/100"+(P.exam[k].pass?" (réussi)":" (à refaire)")).join(", ")||"aucun")+"\n";
-  txt+="Mots difficiles : "+(Object.keys(P.weak).length? Object.keys(P.weak).map(k=>{const[a,b]=k.split(":");const L2=lessonByN(+a);return L2&&L2.w[+b]?L2.w[+b][1]:"";}).filter(Boolean).join(", ") : "aucun")+"\n";
-  txt+="Bonnes réponses : "+(P.correct||0)+" · Jours de suite : "+(P.streak||0);
+  let txt="LA CLASSE DE FRANÇAIS — progress of "+cur+" ("+today()+")\n";
+  txt+="Lessons done: "+(LESSONS.filter(l=>P.done[l.n]).map(l=>"L"+l.n).join(", ")||"none")+"\n";
+  txt+="Exams: "+(Object.keys(P.exam).map(k=>"EX"+k+" = "+P.exam[k].total+"/100"+(P.exam[k].pass?" (passed)":" (to retake)")).join(", ")||"none")+"\n";
+  txt+="Difficult words: "+(Object.keys(P.weak).length? Object.keys(P.weak).map(k=>{const[a,b]=k.split(":");const L2=lessonByN(+a);return L2&&L2.w[+b]?L2.w[+b][1]:"";}).filter(Boolean).join(", ") : "none")+"\n";
+  txt+="Correct answers: "+(P.correct||0)+" · Day streak: "+(P.streak||0);
   copyText(txt);
 }
 function backupProgress(){
   const code="FCL1."+btoa(unescape(encodeURIComponent(JSON.stringify({name:cur,p:P}))));
   copyText(code);
-  toast("Code de sauvegarde copié — garde-le précieusement !");
+  toast("Backup code copied — keep it somewhere safe!");
 }
 function restoreProgress(){
-  const code=prompt("Colle ton code de sauvegarde (FCL1.…) :");
+  const code=prompt("Paste your backup code (FCL1.…):");
   if(!code)return;
   try{
     const obj=JSON.parse(decodeURIComponent(escape(atob(code.trim().replace(/^FCL1\./,"")))));
     if(!obj||!obj.p)throw 0;
     if(people.indexOf(obj.name)<0)people.push(obj.name);
     cur=obj.name;P=obj.p;P.dlg=P.dlg||{};P.weak=P.weak||{};
-    saveAll();renderHome();toast("Progression de "+obj.name+" restaurée !");
-  }catch(e){toast("Code invalide…");}
+    saveAll();renderHome();toast(obj.name+"'s progress restored!");
+  }catch(e){toast("Invalid code…");}
 }
 function copyText(txt){
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(()=>toast("Copié !"),()=>fallbackCopy(txt));
+    navigator.clipboard.writeText(txt).then(()=>toast("Copied!"),()=>fallbackCopy(txt));
   }else fallbackCopy(txt);
 }
 function fallbackCopy(txt){
   const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);
-  ta.select();try{document.execCommand("copy");toast("Copié !");}catch(e){toast("Copie impossible.");}
+  ta.select();try{document.execCommand("copy");toast("Copied!");}catch(e){toast("Copy failed.");}
   document.body.removeChild(ta);
 }
 
@@ -1799,95 +1799,95 @@ function openLesson(n){
   L=lessonByN(n);
   if(!L.w.length){
     $("app").innerHTML=`
-    <span class="back" onclick="renderHome()">← Toutes les leçons</span>
+    <span class="back" onclick="renderHome()">← All lessons</span>
     <div class="lesson-title">Leçon ${L.n} — ${esc(L.t)}</div>
     <div class="lesson-meta">${BOOKS[L.b]} · ${esc(L.ch)}</div>
-    <div class="note">📚 Cette leçon suit le livre (${esc(L.ch)}) mais n'est pas encore chargée dans l'app.
-    Quand la classe arrive ici, dites au tuteur : <b>« Prépare la leçon ${L.n} »</b>.
-    En attendant, vous pouvez étudier le chapitre dans le livre papier !</div>`;
+    <div class="note">📚 This lesson follows the book (${esc(L.ch)}) but isn't loaded in the app yet.
+    When the class gets here, tell the tutor: <b>“Prépare la leçon ${L.n}”</b>.
+    Meanwhile you can study the chapter in the paper book!</div>`;
     window.scrollTo(0,0);return;
   }
   const nouns=genrePool();
   const bl=blocOf(L.n),gsBloc=GUNITS.filter(g=>g.bloc===bl),stB=stageForBloc(bl);
   let h=`
-  <span class="back" onclick="renderHome()">← Toutes les leçons</span>
+  <span class="back" onclick="renderHome()">← All lessons</span>
   <div class="lesson-title">Leçon ${L.n} — ${esc(L.t)}</div>
-  <div class="lesson-meta">${BOOKS[L.b]} · ${esc(L.ch)} · ${L.w.length} mots</div>
-  <span class="gchip" onclick="openGram(${gsBloc[0]?gsBloc[0].n:1})">📐 Grammaire du bloc ${bl} : ${gsBloc.map(g=>"G"+g.n+" "+esc(g.t)).join(" · ")} →</span>
+  <div class="lesson-meta">${BOOKS[L.b]} · ${esc(L.ch)} · ${L.w.length} words</div>
+  <span class="gchip" onclick="openGram(${gsBloc[0]?gsBloc[0].n:1})">📐 Grammar for block ${bl}: ${gsBloc.map(g=>"G"+g.n+" "+esc(g.t)).join(" · ")} →</span>
   <div class="tabs">
-    <button id="tb_learn" class="on" onclick="showTab('learn')">Apprendre</button>
+    <button id="tb_learn" class="on" onclick="showTab('learn')">Learn</button>
     <button id="tb_quiz" onclick="showTab('quiz')">Quiz</button>
-    <button id="tb_ecoute" onclick="showTab('ecoute')">Écoute</button>
-    ${nouns.length?`<button id="tb_genre" onclick="showTab('genre')">Genre</button>`:""}
-    <button id="tb_sent" onclick="showTab('sent')">Phrases</button>
-    <button id="tb_conj" onclick="showTab('conj')">Conjugaison</button>
+    <button id="tb_ecoute" onclick="showTab('ecoute')">Listening</button>
+    ${nouns.length?`<button id="tb_genre" onclick="showTab('genre')">Gender</button>`:""}
+    <button id="tb_sent" onclick="showTab('sent')">Sentences</button>
+    <button id="tb_conj" onclick="showTab('conj')">Conjugation</button>
     ${L.d?`<button id="tb_dlg" onclick="showTab('dlg')">Dialogue${(P.dlg[n]||0)>=3?" ✓":""}</button>`:""}
   </div>
 
   <div class="panel on" id="pn_learn">
-    ${L.g?`<div class="gram"><b>Grammaire :</b> ${L.g}</div>`:""}`;
+    ${L.g?`<div class="gram"><b>Grammar note :</b> ${L.g}</div>`:""}`;
   L.w.forEach(w=>{
     h+=`<div class="word"><span class="fr ${w[3]}">${esc(w[1])}</span>${w[3]?`<span class="gtag ${w[3]}">${w[3]}</span>`:""}${spkBtn(w[1])}${w[2]?`<span class="ipa">${esc(w[2])}</span>`:""}<span class="en">${esc(w[0])}</span></div>`;
   });
-  h+=`<button class="donebtn ${P.done[L.n]?"is":""}" id="doneBtn" onclick="toggleDone()">${P.done[L.n]?"✓ Leçon terminée — bravo !":"Marquer la leçon comme terminée ✓"}</button>
+  h+=`<button class="donebtn ${P.done[L.n]?"is":""}" id="doneBtn" onclick="toggleDone()">${P.done[L.n]?"✓ Lesson done — bravo !":"Mark this lesson as done ✓"}</button>
   </div>
 
   <div class="panel" id="pn_quiz">
     <div class="card">
-      <div class="q">Écris le français (avec son article) :</div>
+      <div class="q">Write the French (with its article):</div>
       <div class="prompt" id="qPrompt">—</div>
-      <input class="txt" id="qIn" placeholder="ex. une lettre…" autocomplete="off" onkeydown="if(event.key==='Enter')checkQuiz()">
-      <button class="newword" onclick="explainQuiz()">🤔 Je ne sais pas — montre la réponse</button>
+      <input class="txt" id="qIn" placeholder="e.g. une lettre…" autocomplete="off" onkeydown="if(event.key==='Enter')checkQuiz()">
+      <button class="newword" onclick="explainQuiz()">🤔 I don't know — show the answer</button>
       <div class="feedback" id="qFb"></div>
-      <div class="row"><button class="act" onclick="checkQuiz()">Vérifier</button><button class="act ghost" onclick="newQuiz()">Passer →</button></div>
-      <p class="hint">Article + mot. Les accents sont optionnels.</p>
+      <div class="row"><button class="act" onclick="checkQuiz()">Check</button><button class="act ghost" onclick="newQuiz()">Skip →</button></div>
+      <p class="hint">Article + word. Accents are optional.</p>
     </div>
   </div>
 
   <div class="panel" id="pn_ecoute">
     <div class="card">
-      <div class="q">Écoute et choisis la bonne traduction :</div>
-      <div class="prompt" style="font-size:1.2rem;">🎧 <button class="act ghost" style="padding:8px 18px;font-size:14px;" onclick="playEcoute()">▶ Écouter</button></div>
+      <div class="q">Listen and pick the right translation:</div>
+      <div class="prompt" style="font-size:1.2rem;">🎧 <button class="act ghost" style="padding:8px 18px;font-size:14px;" onclick="playEcoute()">▶ Listen</button></div>
       <div class="opts" id="eOpts"></div>
       <div class="feedback" id="eFb"></div>
-      <div class="shadowtip" id="eShadow" style="display:none;">🗣 Maintenant, répète à voix haute ! <button class="spk" onclick="playEcoute()">🔊 réécouter</button></div>
-      <div class="row"><button class="act ghost" onclick="newEcoute()">Suivant →</button></div>
-      <p class="hint">Sans lire ! Écoute, choisis, puis répète le mot à voix haute.</p>
+      <div class="shadowtip" id="eShadow" style="display:none;">🗣 Now repeat it out loud! <button class="spk" onclick="playEcoute()">🔊 listen again</button></div>
+      <div class="row"><button class="act ghost" onclick="newEcoute()">Next →</button></div>
+      <p class="hint">No reading! Listen, choose, then say the word out loud.</p>
     </div>
   </div>
 
   <div class="panel" id="pn_genre">
     <div class="card">
-      <div class="q">Masculin ou féminin ? Choisis l'article :</div>
+      <div class="q">Masculine or feminine? Pick the article:</div>
       <div class="prompt" id="gPrompt">—</div>
       <div class="genrebtns"><button class="un" onclick="answerGenre('m')">un</button><button class="une" onclick="answerGenre('f')">une</button></div>
       <div class="feedback" id="gFb"></div>
-      <div class="row"><button class="act ghost" onclick="newGenre()">Suivant →</button></div>
+      <div class="row"><button class="act ghost" onclick="newGenre()">Next →</button></div>
     </div>
   </div>
 
   <div class="panel" id="pn_sent">
     <div class="card">
-      <div class="q">Traduis en français :</div>
+      <div class="q">Translate into French:</div>
       <div class="prompt" id="sPrompt" style="font-size:1.3rem;">—</div>
-      <input class="txt" id="sIn" placeholder="écris la phrase…" autocomplete="off" onkeydown="if(event.key==='Enter')checkSent()">
-      <button class="newword" onclick="explainSent()">🤔 Je ne sais pas — montre la réponse</button>
+      <input class="txt" id="sIn" placeholder="write the sentence…" autocomplete="off" onkeydown="if(event.key==='Enter')checkSent()">
+      <button class="newword" onclick="explainSent()">🤔 I don't know — show the answer</button>
       <div class="feedback" id="sFb"></div>
-      <div class="row"><button class="act" onclick="checkSent()">Vérifier</button><button class="act ghost" onclick="newSent()">Passer →</button></div>
-      <p class="hint">Accents et apostrophes optionnels. Après, dis la phrase à voix haute !</p>
+      <div class="row"><button class="act" onclick="checkSent()">Check</button><button class="act ghost" onclick="newSent()">Skip →</button></div>
+      <p class="hint">Accents and apostrophes optional. Then say the sentence out loud!</p>
     </div>
   </div>
 
   <div class="panel" id="pn_conj">
     <div class="card">
-      <div class="q" id="cHead">Conjugue :</div>
+      <div class="q" id="cHead">Conjugate:</div>
       <div class="prompt" id="cPrompt">—</div>
-      <input class="txt" id="cIn" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')checkConj()">
+      <input class="txt" id="cIn" placeholder="write the form…" autocomplete="off" onkeydown="if(event.key==='Enter')checkConj()">
       ${accBar("cIn")}
-      <button class="newword" onclick="explainConj()">🤔 Je ne sais pas — montre la conjugaison</button>
+      <button class="newword" onclick="explainConj()">🤔 I don't know — show the conjugation</button>
       <div class="feedback" id="cFb"></div>
-      <div class="row"><button class="act" onclick="checkConj()">Vérifier</button><button class="act ghost" onclick="newConj()">Passer →</button></div>
-      <p class="hint">Étape du bloc ${bl} — tous les tableaux sont dans 🔤 Conjugaison (accueil).</p>
+      <div class="row"><button class="act" onclick="checkConj()">Check</button><button class="act ghost" onclick="newConj()">Skip →</button></div>
+      <p class="hint">This is block ${bl}'s stage — all the verb tables are in 🔤 Conjugation (home).</p>
     </div>
   </div>
 
@@ -1921,11 +1921,11 @@ function showBravo(){
   d.innerHTML=`<div class="bravo-card">
     <div class="big">🎉</div>
     <h3>Bravo, ${esc(cur)} !</h3>
-    <p>Leçon ${L.n} — ${esc(L.t)} terminée !${exAfter?"<br><b>L'examen "+exAfter.n+" est maintenant à portée !</b>":""}</p>
+    <p>Leçon ${L.n} — ${esc(L.t)} done!${exAfter?"<br><b>Exam "+exAfter.n+" is now within reach!</b>":""}</p>
     <div class="row" style="margin-top:0;">
-      ${exAfter?`<button class="act goldb" onclick="closeBravo();openExam(${exAfter.n})">Examen ${exAfter.n} →</button>`:""}
+      ${exAfter?`<button class="act goldb" onclick="closeBravo();openExam(${exAfter.n})">Exam ${exAfter.n} →</button>`:""}
       ${nx?`<button class="act" onclick="closeBravo();openLesson(${nx.n})">Leçon ${nx.n} →</button>`:""}
-      <button class="act ghost" onclick="closeBravo()">Rester ici</button>
+      <button class="act ghost" onclick="closeBravo()">Stay here</button>
     </div>
   </div>`;
   d.addEventListener("click",e=>{if(e.target===d)closeBravo();});
@@ -1948,7 +1948,7 @@ function pickIdx(pool,last){
   if(weak.length&&Math.random()<0.5)return weak[Math.floor(Math.random()*weak.length)];
   return cand[Math.floor(Math.random()*cand.length)];
 }
-function resetBtn(t){return `<span class="sub2"><button class="link2" onclick="resetDrill('${t}')">↻ Recommencer cette série</button></span>`;}
+function resetBtn(t){return `<span class="sub2"><button class="link2" onclick="resetDrill('${t}')">↻ Restart this series</button></span>`;}
 function resetDrill(t){
   if(t==="c"){const st=lessonStage();Object.keys(P.ms).forEach(k=>{if(k.indexOf("C"+st.id+":")===0)delete P.ms[k];});}
   else Object.keys(P.ms).forEach(k=>{if(k.indexOf(t+":"+L.n+":")===0)delete P.ms[k];});
@@ -1959,7 +1959,7 @@ function resetDrill(t){
   else if(t==="s"){const i2=$("sIn");if(i2)i2.style.display="";newSent();}
   else if(t==="c"){const i2=$("cIn");if(i2)i2.style.display="";newConj();}
 }
-function masteredToast(){toast("🏆 Maîtrisé ! (2 bonnes réponses de suite)");}
+function masteredToast(){toast("🏆 Mastered! (2 correct in a row)");}
 
 /* --- quiz --- */
 let qwi=-1;
@@ -1969,7 +1969,7 @@ function newQuiz(){
   const f=$("qFb");
   if(!pool.length){
     qw=null;$("qPrompt").textContent="🎉";$("qIn").style.display="none";
-    f.className="feedback ok";f.innerHTML="Bravo ! Tous les mots du Quiz sont maîtrisés ✓"+resetBtn("q");
+    f.className="feedback ok";f.innerHTML="Bravo! All Quiz words mastered ✓"+resetBtn("q");
     return;
   }
   $("qIn").style.display="";
@@ -1991,11 +1991,11 @@ function checkQuiz(){
     scoreGood(wki(L,qwi));setTimeout(newQuiz,1600);
   }else if(okBare&&qw[3]){
     f.className="feedback ko";
-    f.innerHTML=`Presque ! Attention au genre : <b>${esc(qw[1])}</b> (${qw[3]})<span class="sub2">${userArt} → ${realArt}</span>`;
+    f.innerHTML=`Almost! Watch the gender: <b>${esc(qw[1])}</b> (${qw[3]})<span class="sub2">${userArt} → ${realArt}</span>`;
     msLose(mk("q",qwi));markWeak(wki(L,qwi));saveAll();
   }else{
     f.className="feedback ko";
-    f.innerHTML=`✗ La réponse : <b>${esc(qw[1])}</b> ${qw[2]?esc(qw[2]):""} ${spkBtn(qw[1])}`;
+    f.innerHTML=`✗ Answer: <b>${esc(qw[1])}</b> ${qw[2]?esc(qw[2]):""} ${spkBtn(qw[1])}`;
     msLose(mk("q",qwi));markWeak(wki(L,qwi));saveAll();
   }
 }
@@ -2013,7 +2013,7 @@ function newEcoute(){
   const f=$("eFb");
   if(!pool.length){
     ew=null;$("eOpts").innerHTML="";$("eShadow").style.display="none";
-    f.className="feedback ok";f.innerHTML="Bravo ! Écoute maîtrisée ✓"+resetBtn("e");
+    f.className="feedback ok";f.innerHTML="Bravo! Listening mastered ✓"+resetBtn("e");
     return;
   }
   ewi=pickIdx(pool,ewi);ew=L.w[ewi];
@@ -2036,7 +2036,7 @@ function answerEcoute(el,idx){
     scoreGood(wki(L,ewi));
   }else{
     el.classList.add("koc");
-    f.className="feedback ko";f.innerHTML=`✗ C'était : <b>${esc(ew[1])}</b> = ${esc(ew[0])}`;
+    f.className="feedback ko";f.innerHTML=`✗ It was: <b>${esc(ew[1])}</b> = ${esc(ew[0])}`;
     msLose(mk("e",ewi));markWeak(wki(L,ewi));saveAll();
   }
 }
@@ -2050,7 +2050,7 @@ function newGenre(){
   const f=$("gFb");if(!f)return;
   if(!pool.length){
     gw=null;$("gPrompt").textContent="🎉";
-    f.className="feedback ok";f.innerHTML="Bravo ! Genre maîtrisé ✓"+resetBtn("g");
+    f.className="feedback ok";f.innerHTML="Bravo! Gender mastered ✓"+resetBtn("g");
     return;
   }
   gwi=pickIdx(pool,gwi);gw=L.w[gwi];
@@ -2063,7 +2063,7 @@ function answerGenre(g){
     f.className="feedback ok";f.innerHTML=`✓ Oui ! <b>${esc(gw[1])}</b> (${gw[3]}) ${spkBtn(gw[1])}${mastered?" 🏆":""}`;
     scoreGood(wki(L,gwi));setTimeout(newGenre,1400);
   }
-  else{f.className="feedback ko";f.innerHTML=`✗ Non — c'est <b>${esc(gw[1])}</b> (${gw[3]})`;msLose(mk("g",gwi));markWeak(wki(L,gwi));saveAll();}
+  else{f.className="feedback ko";f.innerHTML=`✗ No — it's <b>${esc(gw[1])}</b> (${gw[3]})`;msLose(mk("g",gwi));markWeak(wki(L,gwi));saveAll();}
 }
 
 /* --- sentences --- */
@@ -2074,7 +2074,7 @@ function newSent(){
   const f=$("sFb");
   if(!pool.length){
     sx=null;$("sPrompt").textContent="🎉";$("sIn").style.display="none";
-    f.className="feedback ok";f.innerHTML="Bravo ! Toutes les phrases sont maîtrisées ✓"+resetBtn("s");
+    f.className="feedback ok";f.innerHTML="Bravo! All sentences mastered ✓"+resetBtn("s");
     return;
   }
   $("sIn").style.display="";
@@ -2090,7 +2090,7 @@ function checkSent(){
     f.className="feedback ok";f.innerHTML=`✓ Parfait ! <b>${esc(pers(sx[1][0]))}</b> ${spkBtn(pers(sx[1][0]))}${mastered?" 🏆":""}`;
     scoreGood();setTimeout(newSent,1800);
   }else{
-    f.className="feedback ko";f.innerHTML=`✗ Réponse : <b>${esc(pers(sx[1][0]))}</b> ${spkBtn(pers(sx[1][0]))}`;
+    f.className="feedback ko";f.innerHTML=`✗ Answer: <b>${esc(pers(sx[1][0]))}</b> ${spkBtn(pers(sx[1][0]))}`;
     msLose(mk("s",sxi));
   }
 }
@@ -2101,7 +2101,7 @@ const IMPF_END=["ais","ais","ait","ions","iez","aient"],FUT_END=["ai","as","a","
 const AUX_A=["ai","as","a","avons","avez","ont"];
 const PCE_P=["il","elle","ils","elles"],PCE_AUX=["est","est","sont","sont"],PCE_AGR=["","e","s","es"];
 const IMPE_P=["(tu)","(nous)","(vous)"];
-const CONJ_HEAD={pres:"Conjugue au présent :",impf:"Conjugue à l'imparfait :",fut:"Conjugue au futur simple :",pc:"Conjugue au passé composé :",impe:"Mets à l'impératif :"};
+const CONJ_HEAD={pres:"Conjugate in the présent:",impf:"Conjugate in the imparfait:",fut:"Conjugate in the futur simple:",pc:"Conjugate in the passé composé:",impe:"Give the impératif:"};
 function impfForm(v,i){const c=CONJ[v];const o=typeof c.impf==="string"?{s:c.impf}:c.impf;const e=IMPF_END[i];return o.s+(e[0]==="a"?(o.soft||""):(o.hard||""))+e;}
 function futForm(v,i){return CONJ[v].fut+FUT_END[i];}
 function impeForms(v){const c=CONJ[v];if(c.impe)return c.impe;return [c.pres[1].replace(/es$/,"e"),c.pres[3],c.pres[4]];}
@@ -2171,10 +2171,10 @@ function newConj(){
   const st=lessonStage();
   const vs=stageVerbs(st).filter(v=>msGet(stageKey(st,v))<2);
   const f=$("cFb");
-  const hd=$("cHead");if(hd)hd.textContent=`Étape C${st.id} · ${CONJ_HEAD[st.tense]}`;
+  const hd=$("cHead");if(hd)hd.textContent=`Stage C${st.id} · ${CONJ_HEAD[st.tense]}`;
   if(!vs.length){
     CQ=null;$("cPrompt").textContent="🎉";$("cIn").style.display="none";
-    f.className="feedback ok";f.innerHTML=`Bravo ! Étape C${st.id} maîtrisée ✓`+resetBtn("c");
+    f.className="feedback ok";f.innerHTML=`Bravo! Stage C${st.id} mastered ✓`+resetBtn("c");
     return;
   }
   $("cIn").style.display="";
@@ -2193,7 +2193,7 @@ function checkConj(){
     if(mastered)masteredToast();
     scoreGood();setTimeout(newConj,1500);
   }else{
-    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(CQ.disp)}</b> ${spkBtn(CQ.say)}`;
+    f.className="feedback ko";f.innerHTML=`✗ We say: <b>${esc(CQ.disp)}</b> ${spkBtn(CQ.say)}`;
     msLose(stageKey(CQ.st,CQ.v));
   }
 }
@@ -2213,11 +2213,11 @@ function renderDlgEntry(){
 }
 function renderDlgDone(){
   $("dlgBox").innerHTML=`<div class="card" style="text-align:center;">
-    <div class="q">Scène : ${esc(pers(L.d.t))}</div>
-    <div class="prompt" style="font-size:1.35rem;">✓ Dialogue maîtrisé aux 3 niveaux — bravo !</div>
-    <div class="row"><button class="act ghost" onclick="renderDlg(1)">Rejouer ①</button>
-    <button class="act ghost" onclick="renderDlg(2)">Rejouer ②</button>
-    <button class="act ghost" onclick="renderDlg(3)">Rejouer ③</button></div>
+    <div class="q">Scene: ${esc(pers(L.d.t))}</div>
+    <div class="prompt" style="font-size:1.35rem;">✓ Dialogue mastered at all 3 levels — bravo!</div>
+    <div class="row"><button class="act ghost" onclick="renderDlg(1)">Replay ①</button>
+    <button class="act ghost" onclick="renderDlg(2)">Replay ②</button>
+    <button class="act ghost" onclick="renderDlg(3)">Replay ③</button></div>
   </div>`;
 }
 function dlgRecord(lvl){
@@ -2231,11 +2231,11 @@ function renderDlg(lvl){
   dLvl=lvl;dStep=0;dErr=0;
   const won=P.dlg[L.n]||0;
   let h=`<div class="card">
-    <div class="q">Scène : ${esc(pers(L.d.t))} — c'est TOI la partie bleue</div>
+    <div class="q">Scene: ${esc(pers(L.d.t))} — YOU are the blue side</div>
     <div class="lvlbtns">
-      <button class="${dLvl===1?"on":(won>=1?"won":"")}" onclick="renderDlg(1)">① Écouter &amp; lire</button>
-      <button class="${dLvl===2?"on":(won>=2?"won":"")}" onclick="renderDlg(2)">② Choisir ta réplique</button>
-      <button class="${dLvl===3?"on":(won>=3?"won":"")}" onclick="renderDlg(3)">③ Parler toi-même</button>
+      <button class="${dLvl===1?"on":(won>=1?"won":"")}" onclick="renderDlg(1)">① Listen &amp; read</button>
+      <button class="${dLvl===2?"on":(won>=2?"won":"")}" onclick="renderDlg(2)">② Choose your line</button>
+      <button class="${dLvl===3?"on":(won>=3?"won":"")}" onclick="renderDlg(3)">③ Speak yourself</button>
     </div>
     <div id="dlgArea"></div>
   </div>`;
@@ -2244,17 +2244,17 @@ function renderDlg(lvl){
 }
 function bubble(line,withEn){
   const me=line[0]==="M";
-  return `<div class="bubble ${me?"me":"a"}"><span class="who">${me?"— toi —":"— l'autre —"}</span>${esc(pers(line[1]))} ${spkBtn(pers(line[1]))}${withEn?`<span class="entr">${esc(pers(line[2]))}</span>`:""}</div>`;
+  return `<div class="bubble ${me?"me":"a"}"><span class="who">${me?"— you —":"— the other —"}</span>${esc(pers(line[1]))} ${spkBtn(pers(line[1]))}${withEn?`<span class="entr">${esc(pers(line[2]))}</span>`:""}</div>`;
 }
 function dlgLevel1(){
   let h=L.d.lines.map(l=>bubble(l,true)).join("");
-  h+=`<div class="shadowtip">🗣 Écoute chaque bulle (🔊) et répète-la à voix haute — surtout les bleues !</div>
-  <div class="row"><button class="act ghost" onclick="playAllDlg()">▶ Écouter toute la scène</button>
-  <button class="act goldb" onclick="dlgWin(1)">Niveau ① fait ✓</button></div>`;
+  h+=`<div class="shadowtip">🗣 Listen to each bubble (🔊) and repeat it out loud — especially the blue ones!</div>
+  <div class="row"><button class="act ghost" onclick="playAllDlg()">▶ Play the whole scene</button>
+  <button class="act goldb" onclick="dlgWin(1)">Level ① done ✓</button></div>`;
   $("dlgArea").innerHTML=h;
 }
 function playAllDlg(){
-  if(!TTS){toast("Pas de voix française sur cet appareil");return;}
+  if(!TTS){toast("No French voice on this device");return;}
   speechSynthesis.cancel();
   L.d.lines.forEach(l=>{
     const u=new SpeechSynthesisUtterance(pers(l[1]));
@@ -2267,28 +2267,28 @@ function dlgNextStep(){
   if(dStep>=lines.length){
     const ok=dErr===0;
     if(ok&&dLvl>1)dlgRecord(dLvl);
-    $("dlgArea").innerHTML=(ok?`<div class="feedback ok" style="margin-top:4px;">🎉 Scène complète sans erreur — niveau ${dLvl===2?"②":"③"} réussi ✓</div>`:`<div class="feedback ok" style="margin-top:4px;">Scène terminée ! (${dErr} aide${dErr>1?"s":""}) — refais-la pour la réussir sans erreur.</div>`)+
-      `<div class="row"><button class="act" onclick="renderDlg(${dLvl})">↻ Recommencer</button>${ok?`<button class="act goldb" onclick="dlgWin(${dLvl})">Continuer →</button>`:""}</div>`;
+    $("dlgArea").innerHTML=(ok?`<div class="feedback ok" style="margin-top:4px;">🎉 Whole scene with no mistakes — level ${dLvl===2?"②":"③"} passed ✓</div>`:`<div class="feedback ok" style="margin-top:4px;">Scene finished! (${dErr} help${dErr>1?"s":""}) — do it again to pass with no mistakes.</div>`)+
+      `<div class="row"><button class="act" onclick="renderDlg(${dLvl})">↻ Try again</button>${ok?`<button class="act goldb" onclick="dlgWin(${dLvl})">Continue →</button>`:""}</div>`;
     return;
   }
   const line=lines[dStep];
   let h=lines.slice(0,dStep).map(l=>bubble(l,false)).join("");
   if(line[0]==="A"){
     h+=bubble(line,false);
-    $("dlgArea").innerHTML=h+`<div class="row"><button class="act ghost" onclick="dStep++;dlgNextStep()">Continuer →</button></div>`;
+    $("dlgArea").innerHTML=h+`<div class="row"><button class="act ghost" onclick="dStep++;dlgNextStep()">Continue →</button></div>`;
     speak(pers(line[1]));
   }else{
     if(dLvl===2){
       const others=shuffle(L.d.lines.filter(l=>l[0]==="M"&&l!==line).map(l=>pers(l[1])).concat(GEN_DIST)).slice(0,2);
       const opts=shuffle([pers(line[1])].concat(others));
-      h+=`<div class="bubble me"><span class="who">— toi — (choisis ta réplique : « ${esc(pers(line[2]))} »)</span>
+      h+=`<div class="bubble me"><span class="who">— you — (choose your line: “${esc(pers(line[2]))}”)</span>
         <div class="opts">${opts.map(o=>`<div class="opt" onclick="dlgPick(this,${o===pers(line[1])})">${esc(o)}</div>`).join("")}</div></div>`;
       $("dlgArea").innerHTML=h;
     }else{
-      h+=`<div class="bubble me"><span class="who">— toi — dis en français : « ${esc(pers(line[2]))} »</span>
-        <input class="txt" id="dIn" placeholder="écris ta réplique…" autocomplete="off" onkeydown="if(event.key==='Enter')dlgType()">
-        <div class="row"><button class="act" onclick="dlgType()">Vérifier</button>
-        <button class="act ghost" onclick="dlgHelp()">🤔 aide</button></div>
+      h+=`<div class="bubble me"><span class="who">— you — say it in French: “${esc(pers(line[2]))}”</span>
+        <input class="txt" id="dIn" placeholder="write your line…" autocomplete="off" onkeydown="if(event.key==='Enter')dlgType()">
+        <div class="row"><button class="act" onclick="dlgType()">Check</button>
+        <button class="act ghost" onclick="dlgHelp()">🤔 help</button></div>
         <div class="feedback" id="dFb"></div></div>`;
       $("dlgArea").innerHTML=h;
       const inp=$("dIn");if(inp)inp.focus();
@@ -2313,7 +2313,7 @@ function dlgType(){
     speak(pers(line[1]));scoreGood();
     setTimeout(()=>{dStep++;dlgNextStep();},1100);
   }else{
-    f.className="feedback ko";f.innerHTML=`Pas tout à fait. Modèle : <b>${esc(pers(line[1]))}</b>`;
+    f.className="feedback ko";f.innerHTML=`Not quite. Model: <b>${esc(pers(line[1]))}</b>`;
     dErr++;
   }
 }
@@ -2324,8 +2324,8 @@ function dlgHelp(){
 }
 function dlgWin(lvl){
   dlgRecord(lvl);
-  if(lvl>=3){toast("🎉 Dialogue maîtrisé aux 3 niveaux !");renderDlgDone();}
-  else{toast("Niveau "+lvl+" validé — passe au niveau "+(lvl+1)+" !");renderDlg(lvl+1);}
+  if(lvl>=3){toast("🎉 Dialogue mastered at all 3 levels!");renderDlgDone();}
+  else{toast("Level "+lvl+" passed — on to level "+(lvl+1)+"!");renderDlg(lvl+1);}
 }
 
 /* ================= GRAMMAIRE (G-unités) ================= */
@@ -2333,49 +2333,49 @@ function gKey(n,i){return "G:"+n+":"+i;}
 function gMastered(g){return g.exs?g.exs.filter((x,i)=>msGet(gKey(g.n,i))>=2).length:0;}
 function gIsDone(g){return g.ready&&g.exs&&gMastered(g)>=g.exs.length;}
 function openGramHome(){
-  let h=`<span class="back" onclick="renderHome()">← Accueil</span>
-  <div class="lesson-title">📐 La Grammaire</div>
-  <div class="lesson-meta">Programme fusionné des 3 livres Grammaire Progressive · 2 unités par bloc de 5 leçons (voir class-plan.md)</div>`;
+  let h=`<span class="back" onclick="renderHome()">← Home</span>
+  <div class="lesson-title">📐 Grammar</div>
+  <div class="lesson-meta">Merged programme from the 3 Grammaire Progressive books · 2 units per block of 5 lessons (see class-plan.md)</div>`;
   let lastBloc=0;
   GUNITS.forEach(g=>{
     if(g.bloc!==lastBloc){lastBloc=g.bloc;
       const st=stageForBloc(g.bloc);
-      h+=`<div class="bookhead">Bloc ${g.bloc} · Leçons ${g.bloc*5-4}–${g.bloc*5} · Conjugaison : ${g.bloc<=7?"C"+st.id+" "+esc(st.t):"révision de tous les temps"}</div>`;}
+      h+=`<div class="bookhead">Block ${g.bloc} · Lessons ${g.bloc*5-4}–${g.bloc*5} · Conjugation: ${g.bloc<=7?"C"+st.id+" "+esc(st.t):"review of all tenses"}</div>`;}
     let stt,cls;
-    if(!g.ready){stt="à préparer";cls="todo";}
-    else if(gIsDone(g)){stt="✓ maîtrisée";cls="done";}
+    if(!g.ready){stt="to prepare";cls="todo";}
+    else if(gIsDone(g)){stt="✓ mastered";cls="done";}
     else if(gMastered(g)>0){stt=gMastered(g)+"/"+g.exs.length;cls="now";}
-    else{stt="prête";cls="now";}
+    else{stt="ready";cls="now";}
     h+=`<div class="lesson" onclick="openGram(${g.n})">
       <span class="num">G${g.n}</span>
       <div class="t">${esc(g.t)}<small>${esc(g.s)} · ${esc(g.src)}</small></div>
       <span class="st ${cls}">${stt}</span></div>`;
   });
-  h+=`<footer>Les règles sont réécrites pour la classe — les numéros de chapitres renvoient à vos livres papier.</footer>`;
+  h+=`<footer>The rules are rewritten for the class — chapter numbers point to your paper books.</footer>`;
   $("app").innerHTML=h;window.scrollTo(0,0);
 }
 let GX=null;
 function openGram(n){
   const g=GUNITS.find(x=>x.n===n);if(!g)return;
   if(!g.ready){
-    $("app").innerHTML=`<span class="back" onclick="openGramHome()">← La Grammaire</span>
+    $("app").innerHTML=`<span class="back" onclick="openGramHome()">← Grammar</span>
     <div class="lesson-title">G${g.n} — ${esc(g.t)}</div>
-    <div class="lesson-meta">Bloc ${g.bloc} · ${esc(g.src)}</div>
-    <div class="note">📐 Cette unité sera chargée quand la classe approche du bloc ${g.bloc}.
-    Dites au tuteur : <b>« Prépare G${g.n} »</b>. En attendant : les chapitres dans vos livres (${esc(g.src)}).</div>`;
+    <div class="lesson-meta">Block ${g.bloc} · ${esc(g.src)}</div>
+    <div class="note">📐 This unit will be loaded when the class gets close to block ${g.bloc}.
+    Tell the tutor: <b>“Prépare G${g.n}”</b>. Meanwhile: the chapters in your paper books (${esc(g.src)}).</div>`;
     window.scrollTo(0,0);return;
   }
   GX={g:g,i:-1,o:null};
   const r=g.rule;
-  let h=`<span class="back" onclick="openGramHome()">← La Grammaire</span>
+  let h=`<span class="back" onclick="openGramHome()">← Grammar</span>
   <div class="lesson-title">G${g.n} — ${esc(g.t)}</div>
-  <div class="lesson-meta">Bloc ${g.bloc} (leçons ${g.bloc*5-4}–${g.bloc*5}) · ${esc(g.src)}</div>
-  <div class="grule"><b>LA RÈGLE — </b>${r.f}
+  <div class="lesson-meta">Block ${g.bloc} (lessons ${g.bloc*5-4}–${g.bloc*5}) · ${esc(g.src)}</div>
+  <div class="grule"><b>THE RULE — </b>${r.f}
     ${r.ex.map(x=>`<div class="gx">${esc(pers(x[0]))} ${spkBtn(pers(x[0]))}<br><span class="entr">${esc(x[1])}</span></div>`).join("")}
     ${r.warn?`<div class="warn2">${r.warn}</div>`:""}
   </div>
   <div class="card" id="gxCard"><div id="gxBox"></div></div>
-  <div class="prodbox">✍️ <b>Production (papier) :</b> ${esc(g.prod)}</div>
+  <div class="prodbox">✍️ <b>Writing task (on paper):</b> ${esc(g.prod)}</div>
   <div class="row">
     ${GUNITS.find(x=>x.n===n-1)?`<button class="act ghost" onclick="openGram(${n-1})">← G${n-1}</button>`:""}
     ${GUNITS.find(x=>x.n===n+1)?`<button class="act ghost" onclick="openGram(${n+1})">G${n+1} →</button>`:""}
@@ -2387,15 +2387,15 @@ function gNext(){
   const g=GX.g;
   const idx=g.exs.findIndex((x,i)=>msGet(gKey(g.n,i))<2);
   if(idx<0){
-    $("gxBox").innerHTML=`<div class="q">Exercices</div>
-    <div class="prompt" style="font-size:1.3rem;">🎉 Unité G${g.n} maîtrisée — bravo !</div>
-    <div class="feedback ok">Les ${g.exs.length} exercices sont réussis.
-    <span class="sub2"><button class="link2" onclick="gReset()">↻ Recommencer l'unité</button></span></div>`;
+    $("gxBox").innerHTML=`<div class="q">Exercises</div>
+    <div class="prompt" style="font-size:1.3rem;">🎉 Unit G${g.n} mastered — bravo!</div>
+    <div class="feedback ok">All ${g.exs.length} exercises passed.
+    <span class="sub2"><button class="link2" onclick="gReset()">↻ Restart this unit</button></span></div>`;
     return;
   }
   GX.i=idx;GX.o=null;
   const x=g.exs[idx];
-  const head=`<div class="q">Exercice ${idx+1}/${g.exs.length} · ${x.ty==="c"?"Choisis":x.ty==="f"?"Complète":x.ty==="t"?"Transforme":"Remets en ordre"} · maîtrisés : ${gMastered(g)}/${g.exs.length}</div>`;
+  const head=`<div class="q">Exercise ${idx+1}/${g.exs.length} · ${x.ty==="c"?"Choose":x.ty==="f"?"Fill in":x.ty==="t"?"Transform":"Put in order"} · mastered: ${gMastered(g)}/${g.exs.length}</div>`;
   let body="";
   if(x.ty==="c"){
     body=`<div class="prompt" style="font-size:1.25rem;">${esc(pers(x.q))}</div>
@@ -2403,19 +2403,19 @@ function gNext(){
     <div class="feedback" id="gFb2"></div>`;
   }else if(x.ty==="f"||x.ty==="t"){
     body=`<div class="prompt" style="font-size:1.2rem;">${esc(pers(x.q))}</div>
-    <input class="txt" id="gIn" placeholder="${x.ty==="f"?"écris le mot manquant…":"écris la phrase…"}" autocomplete="off" onkeydown="if(event.key==='Enter')gAnsF()">
+    <input class="txt" id="gIn" placeholder="${x.ty==="f"?"write the missing word…":"write the sentence…"}" autocomplete="off" onkeydown="if(event.key==='Enter')gAnsF()">
     ${accBar("gIn")}
-    <button class="newword" onclick="gShow()">🤔 Je ne sais pas — montre la réponse</button>
+    <button class="newword" onclick="gShow()">🤔 I don't know — show the answer</button>
     <div class="feedback" id="gFb2"></div>
-    <div class="row"><button class="act" onclick="gAnsF()">Vérifier</button></div>`;
+    <div class="row"><button class="act" onclick="gAnsF()">Check</button></div>`;
   }else{
     GX.o={order:shuffle(x.w.map((w,wi)=>wi)),picked:[]};
-    body=`<div class="prompt" style="font-size:1.15rem;">Touche les mots dans le bon ordre :</div>
+    body=`<div class="prompt" style="font-size:1.15rem;">Tap the words in the right order:</div>
     <div class="ochips" id="gChips"></div>
     <div class="obuild" id="gBuild">…</div>
-    <button class="newword" onclick="gShow()">🤔 Je ne sais pas — montre la réponse</button>
+    <button class="newword" onclick="gShow()">🤔 I don't know — show the answer</button>
     <div class="feedback" id="gFb2"></div>
-    <div class="row"><button class="act" onclick="gAnsO()">Vérifier</button><button class="act ghost" onclick="gClearO()">↻ Effacer</button></div>`;
+    <div class="row"><button class="act" onclick="gAnsO()">Check</button><button class="act ghost" onclick="gClearO()">↻ Clear</button></div>`;
   }
   $("gxBox").innerHTML=head+body;
   if(x.ty==="o")gDrawO();
@@ -2439,7 +2439,7 @@ function gWin(){
 function gFail(){
   const f=$("gFb2");
   f.className="feedback ko";
-  f.innerHTML=`✗ La réponse : <b>${esc(gShowAnswer())}</b> ${spkBtn(gShowAnswer())}`;
+  f.innerHTML=`✗ Answer: <b>${esc(gShowAnswer())}</b> ${spkBtn(gShowAnswer())}`;
   msLose(gKey(GX.g.n,GX.i));
 }
 function gAnsC(el,oi){
@@ -2453,7 +2453,7 @@ function gAnsF(){
 }
 function gAnsO(){
   const x=GX.g.exs[GX.i],o=GX.o;
-  if(o.picked.length!==x.w.length){toast("Utilise tous les mots !");return;}
+  if(o.picked.length!==x.w.length){toast("Use all the words!");return;}
   const built=o.picked.map(wi=>x.w[wi]).join(" ");
   if(norm(pers(built))===norm(pers(x.w.join(" "))))gWin();else gFail();
 }
@@ -2478,7 +2478,7 @@ function csel(){
 }
 function cselLabel(){
   const s=csel();
-  return `${s.v.length} verbe${s.v.length>1?"s":""} sélectionné${s.v.length>1?"s":""} · temps : ${s.t.length?s.t.map(t=>TENSES.find(x=>x[0]===t)[1]).join(", "):"—"}`;
+  return `${s.v.length} verb${s.v.length>1?"s":""} selected · tenses: ${s.t.length?s.t.map(t=>TENSES.find(x=>x[0]===t)[1]).join(", "):"—"}`;
 }
 function cselCombos(){
   const s=csel(),out=[];
@@ -2500,50 +2500,50 @@ function cselClear(){csel().v=[];saveAll();renderConj();}
 function cselPreset(){
   const st=stageForBloc(currentBloc());
   P.csel={v:stageVerbs(st).slice(),t:[st.tense]};saveAll();renderConj();
-  toast("Sélection = étape C"+st.id+" · "+st.t);
+  toast("Selection = stage C"+st.id+" · "+st.t);
 }
 function openConjHome(){CJ.mode="list";renderConj();}
 function conjVerb(v){CJ.v=v;if($("cjChips")){cjDrawChips();cjDrawCard();const c=$("cjCard");if(c)c.scrollIntoView({behavior:"smooth"});}else renderConj();}
 function cjStart(){
   const s=csel();
-  if(!s.v.length){toast("Coche d'abord des verbes (interrupteurs) !");return;}
-  if(!s.t.length){toast("Choisis au moins un temps !");return;}
-  if(!cselCombos().length){toast("Ces verbes n'ont pas d'impératif — choisis un autre temps.");return;}
+  if(!s.v.length){toast("First switch on some verbs!");return;}
+  if(!s.t.length){toast("Pick at least one tense!");return;}
+  if(!cselCombos().length){toast("These verbs have no imperative — pick another tense.");return;}
   CJ.mode="drill";CD2=null;renderConj();
 }
 function renderConj(){
   const st=stageForBloc(currentBloc());
   const sel=csel();
-  let h=`<span class="back" onclick="renderHome()">← Accueil</span>
-  <div class="lesson-title">🔤 La Conjugaison</div>
-  <div class="lesson-meta">Coche tes verbes ⊙, choisis tes temps, puis pratique — ou touche un verbe pour son tableau complet.</div>`;
+  let h=`<span class="back" onclick="renderHome()">← Home</span>
+  <div class="lesson-title">🔤 Conjugation</div>
+  <div class="lesson-meta">Switch on your verbs ⊙, pick your tenses, then practise — or tap a verb to see its full table.</div>`;
   if(CJ.mode==="drill"){
     h+=`<div class="card">
-      <div class="q" id="d2Head">Pratique</div>
+      <div class="q" id="d2Head">Practice</div>
       <div class="prompt" id="d2Prompt">—</div>
-      <input class="txt" id="d2In" placeholder="écris la forme…" autocomplete="off" onkeydown="if(event.key==='Enter')cjdCheck()">
+      <input class="txt" id="d2In" placeholder="write the form…" autocomplete="off" onkeydown="if(event.key==='Enter')cjdCheck()">
       ${accBar("d2In")}
-      <button class="newword" onclick="cjdExplain()">🤔 Je ne sais pas — montre la conjugaison</button>
+      <button class="newword" onclick="cjdExplain()">🤔 I don't know — show the conjugation</button>
       <div class="feedback" id="d2Fb"></div>
-      <div class="row"><button class="act" onclick="cjdCheck()">Vérifier</button><button class="act ghost" onclick="cjdNew()">Passer →</button></div>
-      <div class="row"><button class="act ghost" onclick="CJ.mode='list';renderConj()">✕ Quitter la pratique</button></div>
+      <div class="row"><button class="act" onclick="cjdCheck()">Check</button><button class="act ghost" onclick="cjdNew()">Skip →</button></div>
+      <div class="row"><button class="act ghost" onclick="CJ.mode='list';renderConj()">✕ Quit practice</button></div>
       <p class="hint" id="d2Prog"></p>
     </div>`;
     $("app").innerHTML=h;
     cjdNew();window.scrollTo(0,0);return;
   }
   h+=`<div class="card" style="padding:16px;">
-    <div class="q">Ma pratique — les temps :</div>
+    <div class="q">My practice — the tenses:</div>
     <div class="verbchips" style="margin:10px 0 6px;">${TENSES.map(([k,l])=>`<span class="vchip ${sel.t.indexOf(k)>=0?"on":""}" onclick="cselTense('${k}')">${l}</span>`).join("")}</div>
     <div class="hint" style="text-align:left;margin:0 0 6px;" id="cselCount">${cselLabel()}</div>
     <div class="row" style="margin-top:6px;">
-      <button class="act goldb" onclick="cjStart()">▶ Commencer la pratique</button>
-      <button class="act ghost" onclick="cselPreset()">🎯 Étape du bloc (C${st.id})</button>
+      <button class="act goldb" onclick="cjStart()">▶ Start practice</button>
+      <button class="act ghost" onclick="cselPreset()">🎯 This block's stage (C${st.id})</button>
     </div>
-    <div class="exportline" style="margin:8px 0 0;"><button onclick="cselClear()">tout désélectionner</button></div>
+    <div class="exportline" style="margin:8px 0 0;"><button onclick="cselClear()">deselect all verbs</button></div>
   </div>
   ${cjRulesHtml()}
-  <input class="txt" id="cjQ" placeholder="Cherche un verbe — en français ou en anglais…" style="text-align:left;margin-bottom:8px;" value="${esc(CJQ)}" oninput="cjSearch(this.value)">
+  <input class="txt" id="cjQ" placeholder="Search a verb — in French or in English…" style="text-align:left;margin-bottom:8px;" value="${esc(CJQ)}" oninput="cjSearch(this.value)">
   <div class="hint" id="cjCount" style="margin:0 0 10px;text-align:left;"></div>
   <div id="cjChips"></div>
   <div id="cjCard"></div>`;
@@ -2553,18 +2553,18 @@ function renderConj(){
 }
 function cjRulesToggle(id){CJROPEN[id]=!CJROPEN[id];const el=$("cjRulesBox");if(el)el.outerHTML=cjRulesHtml();else renderConj();}
 function cjRulesHtml(){
-  return `<div id="cjRulesBox">${CSTAGES.map(st=>`<div class="vgrp"><div class="vgrp-h" onclick="cjRulesToggle(${st.id})"><span class="car">${CJROPEN[st.id]?"▾":"▸"}</span>📖 C${st.id} · ${esc(st.t)}<span class="cnt2">règle + modèles</span></div>${CJROPEN[st.id]?`<div style="padding:10px 13px;border-top:1px dashed var(--line);"><div class="grule" style="margin:0;">${st.rule}${st.models.map(v=>chartHtml(v,st.tense,v)).join("")}<div class="warn2">Verbes de l'étape : ${stageVerbs(st).join(", ")}.</div></div></div>`:""}</div>`).join("")}</div>`;
+  return `<div id="cjRulesBox">${CSTAGES.map(st=>`<div class="vgrp"><div class="vgrp-h" onclick="cjRulesToggle(${st.id})"><span class="car">${CJROPEN[st.id]?"▾":"▸"}</span>📖 C${st.id} · ${esc(st.t)}<span class="cnt2">rule + models</span></div>${CJROPEN[st.id]?`<div style="padding:10px 13px;border-top:1px dashed var(--line);"><div class="grule" style="margin:0;">${st.rule}${st.models.map(v=>chartHtml(v,st.tense,v)).join("")}<div class="warn2">Verbs in this stage: ${stageVerbs(st).join(", ")}.</div></div></div>`:""}</div>`).join("")}</div>`;
 }
 function cjdNew(){
   const allC=cselCombos();
   const combos=allC.filter(([v,t])=>msGet("CP:"+t+":"+v)<2);
   const f=$("d2Fb");
-  $("d2Prog").textContent=`Maîtrisés : ${allC.length-combos.length}/${allC.length} (2 bonnes réponses de suite par verbe et par temps)`;
+  $("d2Prog").textContent=`Mastered: ${allC.length-combos.length}/${allC.length} (2 correct in a row per verb and per tense)`;
   if(!combos.length){
     CD2=null;$("d2Prompt").textContent="🎉";$("d2In").style.display="none";
-    $("d2Head").textContent="Pratique terminée !";
-    f.className="feedback ok";f.innerHTML=`Bravo ! Toute ta sélection est maîtrisée ✓
-    <span class="sub2"><button class="link2" onclick="cjdReset()">↻ Recommencer cette sélection</button></span>`;
+    $("d2Head").textContent="Practice finished!";
+    f.className="feedback ok";f.innerHTML=`Bravo! Your whole selection is mastered ✓
+    <span class="sub2"><button class="link2" onclick="cjdReset()">↻ Restart this selection</button></span>`;
     return;
   }
   $("d2In").style.display="";
@@ -2584,7 +2584,7 @@ function cjdCheck(){
     if(mastered)masteredToast();
     scoreGood();setTimeout(cjdNew,1500);
   }else{
-    f.className="feedback ko";f.innerHTML=`✗ On dit : <b>${esc(CD2.disp)}</b> ${spkBtn(CD2.say)}`;
+    f.className="feedback ko";f.innerHTML=`✗ We say: <b>${esc(CD2.disp)}</b> ${spkBtn(CD2.say)}`;
     msLose("CP:"+CD2.t+":"+CD2.v);
   }
 }
@@ -2605,7 +2605,7 @@ function cjToggleGrp(k){CJOPEN[k]=!CJOPEN[k];cjDrawChips();}
 function vRow(v){
   const vq=v.replace(/'/g,"\\'");
   const on=csel().v.indexOf(v)>=0;
-  return `<div class="vrow ${v===CJ.v?"on":""}"><b onclick="conjVerb('${vq}')">${esc(v)}</b><span class="en2" onclick="conjVerb('${vq}')">${esc(VEN[v]||"")}</span><span class="vtgl ${on?"on":""}" onclick="cselToggle('${vq}')" title="pratiquer ce verbe"></span></div>`;
+  return `<div class="vrow ${v===CJ.v?"on":""}"><b onclick="conjVerb('${vq}')">${esc(v)}</b><span class="en2" onclick="conjVerb('${vq}')">${esc(VEN[v]||"")}</span><span class="vtgl ${on?"on":""}" onclick="cselToggle('${vq}')" title="practise this verb"></span></div>`;
 }
 function grpVerbs(k){
   const all=Object.keys(CONJ);
@@ -2616,7 +2616,7 @@ function grpVerbs(k){
 function grpAllBtn(k){
   const vs=grpVerbs(k),s=csel();
   const allIn=vs.length&&vs.every(v=>s.v.indexOf(v)>=0);
-  return `<button class="grpall" onclick="cselGrpAll('${k}',event)">${allIn?"tout décocher":"tout cocher"}</button>`;
+  return `<button class="grpall" onclick="cselGrpAll('${k}',event)">${allIn?"deselect all":"select all"}</button>`;
 }
 function cselGrpAll(k,ev){
   if(ev)ev.stopPropagation();
@@ -2631,25 +2631,25 @@ function cjDrawChips(){
   if(!$("cjChips"))return;
   const all=Object.keys(CONJ).sort((a,b)=>a.localeCompare(b,"fr"));
   const q=norm(CJQ||"");
-  $("cjCount").innerHTML=`<b>${all.length} verbes</b> en ${VGROUPS.length} familles · l'interrupteur ⊙ ajoute le verbe à ta pratique · il en manque un ? Dis au tuteur : « ajoute le verbe… »`;
+  $("cjCount").innerHTML=`<b>${all.length} verbs</b> in ${VGROUPS.length} families · the switch ⊙ adds a verb to your practice · missing one? Tell the tutor: “add the verb…”`;
   if(q){
     const hits=all.filter(v=>norm(v).indexOf(q)>=0||norm(VEN[v]||"").indexOf(q)>=0);
     $("cjChips").innerHTML=hits.length?
-      `<div class="vgrp"><div class="vgrp-h">${hits.length} trouvé${hits.length>1?"s":""}${grpAllBtn("_q")}<span class="cnt2">recherche</span></div>${hits.slice(0,50).map(vRow).join("")}${hits.length>50?`<div class="vrow"><span class="en2">… + ${hits.length-50} autres — précise ta recherche</span></div>`:""}</div>`:
-      `<div class="hint" style="text-align:left;">Aucun verbe trouvé pour « ${esc(CJQ)} » — dis au tuteur : « ajoute le verbe ${esc(CJQ)} ».</div>`;
+      `<div class="vgrp"><div class="vgrp-h">${hits.length} found${grpAllBtn("_q")}<span class="cnt2">search</span></div>${hits.slice(0,50).map(vRow).join("")}${hits.length>50?`<div class="vrow"><span class="en2">… + ${hits.length-50} more — narrow your search</span></div>`:""}</div>`:
+      `<div class="hint" style="text-align:left;">No verb found for “${esc(CJQ)}” — tell the tutor: “add the verb ${esc(CJQ)}”.</div>`;
     return;
   }
   let h="";
   const selv=csel().v.filter(v=>CONJ[v]).sort((a,b)=>a.localeCompare(b,"fr"));
   if(selv.length){
     const open=!!CJOPEN["_sel"];
-    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('_sel')"><span class="car">${open?"▾":"▸"}</span>✅ Ma sélection (pour la pratique)${grpAllBtn("_sel")}<span class="cnt2">${selv.length} verbes</span></div>${open?selv.map(vRow).join(""):""}</div>`;
+    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('_sel')"><span class="car">${open?"▾":"▸"}</span>✅ My selection (for practice)${grpAllBtn("_sel")}<span class="cnt2">${selv.length} verbs</span></div>${open?selv.map(vRow).join(""):""}</div>`;
   }
   VGROUPS.forEach(([k,label])=>{
     const vs=all.filter(v=>VFAM[v]===k);
     if(!vs.length)return;
     const open=!!CJOPEN[k];
-    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('${k}')"><span class="car">${open?"▾":"▸"}</span>${label}${grpAllBtn(k)}<span class="cnt2">${vs.length} verbes</span></div>${open?vs.map(vRow).join(""):""}</div>`;
+    h+=`<div class="vgrp"><div class="vgrp-h" onclick="cjToggleGrp('${k}')"><span class="car">${open?"▾":"▸"}</span>${label}${grpAllBtn(k)}<span class="cnt2">${vs.length} verbs</span></div>${open?vs.map(vRow).join(""):""}</div>`;
   });
   $("cjChips").innerHTML=h;
 }
@@ -2660,7 +2660,7 @@ function cjDrawCard(){
       <span class="lesson-title" style="font-size:1.5rem;">${esc(CJ.v)}</span>
       <span style="color:var(--ink-soft);font-size:.95rem;font-style:italic;">${esc(VEN[CJ.v]||"")}</span>
     </div>
-    <div class="hint" style="margin:2px 0 6px;text-align:left;">participe passé : <b style="color:var(--gold);">${esc(c.pp)}</b> · auxiliaire : <b style="color:var(--gold);">${c.aux==="e"?"être":"avoir"}</b></div>
+    <div class="hint" style="margin:2px 0 6px;text-align:left;">past participle: <b style="color:var(--gold);">${esc(c.pp)}</b> · auxiliary: <b style="color:var(--gold);">${c.aux==="e"?"être":"avoir"}</b></div>
     ${chartHtml(CJ.v,"pres","Présent")}
     ${chartHtml(CJ.v,"pc","Passé composé")}
     ${chartHtml(CJ.v,"impf","Imparfait")}
@@ -2673,7 +2673,7 @@ function cjDrawCard(){
 let RV=null;
 function startReview(){
   const pool=studiedLessons();
-  if(!pool.length){toast("Commence d'abord une leçon !");return;}
+  if(!pool.length){toast("Start a lesson first!");return;}
   RV={i:0,ok:0,qs:[]};
   for(let k=0;k<20;k++){
     let li,wi=null;
@@ -2699,12 +2699,12 @@ function startReview(){
 function reviewStep(){
   if(RV.i>=RV.qs.length){
     $("app").innerHTML=`
-    <span class="back" onclick="renderHome()">← Accueil</span>
+    <span class="back" onclick="renderHome()">← Home</span>
     <div class="card" style="text-align:center;">
-      <div class="prompt">Révision terminée !</div>
+      <div class="prompt">Review finished!</div>
       <div class="result"><div class="big">${RV.ok}/20</div>
-      <div class="det">${RV.ok>=16?"Excellent ! 🎉":RV.ok>=10?"Bien — on continue demain !":"Les mots difficiles reviendront — courage !"}</div></div>
-      <div class="row"><button class="act" onclick="startReview()">↻ Encore 20</button><button class="act ghost" onclick="renderHome()">Accueil</button></div>
+      <div class="det">${RV.ok>=16?"Excellent! 🎉":RV.ok>=10?"Good — keep going tomorrow!":"The difficult words will come back — courage!"}</div></div>
+      <div class="row"><button class="act" onclick="startReview()">↻ Another 20</button><button class="act ghost" onclick="renderHome()">Home</button></div>
     </div>`;
     return;
   }
@@ -2713,17 +2713,17 @@ function reviewStep(){
   const w=(q.wi!=null&&l2.w[q.wi])?l2.w[q.wi]:l2.w[Math.floor(Math.random()*l2.w.length)];
   let inner="";
   if(q.ty==="quiz"){
-    inner=`<div class="q">Leçon ${l2.n} · Écris le français :</div>
+    inner=`<div class="q">Leçon ${l2.n} · Write the French:</div>
     <div class="prompt">${esc(w[0])}</div>
     <input class="txt" id="rIn" autocomplete="off" onkeydown="if(event.key==='Enter')revCheck()">
     <div class="feedback" id="rFb"></div>
-    <div class="row"><button class="act" onclick="revCheck()">Vérifier</button><button class="act ghost" onclick="revSkip()">Je ne sais pas</button></div>`;
+    <div class="row"><button class="act" onclick="revCheck()">Check</button><button class="act ghost" onclick="revSkip()">I don't know</button></div>`;
     RV.cur={w:w,l:l2,mode:"quiz"};
   }else if(q.ty==="ecoute"){
     const others=shuffle(l2.w.filter(x=>x!==w)).slice(0,2);
     const opts=shuffle([w].concat(others));
-    inner=`<div class="q">Leçon ${l2.n} · Écoute et choisis :</div>
-    <div class="prompt" style="font-size:1.2rem;">🎧 <button class="act ghost" style="padding:8px 18px;font-size:14px;" onclick="speak('${esc(w[1]).replace(/'/g,"\\'")}')">▶ Écouter</button></div>
+    inner=`<div class="q">Leçon ${l2.n} · Listen and choose:</div>
+    <div class="prompt" style="font-size:1.2rem;">🎧 <button class="act ghost" style="padding:8px 18px;font-size:14px;" onclick="speak('${esc(w[1]).replace(/'/g,"\\'")}')">▶ Listen</button></div>
     <div class="opts">${opts.map(o=>`<div class="opt" onclick="revPick(this,${o===w})">${esc(o[0])}</div>`).join("")}</div>
     <div class="feedback" id="rFb"></div>`;
     RV.cur={w:w,l:l2,mode:"ecoute"};
@@ -2731,7 +2731,7 @@ function reviewStep(){
   }else if(q.ty==="genre"){
     const gp=l2.w.filter(x=>x[3]&&/^(un|une|le|la|l')/i.test(x[1])&&!/^les /i.test(x[1]));
     const gw2=gp[Math.floor(Math.random()*gp.length)];
-    inner=`<div class="q">Leçon ${l2.n} · Masculin ou féminin ?</div>
+    inner=`<div class="q">Leçon ${l2.n} · Masculine or feminine?</div>
     <div class="prompt">${esc(bare(gw2[1]))}</div>
     <div class="genrebtns"><button class="un" onclick="revGenre('m')">un</button><button class="une" onclick="revGenre('f')">une</button></div>
     <div class="feedback" id="rFb"></div>`;
@@ -2742,35 +2742,35 @@ function reviewStep(){
     const xi=cand[Math.floor(Math.random()*cand.length)];
     const x=g.exs[xi];
     if(x.ty==="c"){
-      inner=`<div class="q">G${g.n} · ${esc(g.t)} — choisis :</div>
+      inner=`<div class="q">G${g.n} · ${esc(g.t)} — choose:</div>
       <div class="prompt" style="font-size:1.2rem;">${esc(pers(x.q))}</div>
       <div class="opts">${shuffle(x.opts.map((o,oi)=>oi)).map(oi=>`<div class="opt" onclick="revGramC(this,${oi})">${esc(x.opts[oi])}</div>`).join("")}</div>
       <div class="feedback" id="rFb"></div>`;
     }else{
-      inner=`<div class="q">G${g.n} · ${esc(g.t)} — ${x.ty==="f"?"complète :":"transforme :"}</div>
+      inner=`<div class="q">G${g.n} · ${esc(g.t)} — ${x.ty==="f"?"fill in:":"transform:"}</div>
       <div class="prompt" style="font-size:1.15rem;">${esc(pers(x.q))}</div>
       <input class="txt" id="rIn" autocomplete="off" onkeydown="if(event.key==='Enter')revGramF()">
       ${accBar("rIn")}
       <div class="feedback" id="rFb"></div>
-      <div class="row"><button class="act" onclick="revGramF()">Vérifier</button><button class="act ghost" onclick="revSkip()">Je ne sais pas</button></div>`;
+      <div class="row"><button class="act" onclick="revGramF()">Check</button><button class="act ghost" onclick="revSkip()">I don't know</button></div>`;
     }
     RV.cur={g:g,xi:xi,x:x,mode:"gram"};
   }else{
     const st2=stageForBloc(blocOf(l2.n));
     const vs=stageVerbs(st2);
     const cq=conjQ(st2,vs[Math.floor(Math.random()*vs.length)]);
-    inner=`<div class="q">Étape C${st2.id} · ${esc(CONJ_HEAD[st2.tense])}</div>
+    inner=`<div class="q">Stage C${st2.id} · ${esc(CONJ_HEAD[st2.tense])}</div>
     <div class="prompt">${cq.label}</div>
     <input class="txt" id="rIn" autocomplete="off" onkeydown="if(event.key==='Enter')revConj()">
     ${accBar("rIn")}
     <div class="feedback" id="rFb"></div>
-    <div class="row"><button class="act" onclick="revConj()">Vérifier</button><button class="act ghost" onclick="revSkip()">Je ne sais pas</button></div>`;
+    <div class="row"><button class="act" onclick="revConj()">Check</button><button class="act ghost" onclick="revSkip()">I don't know</button></div>`;
     RV.cur={cq:cq,l:l2,mode:"conj"};
   }
   $("app").innerHTML=`
-  <span class="back" onclick="renderHome()">← Quitter la révision</span>
-  <div class="lesson-title">Révision mixte — ${RV.i+1}/20</div>
-  <div class="lesson-meta">Score : ${RV.ok} ✓</div>
+  <span class="back" onclick="renderHome()">← Quit review</span>
+  <div class="lesson-title">Mixed review — ${RV.i+1}/20</div>
+  <div class="lesson-meta">Score: ${RV.ok} ✓</div>
   <div class="card">${inner}</div>`;
   window.scrollTo(0,0);
 }
@@ -2788,15 +2788,15 @@ function revCheck(){
 }
 function revSkip(){
   const c=RV.cur,f=$("rFb");
-  if(c.mode==="conj"){f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(c.cq.disp)}</b>`;}
-  else if(c.mode==="gram"){f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;}
-  else{f.className="feedback ko";f.innerHTML=`Réponse : <b>${esc(c.w[1])}</b>`;markWeak(wkey(c.l,c.w));saveAll();}
+  if(c.mode==="conj"){f.className="feedback ko";f.innerHTML=`Answer: <b>${esc(c.cq.disp)}</b>`;}
+  else if(c.mode==="gram"){f.className="feedback ko";f.innerHTML=`Answer: <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;}
+  else{f.className="feedback ko";f.innerHTML=`Answer: <b>${esc(c.w[1])}</b>`;markWeak(wkey(c.l,c.w));saveAll();}
   revNext(false);
 }
 function revGramC(el,oi){
   const c=RV.cur,f=$("rFb");
   if(oi===c.x.a){el.classList.add("okc");f.className="feedback ok";f.innerHTML=`✓ <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;scoreGood();revNext(true);}
-  else{el.classList.add("koc");f.className="feedback ko";f.innerHTML=`✗ La réponse : <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;msLose(gKey(c.g.n,c.xi));revNext(false);}
+  else{el.classList.add("koc");f.className="feedback ko";f.innerHTML=`✗ Answer: <b>${esc(pers(c.x.show||c.x.opts[c.x.a]))}</b>`;msLose(gKey(c.g.n,c.xi));revNext(false);}
 }
 function revGramF(){
   const c=RV.cur,inp=$("rIn").value;if(!inp.trim())return;
@@ -2828,38 +2828,38 @@ function openExam(n){
   E=EXAMS[n-1];lScore=null;rScore=null;
   const sc=P.exam[E.n];
   if(!examUnlocked(E)&&!sc){
-    toast("Termine d'abord les leçons "+(E.after-4)+" à "+E.after+" !");return;
+    toast("Finish lessons "+(E.after-4)+" to "+E.after+" first!");return;
   }
   if(!E.ready){
     $("app").innerHTML=`
-    <span class="back" onclick="renderHome()">← Toutes les leçons</span>
-    <div class="exam-title">Examen ${E.n} · Leçons ${E.after-4}–${E.after}</div>
-    <div class="note">📝 Cet examen sera préparé par le tuteur quand la classe approche de la leçon ${E.after}.
-    Dites-lui : <b>« Prépare l'examen ${E.n} »</b>.${E.n===8?" L'examen 8 sera un DELF blanc complet, avec les épreuves du livre « Le DELF A2 100% réussite » et ses vrais audios.":""}</div>`;
+    <span class="back" onclick="renderHome()">← All lessons</span>
+    <div class="exam-title">Exam ${E.n} · Lessons ${E.after-4}–${E.after}</div>
+    <div class="note">📝 This exam will be prepared by the tutor when the class gets close to lesson ${E.after}.
+    Tell them: <b>“Prépare l'examen ${E.n}”</b>.${E.n===8?" Exam 8 will be a full DELF mock, using the “Le DELF A2 100% réussite” book with its real audio.":""}</div>`;
     window.scrollTo(0,0);return;
   }
   let h=`
-  <span class="back" onclick="renderHome()">← Toutes les leçons</span>
-  <div class="exam-title">Examen ${E.n} · Leçons ${E.after-4}–${E.after}</div>
-  <div class="exam-sub">Format DELF A2 · 4 parties · 100 points · ~1 heure · sans dictionnaire !</div>
-  <div class="rule"><b>Barème DELF :</b> réussite à partir de <b>50/100</b>, minimum 5/25 par partie.</div>
-  ${sc?`<div class="rule">Déjà passé : <b>${sc.total}/100</b> ${sc.pass?"(réussi ✓)":"(à refaire)"} — tu peux le repasser.</div>`:""}
+  <span class="back" onclick="renderHome()">← All lessons</span>
+  <div class="exam-title">Exam ${E.n} · Lessons ${E.after-4}–${E.after}</div>
+  <div class="exam-sub">DELF A2 format · 4 parts · 100 points · ~1 hour · no dictionary!</div>
+  <div class="rule"><b>DELF pass mark:</b> <b>50/100</b> or more, minimum 5/25 in each part.</div>
+  ${sc?`<div class="rule">Already taken: <b>${sc.total}/100</b> ${sc.pass?"(passed ✓)":"(to retake)"} — you can take it again.</div>`:""}
 
-  <div class="part"><div class="ph"><span class="pn">1</span><span class="pt">Compréhension de l'oral</span><span class="pts">/25</span></div>
-  <p class="hint" style="text-align:left;margin:0 0 8px;">Écoute chaque document (2 fois maximum !), puis réponds.</p>`;
+  <div class="part"><div class="ph"><span class="pn">1</span><span class="pt">Compréhension de l'oral — listening</span><span class="pts">/25</span></div>
+  <p class="hint" style="text-align:left;margin:0 0 8px;">Listen to each document (2 times maximum!), then answer.</p>`;
   let qi=0;
   E.listen.forEach((doc,di)=>{
-    h+=`<div class="rtext" style="text-align:center;font-style:normal;">Document ${di+1} · <button class="act ghost" style="padding:7px 16px;font-size:13px;" onclick="speak(E.listen[${di}].say)">▶ Écouter</button></div>`;
+    h+=`<div class="rtext" style="text-align:center;font-style:normal;">Document ${di+1} · <button class="act ghost" style="padding:7px 16px;font-size:13px;" onclick="speak(E.listen[${di}].say)">▶ Listen</button></div>`;
     doc.qs.forEach(q=>{
       h+=`<div class="mcq"><div class="qq">${esc(q.q)}</div>`;
       q.o.forEach((o,oi)=>{h+=`<label id="lq_${qi}_${oi}"><input type="radio" name="lq${qi}" value="${oi}"> ${esc(o)}</label>`;});
       h+=`</div>`;qi++;
     });
   });
-  h+=`<div class="row"><button class="act" onclick="gradeListen()">Corriger la partie 1</button></div>
+  h+=`<div class="row"><button class="act" onclick="gradeListen()">Mark part 1</button></div>
   <div class="feedback" id="lFb"></div></div>
 
-  <div class="part"><div class="ph"><span class="pn">2</span><span class="pt">Compréhension des écrits</span><span class="pts">/25</span></div>`;
+  <div class="part"><div class="ph"><span class="pn">2</span><span class="pt">Compréhension des écrits — reading</span><span class="pts">/25</span></div>`;
   qi=0;
   E.read.forEach(tx=>{
     h+=`<div class="rtext">${esc(tx.t)}</div>`;
@@ -2869,22 +2869,22 @@ function openExam(n){
       h+=`</div>`;qi++;
     });
   });
-  h+=`<div class="row"><button class="act" onclick="gradeReading()">Corriger la partie 2</button></div>
+  h+=`<div class="row"><button class="act" onclick="gradeReading()">Mark part 2</button></div>
   <div class="feedback" id="rFb2"></div></div>
 
-  <div class="part"><div class="ph"><span class="pn">3</span><span class="pt">Production écrite</span><span class="pts">/25</span></div>`;
+  <div class="part"><div class="ph"><span class="pn">3</span><span class="pt">Production écrite — writing</span><span class="pts">/25</span></div>`;
   E.write.forEach((w,wi)=>{
     h+=`<div class="mcq"><div class="qq">${wi+1}. ${esc(w.p)}</div>
-    <textarea class="txt" id="w_${wi}" placeholder="écris ici…"></textarea>
-    <div class="model" id="wm_${wi}"><b>Modèle :</b> ${esc(pers(w.m))}</div></div>`;
+    <textarea class="txt" id="w_${wi}" placeholder="write here…"></textarea>
+    <div class="model" id="wm_${wi}"><b>Model:</b> ${esc(pers(w.m))}</div></div>`;
   });
   h+=`<div class="row">
-      <button class="act ghost" onclick="showModels()">Voir les modèles</button>
-      <button class="act goldb" onclick="copyWriting()">Copier → correction par le tuteur</button></div>
-      <div class="scoreline">Ta note (honnête, ou celle du tuteur) : <input type="number" id="wScore" min="0" max="25" placeholder="0–25"> /25</div></div>
+      <button class="act ghost" onclick="showModels()">Show the model answers</button>
+      <button class="act goldb" onclick="copyWriting()">Copy → tutor marks it</button></div>
+      <div class="scoreline">Your score (honest, or the tutor's): <input type="number" id="wScore" min="0" max="25" placeholder="0–25"> /25</div></div>
 
-  <div class="part"><div class="ph"><span class="pn">4</span><span class="pt">Production orale</span><span class="pts">/25</span></div>
-  <div class="hint" style="text-align:left;margin:0 0 8px;">À faire à voix haute, ensemble en classe. Coche ce que tu as réussi (5 points chacun).</div>
+  <div class="part"><div class="ph"><span class="pn">4</span><span class="pt">Production orale — speaking</span><span class="pts">/25</span></div>
+  <div class="hint" style="text-align:left;margin:0 0 8px;">Do this out loud, together in class. Tick what you managed (5 points each).</div>
   <div class="speakx">`;
   E.speak.forEach(part=>{
     h+=`<div class="qq" style="margin:12px 0 6px;color:var(--gold);">${esc(part.h)}</div>`;
@@ -2892,7 +2892,7 @@ function openExam(n){
   });
   h+=`</div></div>
 
-  <div class="row"><button class="act goldb" style="font-size:15px;" onclick="finishExam()">Terminer l'examen</button></div>
+  <div class="row"><button class="act goldb" style="font-size:15px;" onclick="finishExam()">Finish the exam</button></div>
   <div id="exResult"></div>`;
   $("app").innerHTML=h;
   window.scrollTo(0,0);
@@ -2913,25 +2913,25 @@ function gradeMcq(prefix,docs,fbId){
   });
   const score=Math.round(25*corr/qs.length);
   const f=$(fbId);f.className="feedback "+(score>=13?"ok":"ko");
-  f.textContent=`${corr}/${qs.length} bonnes réponses → ${score}/25`;
+  f.textContent=`${corr}/${qs.length} correct → ${score}/25`;
   return score;
 }
 function gradeListen(){lScore=gradeMcq("lq",E.listen,"lFb");}
 function gradeReading(){rScore=gradeMcq("rq",E.read,"rFb2");}
 function showModels(){E.write.forEach((w,wi)=>{$("wm_"+wi).style.display="block";});}
 function copyWriting(){
-  let txt="EXAMEN "+E.n+" — production écrite de "+cur+" ("+today()+")\n";
+  let txt="EXAM "+E.n+" — writing by "+cur+" ("+today()+")\n";
   E.write.forEach((w,wi)=>{
-    txt+="\nSujet "+(wi+1)+" : "+w.p+"\nMa réponse : "+($("w_"+wi).value||"(vide)")+"\n";
+    txt+="\nTask "+(wi+1)+": "+w.p+"\nMy answer: "+($("w_"+wi).value||"(empty)")+"\n";
   });
-  txt+="\nTuteur : corrige selon la grille DELF A2 et donne une note sur 25.";
+  txt+="\nTutor: mark against the DELF A2 grid and give a score out of 25.";
   copyText(txt);
 }
 function finishExam(){
-  if(lScore===null){toast("Corrige d'abord la partie 1 (écoute) !");return;}
-  if(rScore===null){toast("Corrige d'abord la partie 2 (lecture) !");return;}
+  if(lScore===null){toast("Mark part 1 (listening) first!");return;}
+  if(rScore===null){toast("Mark part 2 (reading) first!");return;}
   const wv=$("wScore").value;
-  if(wv===""){toast("Entre ta note d'écrit (0–25) — ou demande-la au tuteur.");return;}
+  if(wv===""){toast("Enter your writing score (0–25) — or ask the tutor for it.");return;}
   const w=Math.max(0,Math.min(25,+wv));
   const s=Array.from(document.querySelectorAll(".spkx")).filter(c=>c.checked).length*5;
   const total=lScore+rScore+w+s;
@@ -2940,9 +2940,9 @@ function finishExam(){
   touch();saveAll();
   $("exResult").innerHTML=`<div class="result">
     <div class="big">${total}/100</div>
-    <div class="verdict" style="font-weight:700;color:${pass?"var(--good)":"var(--bad)"}">${pass?"✓ Réussi — félicitations !":"Pas encore 50 — on révise et on le repasse !"}</div>
-    <div class="det">Oral ${lScore}/25 · Écrits ${rScore}/25 · Écrite ${w}/25 · Orale ${s}/25</div>
-    <div class="row"><button class="act" onclick="renderHome()">← Retour aux leçons</button></div>
+    <div class="verdict" style="font-weight:700;color:${pass?"var(--good)":"var(--bad)"}">${pass?"✓ Passed — congratulations!":"Not 50 yet — review and take it again!"}</div>
+    <div class="det">Listening ${lScore}/25 · Reading ${rScore}/25 · Writing ${w}/25 · Speaking ${s}/25</div>
+    <div class="row"><button class="act" onclick="renderHome()">← Back to the lessons</button></div>
   </div>`;
   $("exResult").scrollIntoView({behavior:"smooth"});
 }
@@ -3046,45 +3046,45 @@ function renderClasse(){
   const l=lessonByN(CLS.n);
   const blc=blocOf(CLS.n);
   let top=`<div class="cls-top">
-    <button class="cls-lnav" onclick="clsLesson(-1)">‹ leçon préc.</button>
+    <button class="cls-lnav" onclick="clsLesson(-1)">‹ prev lesson</button>
     <span class="cls-lnav big">Leçon ${l.n} — ${esc(l.t)}</span>
-    <button class="cls-lnav" onclick="clsLesson(1)">leçon suiv. ›</button>
-    <button class="cls-lnav" style="${CLS.mode==="g"?"background:var(--gold);border-color:var(--gold);color:#fff;":"color:var(--gold);border-color:var(--gold-edge);background:var(--gold-bg);"}" onclick="clsGramToggle()">${CLS.mode==="g"?"← retour à la leçon":"📐 grammaire du bloc "+blc}</button>
-    <button class="cls-lnav x" onclick="quitClasse()">✕ quitter</button>
+    <button class="cls-lnav" onclick="clsLesson(1)">next lesson ›</button>
+    <button class="cls-lnav" style="${CLS.mode==="g"?"background:var(--gold);border-color:var(--gold);color:#fff;":"color:var(--gold);border-color:var(--gold-edge);background:var(--gold-bg);"}" onclick="clsGramToggle()">${CLS.mode==="g"?"← back to the lesson":"📐 block "+blc+" grammar"}</button>
+    <button class="cls-lnav x" onclick="quitClasse()">✕ quit</button>
   </div>`;
   if(CLS.mode==="g"){
     const s=CLS.gslides[CLS.gslide];
     let body="";
     if(s.ty==="g_none"){
       body=`<div style="text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:50vh;">
-        <div class="cls-eyebrow">Grammaire · bloc ${s.bloc}</div>
-        <div class="cls-title">À préparer</div>
-        <div class="cls-sub">Les unités de grammaire du bloc ${s.bloc} ne sont pas encore chargées.<br>Dites au tuteur : <b>« Prépare G${s.bloc*2-1} »</b>.</div>
+        <div class="cls-eyebrow">Grammar · block ${s.bloc}</div>
+        <div class="cls-title">To prepare</div>
+        <div class="cls-sub">The grammar units for block ${s.bloc} aren't loaded yet.<br>Tell the tutor: <b>“Prépare G${s.bloc*2-1}”</b>.</div>
       </div>`;
     }else if(s.ty==="g_title"){
       body=`<div style="text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:50vh;">
-        <div class="cls-eyebrow">La grammaire du bloc ${s.g.bloc}</div>
+        <div class="cls-eyebrow">Block ${s.g.bloc} grammar</div>
         <div class="cls-title">G${s.g.n}<br>${esc(s.g.t)}</div>
         <div class="cls-sub">${esc(s.g.s)}<br><span style="font-size:.8em;">${esc(s.g.src)}</span></div>
       </div>`;
     }else if(s.ty==="g_rule"){
-      body=`<div class="cls-eyebrow">G${s.g.n} · La règle</div>
+      body=`<div class="cls-eyebrow">G${s.g.n} · The rule</div>
       <div class="cls-gram">${s.g.rule.f}</div>
       ${s.g.rule.warn?`<div class="cls-tip" style="text-align:left;">${s.g.rule.warn}</div>`:""}`;
     }else if(s.ty==="g_ex"){
-      body=`<div class="cls-eyebrow">G${s.g.n} · Les exemples — écoutez et répétez ensemble !</div>`;
+      body=`<div class="cls-eyebrow">G${s.g.n} · The examples — listen and repeat together!</div>`;
       s.g.rule.ex.forEach(x=>{
         body+=`<div class="cls-word"><span class="fr">${esc(x[0])}</span>${spkBtn(x[0])}<span class="en">${esc(x[1])}</span></div>`;
       });
-      body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="playList(GUNITS.find(g=>g.n===${s.g.n}).rule.ex.map(x=>x[0]))">▶ Écouter tout — la classe répète</button></div>`;
+      body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="playList(GUNITS.find(g=>g.n===${s.g.n}).rule.ex.map(x=>x[0]))">▶ Play all — the class repeats</button></div>`;
     }else{
-      body=`<div class="cls-eyebrow">G${s.g.n} · À vous ! — production orale et écrite</div>
+      body=`<div class="cls-eyebrow">G${s.g.n} · Your turn! — speaking &amp; writing</div>
       <ul class="cls-parler">
-        <li>Chacun invente <b>une phrase</b> avec la règle du jour — à voix haute. Les profs corrigent.</li>
+        <li>Everyone makes up <b>one sentence</b> with today's rule — out loud. The teachers correct.</li>
         <li>✍️ ${esc(s.g.prod)}</li>
-        <li>Chacun lit sa production — la classe écoute et corrige ensemble.</li>
+        <li>Everyone reads their writing — the class listens and corrects together.</li>
       </ul>
-      <div class="cls-tip">Dans l'app à la maison : 📐 Grammaire → G${s.g.n} (les ${s.g.exs.length} exercices).</div>`;
+      <div class="cls-tip">In the app at home: 📐 Grammar → G${s.g.n} (the ${s.g.exs.length} exercises).</div>`;
     }
     const dots=CLS.gslides.map((x,i)=>`<span class="${i===CLS.gslide?"on":""}" onclick="clsJump(${i})"></span>`).join("");
     $("app").innerHTML=top+`<div class="cls-slide">${body}</div>
@@ -3094,7 +3094,7 @@ function renderClasse(){
       <button onclick="clsGo(1)" ${CLS.gslide===CLS.gslides.length-1?"disabled":""}>▶</button>
     </div>
     <div class="cls-dots">${dots}</div>
-    <p class="hint">Diaporama grammaire du bloc ${blc} · flèches ← → · « retour à la leçon » pour reprendre</p>`;
+    <p class="hint">Block ${blc} grammar slideshow · arrow keys ← → · “back to the lesson” to resume</p>`;
     window.scrollTo(0,0);return;
   }
   if(!l.w.length){
@@ -3102,8 +3102,8 @@ function renderClasse(){
       <div style="text-align:center;max-width:34em;">
         <div class="cls-eyebrow">${esc(BOOKS[l.b])} · ${esc(l.ch)}</div>
         <div class="cls-title">Leçon ${l.n} — ${esc(l.t)}</div>
-        <div class="cls-sub">📚 Cette leçon n'est pas encore chargée dans l'app.<br>
-        Utilisez le livre papier (${esc(l.ch)}) et dites au tuteur : <b>« Prépare la leçon ${l.n} »</b>.</div>
+        <div class="cls-sub">📚 This lesson isn't loaded in the app yet.<br>
+        Use the paper book (${esc(l.ch)}) and tell the tutor: <b>“Prépare la leçon ${l.n}”</b>.</div>
       </div></div>`;
     window.scrollTo(0,0);return;
   }
@@ -3111,43 +3111,43 @@ function renderClasse(){
   let body="";
   if(s.ty==="title"){
     body=`<div style="text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:50vh;">
-      <div class="cls-eyebrow">Mode Classe · ${esc(BOOKS[l.b])} · ${esc(l.ch)}</div>
+      <div class="cls-eyebrow">Class Mode · ${esc(BOOKS[l.b])} · ${esc(l.ch)}</div>
       <div class="cls-title">Leçon ${l.n}<br>${esc(l.t)}</div>
-      <div class="cls-sub">${esc(l.s)} · ${l.w.length} mots</div>
+      <div class="cls-sub">${esc(l.s)} · ${l.w.length} words</div>
     </div>`;
   }else if(s.ty==="mots"){
-    body=`<div class="cls-eyebrow">Les mots · ${s.from+1}–${s.to} / ${l.w.length} — écoutez et répétez ensemble !</div>`;
+    body=`<div class="cls-eyebrow">The words · ${s.from+1}–${s.to} / ${l.w.length} — listen and repeat together!</div>`;
     l.w.slice(s.from,s.to).forEach(w=>{
       body+=`<div class="cls-word"><span class="fr ${w[3]}">${esc(w[1])}</span>${w[3]?`<span class="gtag ${w[3]}">${w[3]}</span>`:""}${spkBtn(w[1])}<span class="en">${esc(w[0])}</span></div>`;
     });
-    body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="clsPlaySlide()">▶ Écouter tout — la classe répète</button></div>`;
+    body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="clsPlaySlide()">▶ Play all — the class repeats</button></div>`;
   }else if(s.ty==="gram"){
-    body=`<div class="cls-eyebrow">La grammaire</div><div class="cls-gram">${l.g}</div>`;
+    body=`<div class="cls-eyebrow">Grammar note</div><div class="cls-gram">${l.g}</div>`;
   }else if(s.ty==="dlg"){
-    body=`<div class="cls-eyebrow">Le dialogue · ${esc(l.d.t)}</div>`;
+    body=`<div class="cls-eyebrow">The dialogue · ${esc(l.d.t)}</div>`;
     l.d.lines.forEach(x=>{
       const me=x[0]==="M";
-      body+=`<div class="cls-bubble ${me?"me":"a"}"><span class="who">${me?"— élève —":"— l'autre —"}</span>${esc(x[1])} ${spkBtn(x[1])}</div>`;
+      body+=`<div class="cls-bubble ${me?"me":"a"}"><span class="who">${me?"— student —":"— the other —"}</span>${esc(x[1])} ${spkBtn(x[1])}</div>`;
     });
-    body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="clsPlaySlide()">▶ Toute la scène</button></div>
-    <div class="cls-tip">🎭 Maintenant, jouez la scène à deux — puis changez les détails (les noms, les nombres…) !</div>`;
+    body+=`<div class="cls-nav" style="justify-content:flex-start;"><button onclick="clsPlaySlide()">▶ The whole scene</button></div>
+    <div class="cls-tip">🎭 Now act the scene out in pairs — then change the details (names, numbers…)!</div>`;
   }else if(s.ty==="parler"){
-    const prompts=PARLER[l.n]||l.x.slice(0,3).map(x2=>"Dites en français : « "+x2[0]+" »");
-    body=`<div class="cls-eyebrow">À vous de parler ! — activités menées par les profs</div>
+    const prompts=PARLER[l.n]||l.x.slice(0,3).map(x2=>"Say it in French: “"+x2[0]+"”");
+    body=`<div class="cls-eyebrow">Your turn to speak! — activities led by the teachers</div>
     <ul class="cls-parler">${prompts.map(p2=>`<li>${esc(p2)}</li>`).join("")}</ul>
-    <div class="cls-tip">Chacun parle — les profs corrigent la prononciation. Pas de stress, on apprend !</div>`;
+    <div class="cls-tip">Everyone speaks — the teachers correct pronunciation. No stress, we're learning!</div>`;
   }else{
     const gsB=GUNITS.filter(g=>g.bloc===blc&&g.ready);
     const stB2=stageForBloc(blc);
-    body=`<div class="cls-eyebrow">Devoirs — avant la prochaine classe</div>
+    body=`<div class="cls-eyebrow">Homework — before the next class</div>
     <ul class="cls-parler">
-      <li>📖 Le livre : relisez ${esc(l.ch)} et faites les exercices de la page de droite (sur papier).</li>
-      <li>📱 L'app, sur VOTRE téléphone : Quiz + Écoute + Genre + Conjugaison de la leçon ${l.n}, et le Dialogue jusqu'au niveau ③.</li>
-      ${gsB.length?`<li>📐 Grammaire : les exercices de ${gsB.map(g=>"G"+g.n).join(" et ")} + l'étape C${stB2.id} (${esc(stB2.t)}).</li>`:""}
-      ${gsB.length?`<li>✍️ Production (papier, à rendre aux profs) : ${esc(gsB[0].prod)}</li>`:""}
-      <li>🔁 Une Révision mixte (10 questions) par jour.</li>
+      <li>📖 The book: re-read ${esc(l.ch)} and do the right-hand-page exercises (on paper).</li>
+      <li>📱 The app, on YOUR phone: Quiz + Listening + Gender + Conjugation for leçon ${l.n}, and the Dialogue up to level ③.</li>
+      ${gsB.length?`<li>📐 Grammar: the exercises of ${gsB.map(g=>"G"+g.n).join(" and ")} + stage C${stB2.id} (${esc(stB2.t)}).</li>`:""}
+      ${gsB.length?`<li>✍️ Writing task (on paper, hand it to the teachers): ${esc(gsB[0].prod)}</li>`:""}
+      <li>🔁 One Mixed review (10 questions) every day.</li>
     </ul>
-    <div class="cls-tip">Les rapides peuvent prendre de l'avance sur la leçon suivante — la classe, elle, avance au rythme des profs !</div>`;
+    <div class="cls-tip">Fast learners can get ahead on the next lesson — the class itself moves at the teachers' pace!</div>`;
   }
   const dots=CLS.slides.map((x,i)=>`<span class="${i===CLS.slide?"on":""}" onclick="clsJump(${i})"></span>`).join("");
   $("app").innerHTML=top+`<div class="cls-slide">${body}</div>
@@ -3157,7 +3157,7 @@ function renderClasse(){
     <button onclick="clsGo(1)" ${CLS.slide===CLS.slides.length-1?"disabled":""}>▶</button>
   </div>
   <div class="cls-dots">${dots}</div>
-  <p class="hint">Flèches ← → du clavier pour changer de diapositive · la position de la classe est mémorisée sur cet appareil</p>`;
+  <p class="hint">Arrow keys ← → to change slides · the class position is remembered on this device</p>`;
   window.scrollTo(0,0);
 }
 document.addEventListener("keydown",e=>{
